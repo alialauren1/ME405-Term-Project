@@ -17,4 +17,5 @@ Below shows a table of the parameters. These are mostly approximations and will 
 | Motor Nominal Voltage            | V_DC         | 12         | V         |
 
 
-![Screenshot 2024-02-26 at 8 54 13 PM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/c521acfc-c77c-4edc-8a66-d75acc7b1939)
+![Screenshot 2024-02-27 at 12 06 52 AM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/c3292629-7c7a-42ef-b7bf-8b73d2cc03e6)
+
