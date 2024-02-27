@@ -15,3 +15,6 @@ Below shows a table of the parameters. These are mostly approximations and will 
 |        Terminal Resistance       |       R      |     4.3    |    ohm    |
 | Terminal Inductance              | L            | 4.72e-3    | H         |
 | Motor Nominal Voltage            | V_DC         | 12         | V         |
+
+
+![Screenshot%202024-02-26%20at%208.59.11%E2%80%AFPM.png](attachment:Screenshot%202024-02-26%20at%208.59.11%E2%80%AFPM.png)
