@@ -1,5 +1,7 @@
 # ME405-Term-Project
 
+![Screenshot 2024-02-27 at 12 06 52 AM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/c3292629-7c7a-42ef-b7bf-8b73d2cc03e6)
+
 Below shows a table of the parameters. These are mostly approximations and will be adjusted accordingly as more accurate values are determined. 
 
 |          **Parameters**          |   Variable   |    Value   |   Units   |
@@ -15,7 +17,3 @@ Below shows a table of the parameters. These are mostly approximations and will 
 |        Terminal Resistance       |       R      |     4.3    |    ohm    |
 | Terminal Inductance              | L            | 4.72e-3    | H         |
 | Motor Nominal Voltage            | V_DC         | 12         | V         |
-
-
-![Screenshot 2024-02-27 at 12 06 52 AM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/c3292629-7c7a-42ef-b7bf-8b73d2cc03e6)
-
