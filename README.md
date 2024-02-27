@@ -18,11 +18,11 @@ Below shows a table of the parameters. These are mostly approximations and will 
 | Terminal Inductance              | L            | 4.72e-3    | H         |
 | Motor Nominal Voltage            | V_DC         | 12         | V         |
 
-### Open-Loop Response
+### Open-Loop Response from Simulation
 
 ![Screenshot 2024-02-27 at 12 14 27 AM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/fb641230-9615-4e07-a996-a2f8f92ce283)
 
-### Closed-Loop Response 
+### Closed-Loop Response from Simulation 
 Kp = 1000, Kd = 100
 Desired Setpoint = 0.1 m [= approx. 4 inches]
 
