@@ -1,6 +1,7 @@
 # ME405-Term-Project
 
-![Screenshot 2024-02-27 at 12 06 52 AM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/c3292629-7c7a-42ef-b7bf-8b73d2cc03e6)
+<img width="377" alt="Screenshot 2024-02-29 at 3 22 13 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/ba0a9cde-79e9-4b00-a738-473b52efb0eb">
+
 
 Below shows a table of the parameters. These are mostly approximations and will be adjusted accordingly as more accurate values are determined. 
 
