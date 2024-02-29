@@ -1,6 +1,6 @@
 # ME405-Term-Project
 
-Below is a photo of the mechanical system that will be connected to the motor. It is not complete and will have completed gear system uploaded most likely this weekend (02/29/2023).  
+Below is a photo of the mechanical system that will be connected to the motor. It is not complete and will have completed gear system uploaded most likely this weekend (02/29/2024).  
 
 <img width="377" alt="Screenshot 2024-02-29 at 3 22 13 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/ba0a9cde-79e9-4b00-a738-473b52efb0eb">
 
