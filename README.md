@@ -1,6 +1,9 @@
 # ME405-Term-Project
 
-![Screenshot 2024-02-27 at 12 06 52 AM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/c3292629-7c7a-42ef-b7bf-8b73d2cc03e6)
+Below is a photo of the mechanical system that will be connected to the motor. It is not complete and will have completed gear system uploaded most likely this weekend (02/29/2024).  
+
+<img width="377" alt="Screenshot 2024-02-29 at 3 22 13 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/ba0a9cde-79e9-4b00-a738-473b52efb0eb">
+
 
 Below shows a table of the parameters. These are mostly approximations and will be adjusted accordingly as more accurate values are determined. 
 
@@ -17,14 +20,4 @@ Below shows a table of the parameters. These are mostly approximations and will 
 |        Terminal Resistance       |       R      |     4.3    |    ohm    |
 | Terminal Inductance              | L            | 4.72e-3    | H         |
 | Motor Nominal Voltage            | V_DC         | 12         | V         |
-
-### Open-Loop Response from Simulation
-
-![Screenshot 2024-02-27 at 12 14 27 AM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/fb641230-9615-4e07-a996-a2f8f92ce283)
-
-### Closed-Loop Response from Simulation 
-Kp = 1000, Kd = 100
-Desired Setpoint = 0.1 m [= approx. 4 inches]
-
-![Screenshot 2024-02-27 at 12 15 31 AM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/470a8a85-c9bd-4e56-983b-ea06feaf428f)
 
