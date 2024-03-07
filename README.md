@@ -5,6 +5,9 @@ Below is a photo of the mechanical system that will be connected to the motor. I
 <img width="377" alt="Screenshot 2024-02-29 at 3 22 13 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/ba0a9cde-79e9-4b00-a738-473b52efb0eb">
 
 
+![PIC 1](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/60ea3e03-c385-4d50-9557-612a0d115190)
+
+
 Below shows a table of the parameters. These are mostly approximations and will be adjusted accordingly as more accurate values are determined. 
 
 |          **Parameters**          |   Variable   |    Value   |   Units   |
