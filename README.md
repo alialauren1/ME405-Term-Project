@@ -6,7 +6,7 @@ reaches the desired pressure depth.
 
 This project was intended for our senior project where. Dr. Ghalamchi wants to improve previous tests on waterproof drones that can take off from underwater to allow for a drone that can float on top of the water surface as well as have added support to be pushed up from underwater. The new design needs to be detachable from the built waterproof drone to compare its new features in tests. The propellers must also be above the water surface when the drone is idling on the water so that the efficiency of takeoff can be compared to the drone without the chamber in which the whole drone is submerged underwater upon takeoff.
 
-Our project for ME 405 will be the system attached to this drone, enabling it to submerge 
+Our project for ME 405 will be the system attached to this drone, enabling the drone to submerge 
 underwater and resurface to position the propellers above the water's surface.
 
 
