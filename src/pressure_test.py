@@ -24,6 +24,25 @@ if __name__ == '__main__':
             # pull data
             data = I2C_obj.recv(byte_array,addr)
             
+            # status = bin(data[0]) # truncates leading zeros
+            status = '{0:08b}'.format(data[0])         
+            #.format exists in the (string?) class and is built in
+            
+            pressure = '{0:024b}'.format(data[1])
+            
+            # Write the three bytes,
+            # wait 5 ms
+            # .read
+            
+            
+            
+            # charlie info::
+            #010b
+            # # means print prefix
+            # 0 means wit hleading zeros
+            # 10 means 10 total digs worth of chars
+            # b binary
+            
             # old 
             # pull status
             #data = I2C_obj.mem_read(7,addr,0x51)
