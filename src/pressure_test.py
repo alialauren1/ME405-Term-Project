@@ -36,10 +36,15 @@ if __name__ == '__main__':
         utime.sleep (1) # sleep 1 second
 
         try:
-            data = sensor_obj.readPressureSensor()
-            #status, pressure = Sensor(sensor_addr)
+            # WHEN USING CLASS:
+            #data = sensor_obj.readPressureSensor()
             
-            #print(f'{status=},{pressure=}')
+            # FOR NOW:
+            byte_array = bytearray(7)
+            data = I2C_obj.recv(byte_array,sensor_addr)
+            status = '{0:08b}'.format(data[0])
+            pressure = '{0:024b}'.format(data[1])
+            print(f'{status=},{pressure=}')
             
             # Write the three bytes,
             # wait 5 ms
