@@ -26,9 +26,9 @@ class PressureSensor:
 
         status1 = '{0:08b}'.format(data[0]) # extract first byte 
         status2 = (data[0] & 0xC0) >> 6 # extract first byte, shift 6 positions and store
-        print(f'{status1=},{status2=}')
+        #print(f'{status1=},{status2=}')
         
-        print('first p val',self.init_pressure)
+        #print('first p val',self.init_pressure)
 
         pressCounts = data[1] | ((data[0] & 0x3F) << 8) # 16bit pressure val
         tempCounts = ((data[3] & 0xE0) >> 5) | (data[2] << 3) # 12bit temp val
@@ -54,7 +54,7 @@ class PressureSensor:
         gravity = 32.17405 # [ft/s^2]
         density = 62.3 # [lb/ft^3]
         
-        depth = self.p_gauge*144*12*32.174/(gravity*density) # [ft]
+        depth = self.p_gauge*144*32.174/(gravity*density) # [ft]
         return depth
         
         
@@ -71,8 +71,9 @@ if __name__ == "__main__":
     while True:
         try:
             utime.sleep (0.5) # sleep 1 second
-            print(sensor_obj.readPressure())
-            print('Depth in [in]= ',sensor_obj.readDepth())
+            Pressure, GaugePressure, Temp = sensor_obj.readPressure()
+            print('Pressure [psi]= ',Pressure)
+            print('Depth in [ft]= ',sensor_obj.readDepth())
             
         except KeyboardInterrupt:
             break
