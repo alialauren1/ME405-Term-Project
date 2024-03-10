@@ -20,8 +20,7 @@ import Closed_Loop_Controller
 from motor_driver import motordriver
 from encoder_reader import Encoder
 from Closed_Loop_Controller import Controller
-
-
+from pressure_sensor import PressureSensor
 
 
 def task1_fun(shares):
@@ -119,67 +118,6 @@ def task3_fun(shares):
         
         yield 0
 
-def task4_fun(shares):
-    
-    enc1 = enc2 = Encoder("enc1", pyb.Pin.board.PC6, pyb.Pin.board.PC7, 8)
-    moe1 = motordriver(pyb.Pin.board.PC1, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
-    
-    enc1.zero()
-    queue_size = 100
-
-
-    # Paramters for the contoller 0.03
-    Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
-    setpoint = 50500 #int(input("Enter the set-point =  "))
-    controller_obj = Controller(Kp, setpoint, queue_size)
-     
-    state = 1
-    S1_data = 1
-    S2_print = 2
-    S3_done = 3
-    queue_size = 100
-    counter = 0
-    
-    # Loop over a set number of iterations
-    #for i in range(queue_size):
-    while True:
-        
-        if (state == S1_data):
-            
-            reader_value = enc1.read() #Reads encoder 1 value
-            PWM = controller_obj.run(reader_value) 
-            moe1.set_duty_cycle(PWM) #Ajust motor 1 postion
-            counter += 1
-            
-            if counter == queue_size:
-                state = 2    
-            
-        elif (state == S2_print):
-            print('Motor 1, Pin B4 & B5')
-            print(f"{reader_value} {PWM}")
-            tup = controller_obj.data()
-            time = tup[0]
-            print(time)
-            pos = tup[1]
-            
-            print('TIME')
-            while time.any():
-                print(time.get())
-            print('POSITION')
-            while pos.any():
-                print(pos.get())
-                
-            state = 3
-            
-        elif (state == S3_done):
-            moe1.set_duty_cycle(0)
-            pass
-    
-        else:
-            pass
-
-        yield 0
-
 # This code creates a share, a queue, and two tasks, then starts the tasks. The
 # tasks run until somebody presses ENTER, at which time the scheduler stops and
 # printouts show diagnostic information about the tasks, share, and queue.
@@ -202,13 +140,10 @@ if __name__ == "__main__":
                         profile=True, trace=False, shares=(share0, q0))
     task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=25,
                         profile=True, trace=False, shares=(share0, q0))
-    task4 = cotask.Task(task4_fun, name="Task_4", priority=3, period=25,
-                        profile=True, trace=False, shares=(share0, q0))
     
     cotask.task_list.append(task1)
     cotask.task_list.append(task2)
-    #cotask.task_list.append(task3)
-    cotask.task_list.append(task4)
+    cotask.task_list.append(task3)
     
     # Run the memory garbage collector to ensure memory is as defragmented as
     # possible before the real-time scheduler is started

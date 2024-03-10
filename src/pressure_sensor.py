@@ -5,10 +5,18 @@ import struct
 class PressureSensor:
     
     def __init__(self):
+        
+        
+        self.I2C_obj = pyb.I2C(1,pyb.I2C.CONTROLLER,baudrate=100000)
+        
+         # scan I2C bus to make sure 1 device talking
+        sensor_addr = self.I2C_obj.scan() # Check for devices on bus, output is I2C Device Address
+        #Sensor_Addr = 0x28 # I2C Addr From Data Sheet
+        
         self.byte_array = bytearray(7)
         
         # COLLECT FIRST P VALUE
-        data = I2C_obj.recv(self.byte_array,0x28) # receive data from I2C, store in bytearray
+        data = self.I2C_obj.recv(self.byte_array,0x28) # receive data from I2C, store in bytearray
         status = (data[0] & 0xC0) >> 6 # extract first byte, shift 6 positions and store
         print(f'{status=}') 
         self.init_p = data[1] | ((data[0] & 0x3F) << 8) # 16bit pressure val
@@ -22,7 +30,7 @@ class PressureSensor:
         
     def readPressure(self):
         
-        data = I2C_obj.recv(self.byte_array,0x28) # receive data from I2C, store in bytearray
+        data = self.I2C_obj.recv(self.byte_array,0x28) # receive data from I2C, store in bytearray
 
         status1 = '{0:08b}'.format(data[0]) # extract first byte 
         status2 = (data[0] & 0xC0) >> 6 # extract first byte, shift 6 positions and store
@@ -61,13 +69,9 @@ class PressureSensor:
 if __name__ == "__main__":
         
     # init
-    I2C_obj = pyb.I2C(1,pyb.I2C.CONTROLLER,baudrate=100000)
+    
     sensor_obj = PressureSensor()
 
-    # scan I2C bus to make sure 1 device talking
-    sensor_addr = I2C_obj.scan() # Check for devices on bus, output is I2C Device Address
-    #Sensor_Addr = 0x28 # I2C Addr From Data Sheet
-    
     while True:
         try:
             utime.sleep (0.5) # sleep 1 second
