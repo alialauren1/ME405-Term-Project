@@ -7,7 +7,7 @@ class PressureSensor:
     def __init__(self):
         self.byte_array = bytearray(7)
         
-    def read(self):
+    def readPressure(self):
         
         data = I2C_obj.recv(self.byte_array,0x28) # receive data from I2C, store in bytearray
 
@@ -43,5 +43,11 @@ if __name__ == "__main__":
     sensor_addr = I2C_obj.scan() # Check for devices on bus, output is I2C Device Address
     #Sensor_Addr = 0x28 # I2C Addr From Data Sheet
     
-    print(sensor_obj.read())
-    #print(f'{pressure=},{temperature=}')
+    while True:
+        try:
+            utime.sleep (0.5) # sleep 1 second
+            print(sensor_obj.readPressure())
+            
+        except KeyboardInterrupt:
+            break
+    
