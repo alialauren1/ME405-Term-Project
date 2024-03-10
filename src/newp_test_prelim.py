@@ -35,7 +35,7 @@ while True:
         T_MAX = 150  #[Celsius]
         T_MIN = -50  #[Celsius]
         T_COUNTS = pow(2,11) - 1
-        temperature = (tempCounts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Celsius]
+        temperature = (tempCounts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[F]
         
         print(f'{pressure=},{temperature=}')
         
