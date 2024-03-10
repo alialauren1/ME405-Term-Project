@@ -2,20 +2,14 @@ import pyb
 import utime
 import struct
 
-# init
-I2C_obj = pyb.I2C(1,pyb.I2C.CONTROLLER,baudrate=100000)
-
-# scan I2C bus to make sure 1 device talking
-sensor_addr = I2C_obj.scan() # Check for devices on bus, output is I2C Device Address
-#Sensor_Addr = 0x28 # I2C Addr From Data Sheet
-
-while True:
-    try: 
+class PressureSensor:
     
-        utime.sleep (0.5) # sleep 1 second
+    def __init__(self):
+        self.byte_array = bytearray(7)
         
-        byte_array = bytearray(7)
-        data = I2C_obj.recv(byte_array,0x28) # receive data from I2C, store in bytearray
+    def read(self):
+        
+        data = I2C_obj.recv(self.byte_array,0x28) # receive data from I2C, store in bytearray
 
         status1 = '{0:08b}'.format(data[0]) # extract first byte 
         status2 = (data[0] & 0xC0) >> 6 # extract first byte, shift 6 positions and store
@@ -37,16 +31,17 @@ while True:
         T_COUNTS = pow(2,11) - 1
         temperature = (tempCounts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Celsius]
         
-        print(f'{pressure=},{temperature=}')
+        return pressure,temperature
         
-    except KeyboardInterrupt:
-        break
+if __name__ == "__main__":
         
+    # init
+    I2C_obj = pyb.I2C(1,pyb.I2C.CONTROLLER,baudrate=100000)
+    sensor_obj = PressureSensor()
 
-# #calculate depth
-# GRAVITY = 9.80665  #[m/s2]
-# WATER_DENSITY = 998  #fresh water at 20 Celsius [kg/m3]
-# pressurePa = pressure * 100000  #[Pa]
-# depth = pressurePa / (GRAVITY * WATER_DENSITY)  #[m]
-
-#print(f'{depth=}')
+    # scan I2C bus to make sure 1 device talking
+    sensor_addr = I2C_obj.scan() # Check for devices on bus, output is I2C Device Address
+    #Sensor_Addr = 0x28 # I2C Addr From Data Sheet
+    
+    print(sensor_obj.read())
+    #print(f'{pressure=},{temperature=}')
