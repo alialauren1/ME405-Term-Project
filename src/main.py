@@ -39,7 +39,6 @@ def task1_fun(shares):
 
         yield 0
 
-
 def task2_fun(shares):
     """!
     Task which takes things out of a queue and share and displays them.
@@ -59,7 +58,7 @@ def task2_fun(shares):
         
 def task3_fun(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
-    moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PA1, pyb.Pin.board.PA0, 5)
+    moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     sensor_obj = PressureSensor()
 
     enc2.zero()
@@ -137,7 +136,7 @@ if __name__ == "__main__":
                         profile=True, trace=False, shares=(share0, q0))
     task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=1500,
                         profile=True, trace=False, shares=(share0, q0))
-    task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=25,
+    task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=60,
                         profile=True, trace=False, shares=(share0, q0))
     
     cotask.task_list.append(task1)
