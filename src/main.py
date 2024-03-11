@@ -59,16 +59,15 @@ def task2_fun(shares):
         
 def task3_fun(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
-    #enc2 = Encoder("enc2", pyb.Pin.board.PC6, pyb.Pin.board.PC7, 8)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PA1, pyb.Pin.board.PA0, 5)
+    sensor_obj = PressureSensor()
 
     enc2.zero()
     queue_size = 100
 
-
     # Paramters for the contoller
-    Kp = .03 #float(input("Enter the proportional gain (Kp) =  "))
-    setpoint = 50500 #int(input("Enter the set-point =  "))
+    Kp = 0.5 #float(input("Enter the proportional gain (Kp) =  "))
+    setpoint = 9047 #int(input("Enter the set-point =  ")) [Raw P Val for approx 5 ft]
     controller_obj2 = Controller(Kp, setpoint, queue_size)
      
     state = 1
@@ -84,7 +83,7 @@ def task3_fun(shares):
         
         if (state == S1_data):
 
-            reader_value = enc2.read() #Reads encoder 2 value
+            reader_value = sensor_obj.readPressureRaw() #Reads Raw P value
             PWM = controller_obj2.run(reader_value) 
             moe2.set_duty_cycle(PWM) #Ajust motor 2 postion
             counter += 1
@@ -103,7 +102,7 @@ def task3_fun(shares):
             print('TIME')
             while time.any():
                 print(time.get())
-            print('POSITION')
+            print('RAW P')
             while pos.any():
                 print(pos.get())
                 

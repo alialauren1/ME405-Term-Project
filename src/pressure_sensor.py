@@ -28,7 +28,7 @@ class PressureSensor:
         self.init_pressure = ((self.init_p - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
 
         
-    def readPressure(self):
+    def readPressureRaw(self):
         
         data = self.I2C_obj.recv(self.byte_array,0x28) # receive data from I2C, store in bytearray
 
@@ -38,31 +38,34 @@ class PressureSensor:
         
         #print('first p val',self.init_pressure)
 
-        pressCounts = data[1] | ((data[0] & 0x3F) << 8) # 16bit pressure val
-        tempCounts = ((data[3] & 0xE0) >> 5) | (data[2] << 3) # 12bit temp val
+        self.pressCounts = data[1] | ((data[0] & 0x3F) << 8) # 16bit pressure val
+        self.tempCounts = ((data[3] & 0xE0) >> 5) | (data[2] << 3) # 12bit temp val
+        
+        
+        return self.pressCounts
+    
+    def ConvToDepth(self):
         
         #pressure conversion
         P_MAX = 2  #[bar]
         P_MIN = 0  #[bar]
         O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
         O_MIN = 0.1 * pow(2,14) # Max input val from sensor 
-        self.pressure = ((pressCounts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
-        self.p_gauge = self.pressure - self.init_pressure # pressure relative to atmosphere [psig]
+        pressure = ((self.pressCounts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
+        p_gauge = pressure - self.init_pressure # pressure relative to atmosphere [psig]
 
         #temperature conversion
         T_MAX = 150  #[Celsius]
         T_MIN = -50  #[Celsius]
         T_COUNTS = pow(2,11) - 1
-        self.temperature = (tempCounts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Farenheight]
+        self.temperature = (self.tempCounts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Farenheight]
         
-        return self.pressure,self.p_gauge,self.temperature
-    
-    def readDepth(self):
+        #return self.pressure,self.p_gauge,self.temperature
         
         gravity = 32.17405 # [ft/s^2]
         density = 62.3 # [lb/ft^3]
         
-        depth = self.p_gauge*144*32.174/(gravity*density) # [ft]
+        depth = p_gauge*144*32.174/(gravity*density) # [ft]
         return depth
         
         
@@ -75,9 +78,10 @@ if __name__ == "__main__":
     while True:
         try:
             utime.sleep (0.5) # sleep 1 second
-            Pressure, GaugePressure, Temp = sensor_obj.readPressure()
-            print('Pressure [psi]= ',Pressure)
-            print('Depth in [ft]= ',sensor_obj.readDepth())
+            #Pressure, GaugePressure, Temp = sensor_obj.readPressure()
+            #print('Pressure [psi]= ',Pressure)
+            print('Raw Pressure Val= ',sensor_obj.readPressureRaw())
+            print('Depth [ft]= ',sensor_obj.ConvToDepth())
             
         except KeyboardInterrupt:
             break

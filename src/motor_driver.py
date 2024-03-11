@@ -50,10 +50,11 @@ class motordriver:
             self.ch1.pulse_width_percent(evel_abs)
             self.ch2.pulse_width_percent(0)
             #print("negative")
+            
 if __name__ == '__main__':
 
                       
-    moe = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
+    moe = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PA1, pyb.Pin.board.PA0, 5)
     moe.set_duty_cycle (-50)
     # Wait for a certain duration (e.g., 5 seconds)
     pyb.delay(5000)  # 5000 milliseconds = 5 seconds
