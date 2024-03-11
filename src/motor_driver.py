@@ -1,4 +1,5 @@
 import pyb
+
 class motordriver:
     """! 
     This class implements a motor driver for an ME405 kit. 
@@ -52,23 +53,10 @@ class motordriver:
             #print("negative")
             
 if __name__ == '__main__':
-
-                      
-    moe = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PA1, pyb.Pin.board.PA0, 5)
+               
+    moe = motordriver (pyb.Pin.board.PC1, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
+    
     moe.set_duty_cycle (-50)
     # Wait for a certain duration (e.g., 5 seconds)
-    pyb.delay(5000)  # 5000 milliseconds = 5 seconds
-      
-    # Stop the motor by setting the duty cycle to 0
-    moe.set_duty_cycle(0)
-      
-    # Wait for a certain duration (e.g., 5 seconds)
-    pyb.delay(5000)  # 5000 milliseconds = 5 seconds
-      
-    moe.set_duty_cycle(500)
-      
-    # Wait for a certain duration (e.g., 5 seconds)
-    pyb.delay(5000)  # 5000 milliseconds = 5 seconds
-      
-    # Stop the motor by setting the duty cycle to 0
-    moe.set_duty_cycle(0)
+    # pyb.delay(5000)  # 5000 milliseconds = 5 seconds
+ 
