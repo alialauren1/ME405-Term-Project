@@ -27,8 +27,8 @@ $    = (N_C / N_B ) * (F_R * R_A)$
 
 $    = (1/30) * (18) * (5x10^-3)$
 
-      = 0.003 N*m
-      = 3 N*m
+$    = 0.003 N*m
+     = 3 N*m$
 
 ![pic 3](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/dabea663-33ab-48a3-91b7-2d57c6a7cb01)
 Figure 1. Internal system of our terms project with labels indicating parts of the system.
