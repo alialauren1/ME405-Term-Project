@@ -4,7 +4,7 @@ import struct
 
 class PressureSensor:
     
-    def __init__(self,Pressure):
+    def __init__(self,Setpoint):
         
         
         self.I2C_obj = pyb.I2C(1,pyb.I2C.CONTROLLER,baudrate=100000)
@@ -28,7 +28,7 @@ class PressureSensor:
         self.init_pressure = ((self.init_p - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
 
         
-    def readPressureRaw(self):
+    def readP_Raw(self):
         
         # need to keep pressure values in raw counts to have max precision
         
@@ -45,7 +45,7 @@ class PressureSensor:
         
         return self.pressCounts
     
-    def PtoRaw(self,Pressure):
+    def PtoRawP(self,Setpoint):
         
         #pressure conversion from pressure [psi] to raw counts
         
@@ -53,10 +53,10 @@ class PressureSensor:
         P_MIN = 0  #[bar]
         O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
         O_MIN = 0.1 * pow(2,14) # Max input val from sensor
-        setpoint_raw = ((Pressure/14.5038)-P_MIN)*(O_MAX - O_MIN)/(P_MAX - P_MIN)+O_MIN
+        setpoint_raw = ((Setpoint/14.5038)-P_MIN)*(O_MAX - O_MIN)/(P_MAX - P_MIN)+O_MIN
         return setpoint_raw
     
-    def RawtoP(self,Pressure):
+    def RawtoData(self):
         #pressure conversion from raw counts to pressure [psi]
         
         P_MAX = 2  #[bar]
@@ -64,10 +64,24 @@ class PressureSensor:
         O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
         O_MIN = 0.1 * pow(2,14) # Max input val from sensor 
         pressure = ((self.pressCounts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
-        p_gauge = pressure - self.init_pressure # pressure relative to atmosphere [psig]
+        self.p_diff = pressure - self.init_pressure # pressure relative to atmosphere [psig]
+        
+        #temperature conversion
+        T_MAX = 150  #[Celsius]
+        T_MIN = -50  #[Celsius]
+        T_COUNTS = pow(2,11) - 1
+        self.temperature = (self.tempCounts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Farenheight]
+
+        return pressure, self.p_diff, self.temperature
+        
+    def ConvtoDepth(self):
+        
+        gravity = 32.17405 # [ft/s^2]
+        density = 62.3 # [lb/ft^3]
+        
+        depth = self.p_diff*144*32.174/(gravity*density) # [ft]
+        return depth
 #
-#     
-#     def ConvToDepth(self):
 #         
 #         #pressure conversion
 #         P_MAX = 2  #[bar]
@@ -96,17 +110,26 @@ if __name__ == "__main__":
         
     # init
     setpoint = 15
-    sensor_obj = PressureSensor(setpoint)
+    sensor_obj = PressureSensor(0)
 
     while True:
         try:
             utime.sleep (0.5) # sleep 1 second
-            #Pressure, GaugePressure, Temp = sensor_obj.readPressure()
-            #print('Pressure [psi]= ',Pressure)
-            print('Raw P Val= ',sensor_obj.readPressureRaw())
-            print('Raw Setpoint P Val= ',sensor_obj.PtoRaw(setpoint))
-            #print('Depth [ft]= ',sensor_obj.ConvToDepth())
+          
+            rawP_val = sensor_obj.readP_Raw()
+            pressure, pressure_diff, temp = sensor_obj.RawtoData()
             
+            print('--------------------')
+            print(f'{setpoint=}')
+            print('Raw Setpoint =',sensor_obj.PtoRawP(setpoint))
+            print('---')
+            print('Raw P Val = ',rawP_val)
+            print(f'{pressure=} ')
+            print(f'{pressure_diff=} ')
+            #print(f'{temp=} ')
+            print('Depth =',sensor_obj.ConvtoDepth())
+           
+           
         except KeyboardInterrupt:
             break
     
