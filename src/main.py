@@ -77,6 +77,8 @@ def task3_fun(shares):
     queue_size1 = 100
     counter = 0
     
+    P_MAX, P_MIN, O_MAX, O_MIN = 2, 0, 0.9*pow(2,14), 0.1*pow(2,14)
+    
     # Loop over a set number of iterations
     #for i in range(queue_size):
     while True:
@@ -107,8 +109,8 @@ def task3_fun(shares):
             while pos.any():
                 #print(pos.get())
                 pos_raw = (pos.get())
-                
-                
+                pos_p = ((pos_raw - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]  
+                print(f'{pos_raw=},{pos_p=}')
             state = 3
             
         elif (state == S3_done):
