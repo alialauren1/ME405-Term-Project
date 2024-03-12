@@ -105,7 +105,9 @@ def task3_fun(shares):
                 print(time.get())
             print('RAW P')
             while pos.any():
-                print(pos.get())
+                #print(pos.get())
+                pos_raw = (pos.get())
+                
                 
             state = 3
             

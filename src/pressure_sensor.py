@@ -43,32 +43,32 @@ class PressureSensor:
         
         
         return self.pressCounts
-    
-    def ConvToDepth(self):
-        
-        #pressure conversion
-        P_MAX = 2  #[bar]
-        P_MIN = 0  #[bar]
-        O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
-        O_MIN = 0.1 * pow(2,14) # Max input val from sensor 
-        pressure = ((self.pressCounts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
-        p_gauge = pressure - self.init_pressure # pressure relative to atmosphere [psig]
-
-        #temperature conversion
-        T_MAX = 150  #[Celsius]
-        T_MIN = -50  #[Celsius]
-        T_COUNTS = pow(2,11) - 1
-        self.temperature = (self.tempCounts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Farenheight]
-        
-        #return self.pressure,self.p_gauge,self.temperature
-        
-        gravity = 32.17405 # [ft/s^2]
-        density = 62.3 # [lb/ft^3]
-        
-        depth = p_gauge*144*32.174/(gravity*density) # [ft]
-        return depth
-        
-        
+#     
+#     def ConvToDepth(self):
+#         
+#         #pressure conversion
+#         P_MAX = 2  #[bar]
+#         P_MIN = 0  #[bar]
+#         O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
+#         O_MIN = 0.1 * pow(2,14) # Max input val from sensor 
+#         pressure = ((self.pressCounts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
+#         p_gauge = pressure - self.init_pressure # pressure relative to atmosphere [psig]
+# 
+#         #temperature conversion
+#         T_MAX = 150  #[Celsius]
+#         T_MIN = -50  #[Celsius]
+#         T_COUNTS = pow(2,11) - 1
+#         self.temperature = (self.tempCounts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Farenheight]
+#         
+#         #return self.pressure,self.p_gauge,self.temperature
+#         
+#         gravity = 32.17405 # [ft/s^2]
+#         density = 62.3 # [lb/ft^3]
+#         
+#         depth = p_gauge*144*32.174/(gravity*density) # [ft]
+#         return depth
+#         
+#         
 if __name__ == "__main__":
         
     # init
@@ -81,7 +81,7 @@ if __name__ == "__main__":
             #Pressure, GaugePressure, Temp = sensor_obj.readPressure()
             #print('Pressure [psi]= ',Pressure)
             print('Raw Pressure Val= ',sensor_obj.readPressureRaw())
-            print('Depth [ft]= ',sensor_obj.ConvToDepth())
+            #print('Depth [ft]= ',sensor_obj.ConvToDepth())
             
         except KeyboardInterrupt:
             break
