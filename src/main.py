@@ -60,10 +60,10 @@ def task3_fun(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 15.3 
-    sensor_obj = PressureSensor(setpoint_p)
+    setpoint_p = 14.7 
+    sensor_obj = PressureSensor(setpoint_p,0)
     
-    setpoint_raw = sensor_obj.PtoRaw(setpoint_p)
+    setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
 
     enc2.zero()
     queue_size = 100
@@ -87,9 +87,9 @@ def task3_fun(shares):
     #for i in range(queue_size):
     while True:
         
-        if (state == S1_data):
+        if (state == S1_data): # Closed Loop Controller   
 
-            reader_value = sensor_obj.readPressureRaw() #Reads Raw P value
+            reader_value = sensor_obj.readP_Raw() #Reads Raw P value
             PWM = controller_obj2.run(reader_value) 
             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
             # + makes vacuum, - makes ^ pressure
@@ -98,7 +98,7 @@ def task3_fun(shares):
             if counter == queue_size:
                 state = 2    
             
-        elif (state == S2_print):
+        elif (state == S2_print): # Done with Controller
             print('Motor 2, Pin A1 & A0')
             print(f"{reader_value} {PWM}")
             tup = controller_obj2.data()
@@ -111,14 +111,11 @@ def task3_fun(shares):
                 print(time.get())
             print('RAW P')
             while pos.any():
-                #print(pos.get())
                 pos_raw = (pos.get())
                 print(pos_raw)
-                #pos_p = ((pos_raw - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]  
-                #print(f'{pos_raw=},{pos_p=}')
             state = 3
             
-        elif (state == S3_done):
+        elif (state == S3_done): # Turn Off Motor Once Printed Data
             moe2.set_duty_cycle(0)
             #utime(5) # [5 seconds]
             #state = 4

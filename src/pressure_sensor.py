@@ -4,7 +4,7 @@ import struct
 
 class PressureSensor:
     
-    def __init__(self,Setpoint):
+    def __init__(self,Setpoint,Data):
         
         
         self.I2C_obj = pyb.I2C(1,pyb.I2C.CONTROLLER,baudrate=100000)
@@ -110,7 +110,7 @@ if __name__ == "__main__":
         
     # init
     setpoint = 15
-    sensor_obj = PressureSensor(0)
+    sensor_obj = PressureSensor(0,0)
 
     while True:
         try:
