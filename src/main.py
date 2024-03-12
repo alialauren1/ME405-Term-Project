@@ -155,13 +155,13 @@ if __name__ == "__main__":
     # debugging and set trace to False when it's not needed
     task1 = cotask.Task(task1_fun, name="Task_1", priority=1, period=400,
                         profile=True, trace=False, shares=(share0, q0))
-    task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=1500,
-                        profile=True, trace=False, shares=(share0, q0))
+#     task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=1500,
+#                         profile=True, trace=False, shares=(share0, q0))
     task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=60,
                         profile=True, trace=False, shares=(share0, q0))
     
     cotask.task_list.append(task1)
-    cotask.task_list.append(task2)
+  #  cotask.task_list.append(task2)
     cotask.task_list.append(task3)
     
     # Run the memory garbage collector to ensure memory is as defragmented as
