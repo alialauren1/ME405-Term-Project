@@ -4,7 +4,7 @@ import struct
 
 class PressureSensor:
     
-    def __init__(self):
+    def __init__(self,Pressure):
         
         
         self.I2C_obj = pyb.I2C(1,pyb.I2C.CONTROLLER,baudrate=100000)
@@ -30,6 +30,8 @@ class PressureSensor:
         
     def readPressureRaw(self):
         
+        # need to keep pressure values in raw counts to have max precision
+        
         data = self.I2C_obj.recv(self.byte_array,0x28) # receive data from I2C, store in bytearray
 
         status1 = '{0:08b}'.format(data[0]) # extract first byte 
@@ -41,8 +43,29 @@ class PressureSensor:
         self.pressCounts = data[1] | ((data[0] & 0x3F) << 8) # 16bit pressure val
         self.tempCounts = ((data[3] & 0xE0) >> 5) | (data[2] << 3) # 12bit temp val
         
-        
         return self.pressCounts
+    
+    def PtoRaw(self,Pressure):
+        
+        #pressure conversion from pressure [psi] to raw counts
+        
+        P_MAX = 2  #[bar]
+        P_MIN = 0  #[bar]
+        O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
+        O_MIN = 0.1 * pow(2,14) # Max input val from sensor
+        setpoint_raw = ((Pressure/14.5038)-P_MIN)*(O_MAX - O_MIN)/(P_MAX - P_MIN)+O_MIN
+        return setpoint_raw
+    
+    def RawtoP(self,Pressure):
+        #pressure conversion from raw counts to pressure [psi]
+        
+        P_MAX = 2  #[bar]
+        P_MIN = 0  #[bar]
+        O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
+        O_MIN = 0.1 * pow(2,14) # Max input val from sensor 
+        pressure = ((self.pressCounts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
+        p_gauge = pressure - self.init_pressure # pressure relative to atmosphere [psig]
+#
 #     
 #     def ConvToDepth(self):
 #         
@@ -72,15 +95,16 @@ class PressureSensor:
 if __name__ == "__main__":
         
     # init
-    
-    sensor_obj = PressureSensor()
+    setpoint = 15
+    sensor_obj = PressureSensor(setpoint)
 
     while True:
         try:
             utime.sleep (0.5) # sleep 1 second
             #Pressure, GaugePressure, Temp = sensor_obj.readPressure()
             #print('Pressure [psi]= ',Pressure)
-            print('Raw Pressure Val= ',sensor_obj.readPressureRaw())
+            print('Raw P Val= ',sensor_obj.readPressureRaw())
+            print('Raw Setpoint P Val= ',sensor_obj.PtoRaw(setpoint))
             #print('Depth [ft]= ',sensor_obj.ConvToDepth())
             
         except KeyboardInterrupt:
