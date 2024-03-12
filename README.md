@@ -21,6 +21,7 @@ Figure 1. Internal system of our terms project with labels indicating parts of t
 
 
 ![PIC 4](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/eb48edbe-51e1-428f-be92-7078a6765a94)
+
 Figure 2. Secondary view of the internal system of our terms project with labels indicating parts of the system.
 
 
