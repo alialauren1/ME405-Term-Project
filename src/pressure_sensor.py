@@ -45,9 +45,7 @@ class PressureSensor:
         
         return pressCounts, tempCounts
     
-    def PtoRawP(self,Setpoint):
-        
-        #pressure conversion from pressure [psi] to raw counts
+    def PtoRawP(self,Setpoint): #pressure conversion from pressure [psi] to raw counts
         
         P_MAX = 2  #[bar]
         P_MIN = 0  #[bar]
@@ -56,12 +54,12 @@ class PressureSensor:
         setpoint_raw = ((Setpoint/14.5038)-P_MIN)*(O_MAX - O_MIN)/(P_MAX - P_MIN)+O_MIN
         return setpoint_raw
     
-    def RawtoData(self,P_Counts,T_Counts): #pressure conversion from raw counts to pressure [psi]
+    def RawtoData_P(self,P_Counts): #pressure conversion from raw counts to pressure [psi]
         
         P_MAX = 2  #[bar]
         P_MIN = 0  #[bar]
         O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
-        O_MIN = 0.1 * pow(2,14) # Max input val from sensor
+        O_MIN = 0.1 * pow(2,14) # Min input val from sensor
         
         # INITIAL PRESSURE [COUNTS -> PSI]
         self.init_pressure = ((self.init_p - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
@@ -69,24 +67,28 @@ class PressureSensor:
         # CURRENT PRESSURE [COUNTS -> PSI]
         pressure = ((P_Counts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
         self.p_diff = pressure - self.init_pressure # [psi] pressure different from initial 
-        
-        # CURRENT TEMP [COUNTS -> FARENHEIGHT]
-        T_MAX = 150  #[Celsius]
-        T_MIN = -50  #[Celsius]
-        T_COUNTS = pow(2,11) - 1
-        self.temperature = (T_Counts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Farenheight]
 
         # DEPTH FROM INIT PRESSURE (DISPLACEMENT DEPTH)
         gravity = 32.17405 # [ft/s^2]
         density = 62.3 # [lb/ft^3]
         depth = self.p_diff*144*32.174/(gravity*density) # [ft] 
         
-        return pressure, self.p_diff, self.temperature, depth
-        
+        return pressure, self.p_diff, depth
+    
+    def RawtoData_T(self,T_Counts): #pressure conversion from raw counts to pressure [psi]
+               
+        # CURRENT TEMP [COUNTS -> FARENHEIGHT]
+        T_MAX = 150  #[Celsius]
+        T_MIN = -50  #[Celsius]
+        T_COUNTS = pow(2,11) - 1
+        temperature = (T_Counts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Farenheight]
+
+        return temperature
+   
 if __name__ == "__main__":
         
     # init
-    setpoint = 15
+    setpoint = 14.7
     sensor_obj = PressureSensor(0,0,0)
 
     while True:
@@ -94,7 +96,8 @@ if __name__ == "__main__":
             utime.sleep (0.5) # sleep 1 second
 
             rawP_val, rawT_val = sensor_obj.readP_Raw()
-            pressure, pressure_diff, temp, depth = sensor_obj.RawtoData(rawP_val,rawT_val)
+            pressure, pressure_diff, depth = sensor_obj.RawtoData_P(rawP_val)
+            temp = sensor_obj.RawtoData_T(rawT_val)
             
             print('--------------------')
             print(f'{setpoint=}')

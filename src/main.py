@@ -62,7 +62,7 @@ def task3_fun(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 14.7 
+    setpoint_p = 14
     sensor_obj = PressureSensor(setpoint_p,0,0)
     
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
@@ -114,7 +114,8 @@ def task3_fun(shares):
             print('RAW P')
             while pos.any():
                 pos_raw = (pos.get())
-                print(pos_raw)
+                pressure, pressure_diff, depth = sensor_obj.RawtoData_P(pos_raw)
+                print(pressure)
             state = 3
             
         elif (state == S3_done): # Turn Off Motor Once Printed Data
