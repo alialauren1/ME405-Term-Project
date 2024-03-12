@@ -61,10 +61,10 @@ class PressureSensor:
         O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
         O_MIN = 0.1 * pow(2,14) # Min output val from sensor
         
-        # INITIAL PRESSURE [COUNTS -> PSI]
-        self.init_pressure = ((self.init_p - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN) #[psi]
+        # INITIAL PRESSURE [COUNTS -> PSI] FROM EQUN 2 DATA SHEET
+        self.init_pressure = (((self.init_p - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN)) + P_MIN) #[psi]
         
-        # CURRENT PRESSURE [COUNTS -> PSI]
+        # CURRENT PRESSURE [COUNTS -> PSI] FROM EQUN 2 DATA SHEET
         pressure = ((P_Counts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN) #[psi]
         self.p_diff = pressure - self.init_pressure # [psi] pressure different from initial 
 
@@ -78,10 +78,9 @@ class PressureSensor:
     def RawtoData_T(self,T_Counts): #pressure conversion from raw counts to pressure [psi]
                
         # CURRENT TEMP [COUNTS -> FARENHEIGHT]
-        T_MAX = 150  #[Celsius]
-        T_MIN = -50  #[Celsius]
         T_COUNTS = pow(2,11) - 1
-        temperature = (T_Counts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Farenheight]
+        # EQUATION 3 FROM DATASHEET
+        temperature = (T_Counts*200/2047 - 50)*(9/5)+32  #[Farenheight]
 
         return temperature
    
