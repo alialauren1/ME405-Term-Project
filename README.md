@@ -15,17 +15,17 @@ In Figure 1, we can see the internal system of the system. We have integrated Am
 and aligned with a rack that allows for the syringe to be moved back and forth. This allows
 for the system to achieve the desired weight to submerge the whole system.
 
-$\F_r = T_A / R_A$
+$F_r = T_A / R_A$
 
-$\T_A = F_R * R_A$
+$T_A = F_R * R_A$
 
-$\T_B = T_A$
+$T_B = T_A$
 
-$\T_C = (N_C / N_B ) * T_B$
+$T_C = (N_C / N_B ) * T_B$
 
-$\    = (N_C / N_B ) * (F_R * R_A)$
+$    = (N_C / N_B ) * (F_R * R_A)$
 
-$\    = (1/30) * (18) * (5x10^-3)$
+$    = (1/30) * (18) * (5x10^-3)$
 
       = 0.003 N*m
       = 3 N*m
