@@ -6,17 +6,22 @@ reaches the desired pressure depth.
 
 This project was intended for our senior project where. Dr. Ghalamchi wants to improve previous tests on waterproof drones that can take off from underwater to allow for a drone that can float on top of the water surface as well as have added support to be pushed up from underwater. The new design needs to be detachable from the built waterproof drone to compare its new features in tests. The propellers must also be above the water surface when the drone is idling on the water so that the efficiency of takeoff can be compared to the drone without the chamber in which the whole drone is submerged underwater upon takeoff.
 
-Our project for ME 405 will be the system attached to this drone, enabling the drone to submerge 
-underwater and resurface to position the propellers above the water's surface.
+Our project for ME 405 will be the system attached to this drone, enabling the drone to submerge underwater with a maximum depth of 5ft. While allowing for the system to resurface and position the propellers above the water's surface. 
 
+In order to simulate this system for our ME 405 Term Project. The system will allow the user to input a desired "depth". The system will run to achieve this setpoint and stay at this position for 5 seconds. Then the system will reset to its original position. The system will also have a maximum depth of 5ft. 
 
 ## Hardwear design
-In Figure 1, we can see the internal system of the system. We have integrated Ametck Pittman's PG6712A077-R3 motor to a 150 CC syringe. Utilizing this motor, we've have attached a worm gear and gears to ensure sufficient torque to be generated. These gears are attached to a pinion
+In Figure 1, we can see the internal system of the system. We have integrated Ametck Pittman's PG6712A077-R3 motor to a 50 CC syringe. Utilizing this motor, we've have attached a worm gear and gears to ensure sufficient torque to be generated. These gears are attached to a pinion
 and aligned with a rack that allows for the syringe to be moved back and forth. This allows
 for the system to achieve the desired weight to submerge the whole system.
 
 ![pic 3](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/dabea663-33ab-48a3-91b7-2d57c6a7cb01)
 Figure 1. Internal system of our terms project with labels indicating parts of the system.
+
+
+
+![PIC 4](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/eb48edbe-51e1-428f-be92-7078a6765a94)
+Figure 2. Secondary view of the internal system of our terms project with labels indicating parts of the system.
 
 
 ## Software design
@@ -42,6 +47,11 @@ Below shows a table of the parameters. These are mostly approximations and will 
 | Motor Nominal Voltage            | V_DC         | 12         | V         |
 
 ## What we have learned
+While 3D printing gears and housing system for our project we learned that tolerances while creating parts is harder to achieve. When 3D printing the gears it was harder to align the gears causing the small gears to slip and not allowing for our system to be as efficient as it can be.
+
+When reading the values off of our pressure sensor, we never knew that the data given to us wouldn't be read in atmospheric pressure and instead had its own reading. We then had to incorporate this into our code. So that when the user sends a depth that they would like the system to achieve it will then convert that input (in atm) and then convert it to a value that can be read off of the pressure sensor.
+
+While designing this system we learned how important it is to design and test early. Although most of the system was done with a reasonable amount of time. We keep running into issues causing the system to take longer to complete.
 
 ## Additional files
 
