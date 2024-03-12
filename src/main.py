@@ -62,17 +62,14 @@ def task3_fun(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 14
+    setpoint_p = 15.5
     sensor_obj = PressureSensor(setpoint_p,0,0)
-    
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
 
     enc2.zero()
     queue_size = 100
-
     # Paramters for the contoller
     Kp = 10 #float(input("Enter the proportional gain (Kp) =  "))
-    
     controller_obj2 = Controller(Kp, setpoint_raw, queue_size)
      
     state = 1
@@ -83,8 +80,6 @@ def task3_fun(shares):
     queue_size1 = 100
     counter = 0
     
-    P_MAX, P_MIN, O_MAX, O_MIN = 2, 0, 0.9*pow(2,14), 0.1*pow(2,14)
-    
     # Loop over a set number of iterations
     #for i in range(queue_size):
     while True:
@@ -93,7 +88,7 @@ def task3_fun(shares):
 
             reader_p_value, temp_val = sensor_obj.readP_Raw() #Reads Raw P value
             PWM = controller_obj2.run(reader_p_value) 
-            moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
+            moe2.set_duty_cycle(PWM) #Ajust motor 2 postion
             # + makes vacuum, - makes ^ pressure
             counter += 1
             

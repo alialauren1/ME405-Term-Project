@@ -49,7 +49,7 @@ class PressureSensor:
         
         P_MAX = 30 #[psi]
         P_MIN = 0  #[psi]
-        O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
+        O_MAX = 0.9 * pow(2,14) # Max output val from sensor
         O_MIN = 0.1 * pow(2,14) # Max input val from sensor
         setpoint_raw = ((Setpoint)-P_MIN)*(O_MAX - O_MIN)/(P_MAX - P_MIN)+O_MIN
         return setpoint_raw
@@ -87,7 +87,7 @@ class PressureSensor:
 if __name__ == "__main__":
         
     # init
-    setpoint = 14.7
+    setpoint = 15.3
     sensor_obj = PressureSensor(0,0,0)
 
     while True:
