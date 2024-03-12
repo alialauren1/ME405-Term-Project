@@ -73,7 +73,7 @@ class PressureSensor:
         density = 62.3 # [lb/ft^3]
         depth = self.p_diff*144*32.174/(gravity*density) # [ft] 
         
-        return pressure, self.p_diff, depth
+        return pressure, self.p_diff, depth, self.init_p, self.init_pressure
     
     def RawtoData_T(self,T_Counts): #pressure conversion from raw counts to pressure [psi]
                
@@ -95,7 +95,7 @@ if __name__ == "__main__":
             utime.sleep (0.5) # sleep 1 second
 
             rawP_val, rawT_val = sensor_obj.readP_Raw()
-            pressure, pressure_diff, depth = sensor_obj.RawtoData_P(rawP_val)
+            pressure, pressure_diff, depth, init_p, nm = sensor_obj.RawtoData_P(rawP_val)
             temp = sensor_obj.RawtoData_T(rawT_val)
             
             print('--------------------')
@@ -105,9 +105,11 @@ if __name__ == "__main__":
             print('Raw P Val = ',rawP_val)
             print(f'{pressure=} ')
             print(f'{pressure_diff=} ')
-            print(f'{temp=} ')
+            print(f'{temp=}')
             print(f'{depth=}')
-           
+            print(f'{init_p=}')
+            #pressure1, pressure_diff1, depth1, init_p1, initial_p_cob = sensor_obj.RawtoData_P(init_p)
+            #print(initial_p_cob)
            
         except KeyboardInterrupt:
             break

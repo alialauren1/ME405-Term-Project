@@ -62,21 +62,21 @@ def task3_fun(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 15.5
+    setpoint_p = 15.6
     sensor_obj = PressureSensor(setpoint_p,0,0)
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
 
     enc2.zero()
     queue_size = 100
     # Paramters for the contoller
-    Kp = 10 #float(input("Enter the proportional gain (Kp) =  "))
+    Kp = 100 #float(input("Enter the proportional gain (Kp) =  "))
     controller_obj2 = Controller(Kp, setpoint_raw, queue_size)
      
     state = 1
     S1_data = 1
     S2_print = 2
     S3_done = 3
-    S4_goback = 4
+    S4_goback = 4 # close loop controller with init pressure as setpoint
     queue_size1 = 100
     counter = 0
     
@@ -88,7 +88,7 @@ def task3_fun(shares):
 
             reader_p_value, temp_val = sensor_obj.readP_Raw() #Reads Raw P value
             PWM = controller_obj2.run(reader_p_value) 
-            moe2.set_duty_cycle(PWM) #Ajust motor 2 postion
+            moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
             # + makes vacuum, - makes ^ pressure
             counter += 1
             
@@ -115,18 +115,19 @@ def task3_fun(shares):
             
         elif (state == S3_done): # Turn Off Motor Once Printed Data
             moe2.set_duty_cycle(0)
-            #utime(5) # [5 seconds]
-            #state = 4
+            utime(5) # [5 seconds]
+            state = 4
         
-#         if (state == S4_goback):
-# 
-#             reader_value = sensor_obj.readPressureRaw() #Reads Raw P value
-#             PWM = controller_obj2.run(reader_value) 
-#             moe2.set_duty_cycle(PWM) #Ajust motor 2 postion
-#             counter += 1
-#             
-#             if counter == queue_size:
-#                 state = 2    
+        if (state == S4_goback): # Closed Loop Controller   
+
+            reader_p_value, temp_val = sensor_obj.readP_Raw() #Reads Raw P value
+            PWM = controller_obj2.run(reader_p_value) 
+            moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
+            # + makes vacuum, - makes ^ pressure
+            counter += 1
+            
+            if counter == queue_size:
+                state = 2  
         
         else:
             pass  
