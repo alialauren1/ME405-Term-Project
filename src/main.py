@@ -65,8 +65,8 @@ def task3_fun(shares):
     queue_size = 100
 
     # Paramters for the contoller
-    Kp = 0.5 #float(input("Enter the proportional gain (Kp) =  "))
-    setpoint = 9047 #int(input("Enter the set-point =  ")) [Raw P Val for approx 5 ft]
+    Kp = 10 #float(input("Enter the proportional gain (Kp) =  "))
+    setpoint = 8600 #int(input("Enter the set-point =  ")) [Raw P Val for approx 5 ft]
     controller_obj2 = Controller(Kp, setpoint, queue_size)
      
     state = 1
@@ -86,6 +86,7 @@ def task3_fun(shares):
             reader_value = sensor_obj.readPressureRaw() #Reads Raw P value
             PWM = controller_obj2.run(reader_value) 
             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
+            # + makes vacuum, - makes ^ pressure
             counter += 1
             
             if counter == queue_size:
