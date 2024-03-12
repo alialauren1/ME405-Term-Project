@@ -89,8 +89,8 @@ def task3_fun(shares):
         
         if (state == S1_data): # Closed Loop Controller   
 
-            reader_value = sensor_obj.readP_Raw() #Reads Raw P value
-            PWM = controller_obj2.run(reader_value) 
+            reader_p_value, temp_val = sensor_obj.readP_Raw() #Reads Raw P value
+            PWM = controller_obj2.run(reader_p_value) 
             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
             # + makes vacuum, - makes ^ pressure
             counter += 1
@@ -100,7 +100,7 @@ def task3_fun(shares):
             
         elif (state == S2_print): # Done with Controller
             print('Motor 2, Pin A1 & A0')
-            print(f"{reader_value} {PWM}")
+            print(f"{reader_p_value} {PWM}")
             tup = controller_obj2.data()
             time = tup[0]
             print(time)

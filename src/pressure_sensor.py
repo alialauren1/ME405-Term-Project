@@ -4,7 +4,7 @@ import struct
 
 class PressureSensor:
     
-    def __init__(self,Setpoint,Data):
+    def __init__(self,Setpoint,P_Data):
         
         
         self.I2C_obj = pyb.I2C(1,pyb.I2C.CONTROLLER,baudrate=100000)
@@ -43,7 +43,7 @@ class PressureSensor:
         self.pressCounts = data[1] | ((data[0] & 0x3F) << 8) # 16bit pressure val
         self.tempCounts = ((data[3] & 0xE0) >> 5) | (data[2] << 3) # 12bit temp val
         
-        return self.pressCounts
+        return self.pressCounts, self.tempCounts
     
     def PtoRawP(self,Setpoint):
         
@@ -56,14 +56,14 @@ class PressureSensor:
         setpoint_raw = ((Setpoint/14.5038)-P_MIN)*(O_MAX - O_MIN)/(P_MAX - P_MIN)+O_MIN
         return setpoint_raw
     
-    def RawtoData(self):
+    def RawtoData(self,P_Data):
         #pressure conversion from raw counts to pressure [psi]
         
         P_MAX = 2  #[bar]
         P_MIN = 0  #[bar]
         O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
         O_MIN = 0.1 * pow(2,14) # Max input val from sensor 
-        pressure = ((self.pressCounts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
+        pressure = ((P_Data - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
         self.p_diff = pressure - self.init_pressure # pressure relative to atmosphere [psig]
         
         #temperature conversion
@@ -115,9 +115,9 @@ if __name__ == "__main__":
     while True:
         try:
             utime.sleep (0.5) # sleep 1 second
-          
-            rawP_val = sensor_obj.readP_Raw()
-            pressure, pressure_diff, temp = sensor_obj.RawtoData()
+
+            rawP_val, temp_val = sensor_obj.readP_Raw()
+            pressure, pressure_diff, temp = sensor_obj.RawtoData(rawP_val)
             
             print('--------------------')
             print(f'{setpoint=}')
@@ -126,7 +126,7 @@ if __name__ == "__main__":
             print('Raw P Val = ',rawP_val)
             print(f'{pressure=} ')
             print(f'{pressure_diff=} ')
-            #print(f'{temp=} ')
+            print(f'{temp=} ')
             print('Depth =',sensor_obj.ConvtoDepth())
            
            
