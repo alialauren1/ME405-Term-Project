@@ -73,6 +73,7 @@ def task3_fun(shares):
     S1_data = 1
     S2_print = 2
     S3_done = 3
+    S4_goback = 4
     queue_size1 = 100
     counter = 0
     
@@ -84,7 +85,7 @@ def task3_fun(shares):
 
             reader_value = sensor_obj.readPressureRaw() #Reads Raw P value
             PWM = controller_obj2.run(reader_value) 
-            moe2.set_duty_cycle(PWM) #Ajust motor 2 postion
+            moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
             counter += 1
             
             if counter == queue_size:
@@ -109,7 +110,18 @@ def task3_fun(shares):
             
         elif (state == S3_done):
             moe2.set_duty_cycle(0)
-            pass
+            #utime(5) # [5 seconds]
+            #state = 4
+        
+#         if (state == S4_goback):
+# 
+#             reader_value = sensor_obj.readPressureRaw() #Reads Raw P value
+#             PWM = controller_obj2.run(reader_value) 
+#             moe2.set_duty_cycle(PWM) #Ajust motor 2 postion
+#             counter += 1
+#             
+#             if counter == queue_size:
+#                 state = 2    
         
         else:
             pass  
