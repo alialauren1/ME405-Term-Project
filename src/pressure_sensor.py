@@ -76,15 +76,12 @@ class PressureSensor:
         T_COUNTS = pow(2,11) - 1
         self.temperature = (T_Counts * (T_MAX - T_MIN) / T_COUNTS + T_MIN)*(9/5)+32  #[Farenheight]
 
-        return pressure, self.p_diff, self.temperature
-        
-    def ConvtoDepth(self):
-        
+        # DEPTH FROM INIT PRESSURE (DISPLACEMENT DEPTH)
         gravity = 32.17405 # [ft/s^2]
         density = 62.3 # [lb/ft^3]
+        depth = self.p_diff*144*32.174/(gravity*density) # [ft] 
         
-        depth = self.p_diff*144*32.174/(gravity*density) # [ft]
-        return depth
+        return pressure, self.p_diff, self.temperature, depth
         
 if __name__ == "__main__":
         
@@ -97,7 +94,7 @@ if __name__ == "__main__":
             utime.sleep (0.5) # sleep 1 second
 
             rawP_val, rawT_val = sensor_obj.readP_Raw()
-            pressure, pressure_diff, temp = sensor_obj.RawtoData(rawP_val,rawT_val)
+            pressure, pressure_diff, temp, depth = sensor_obj.RawtoData(rawP_val,rawT_val)
             
             print('--------------------')
             print(f'{setpoint=}')
@@ -107,7 +104,7 @@ if __name__ == "__main__":
             print(f'{pressure=} ')
             print(f'{pressure_diff=} ')
             print(f'{temp=} ')
-            print('Depth [ft] =',sensor_obj.ConvtoDepth())
+            print(f'{depth=}')
            
            
         except KeyboardInterrupt:
