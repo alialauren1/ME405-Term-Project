@@ -47,25 +47,25 @@ class PressureSensor:
     
     def PtoRawP(self,Setpoint): #pressure conversion from pressure [psi] to raw counts
         
-        P_MAX = 2  #[bar]
-        P_MIN = 0  #[bar]
+        P_MAX = 30 #[psi]
+        P_MIN = 0  #[psi]
         O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
         O_MIN = 0.1 * pow(2,14) # Max input val from sensor
-        setpoint_raw = ((Setpoint/14.5038)-P_MIN)*(O_MAX - O_MIN)/(P_MAX - P_MIN)+O_MIN
+        setpoint_raw = ((Setpoint)-P_MIN)*(O_MAX - O_MIN)/(P_MAX - P_MIN)+O_MIN
         return setpoint_raw
     
     def RawtoData_P(self,P_Counts): #pressure conversion from raw counts to pressure [psi]
         
-        P_MAX = 2  #[bar]
-        P_MIN = 0  #[bar]
+        P_MAX = 30 #[psi]
+        P_MIN = 0  #[psi]
         O_MAX = 0.9 * pow(2,14) # Max output val from sensor 
-        O_MIN = 0.1 * pow(2,14) # Min input val from sensor
+        O_MIN = 0.1 * pow(2,14) # Min output val from sensor
         
         # INITIAL PRESSURE [COUNTS -> PSI]
-        self.init_pressure = ((self.init_p - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
+        self.init_pressure = ((self.init_p - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN) #[psi]
         
         # CURRENT PRESSURE [COUNTS -> PSI]
-        pressure = ((P_Counts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN)*14.5038 #[psi]
+        pressure = ((P_Counts - O_MIN) * (P_MAX - P_MIN) / (O_MAX - O_MIN) + P_MIN) #[psi]
         self.p_diff = pressure - self.init_pressure # [psi] pressure different from initial 
 
         # DEPTH FROM INIT PRESSURE (DISPLACEMENT DEPTH)
