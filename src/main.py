@@ -7,7 +7,9 @@
 @author JR Ridgely
 @date   2021-Dec-15 JRR Created from the remains of previous example
 @copyright (c) 2015-2021 by JR Ridgely and released under the GNU
-    Public License, Version 2. 
+    Public License, Version 2.
+    
+@Modifications Made By: Alia Wolken, Eduardo Santos, Andrew Jwaided
 """
 
 import gc
@@ -61,7 +63,7 @@ def task3_fun(shares):
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
     setpoint_p = 14.7 
-    sensor_obj = PressureSensor(setpoint_p,0)
+    sensor_obj = PressureSensor(setpoint_p,0,0)
     
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
 
@@ -98,7 +100,7 @@ def task3_fun(shares):
             if counter == queue_size:
                 state = 2    
             
-        elif (state == S2_print): # Done with Controller
+        elif (state == S2_print): # Done with Controller, Print Vals
             print('Motor 2, Pin A1 & A0')
             print(f"{reader_p_value} {PWM}")
             tup = controller_obj2.data()
