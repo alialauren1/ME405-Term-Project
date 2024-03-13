@@ -48,15 +48,39 @@ def task2_fun(shares):
     """
     # Get references to the share and queue which have been passed to this task
     the_share, the_queue = shares
+    
+    S1_print = 1
 
     while True:
-        # Show everything currently in the queue and the value in the share
-        print(f"Share: {the_share.get ()}, Queue: ", end='')
-        while q0.any():
-            print(f"{the_queue.get ()} ", end='')
-        print('')
+#         # Show everything currently in the queue and the value in the share
+#         print(f"Share: {the_share.get ()}, Queue: ", end='')
+#         while q0.any():
+#             print(f"{the_queue.get ()} ", end='')
+#         print('')
 
-        yield 0
+        
+        if (state == S1_print): # Done with Controller, Print Vals
+            print('Motor 2, Pin A1 & A0')
+            print(f"{reader_p_value} {PWM}")
+            tup = controller_obj2.data()
+            time = tup[0]
+            print(time)
+            pos = tup[1]
+            
+            print('TIME')
+            while time.any():
+                print(time.get())
+            print('RAW P')
+            while pos.any():
+                pos_raw = (pos.get())
+                pressure, pressure_diff, depth, init_p  = sensor_obj.RawtoData_P(pos_raw)
+                print(pressure)
+            #state = 2
+        else:
+            pass
+            
+            yield 0
+            
         
 def task3_fun(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
@@ -74,11 +98,10 @@ def task3_fun(shares):
      
     state = 1
     S1_data = 1
-    S2_print = 2
-    S3_done = 3
-    S4_goback = 4 # close loop controller with init pressure as setpoint
-    S5_print = 5
-    queue_size1 = 100
+    S2_done = 2
+    S3_goback = 3 # close loop controller with init pressure as setpoint
+    S4_print = 4
+    #queue_size1 = 100
     counter = 0
     
     # Loop over a set number of iterations
@@ -96,30 +119,12 @@ def task3_fun(shares):
             if counter == queue_size:
                 state = 2    
             
-        elif (state == S2_print): # Done with Controller, Print Vals
-            print('Motor 2, Pin A1 & A0')
-            print(f"{reader_p_value} {PWM}")
-            tup = controller_obj2.data()
-            time = tup[0]
-            print(time)
-            pos = tup[1]
-            
-            print('TIME')
-            while time.any():
-                print(time.get())
-            print('RAW P')
-            while pos.any():
-                pos_raw = (pos.get())
-                pressure, pressure_diff, depth, init_p  = sensor_obj.RawtoData_P(pos_raw)
-                print(pressure)
-            state = 3
-            
-        elif (state == S3_done): # Turn Off Motor Once Printed Data
+        elif (state == S2_done): # Turn Off Motor Once Printed Data
             moe2.set_duty_cycle(0)
             utime.sleep(5) # [5 seconds]
-            state = 4
+            state = 3
         
-        if (state == S4_goback): # Closed Loop Controller   
+        if (state == S3_goback): # Closed Loop Controller   
             controller_obj2.set_setpoint(init_p)
             reader_p_value_back, temp_val_back = sensor_obj.readP_Raw() #Reads Raw P value
             PWM = controller_obj2.run(reader_p_value_back) 
@@ -128,10 +133,11 @@ def task3_fun(shares):
             counter += 1
             
             if counter == queue_size:
-                state = 5
+                #state = 3
+                pass
                 
-        if (state == S5_print):
-            moe2.set_duty_cycle(0)
+       # if (state == S4_print):
+          #  moe2.set_duty_cycle(0)
         else:
             pass  
         
@@ -153,15 +159,15 @@ if __name__ == "__main__":
     # allocated for state transition tracing, and the application will run out
     # of memory after a while and quit. Therefore, use tracing only for 
     # debugging and set trace to False when it's not needed
-    task1 = cotask.Task(task1_fun, name="Task_1", priority=1, period=400,
+#    task1 = cotask.Task(task1_fun, name="Task_1", priority=1, period=400,
+#                        profile=True, trace=False, shares=(share0, q0))
+    task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=1500,
                         profile=True, trace=False, shares=(share0, q0))
-#     task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=1500,
-#                         profile=True, trace=False, shares=(share0, q0))
     task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=60,
                         profile=True, trace=False, shares=(share0, q0))
     
-    cotask.task_list.append(task1)
-  #  cotask.task_list.append(task2)
+    #cotask.task_list.append(task1)
+    cotask.task_list.append(task2)
     cotask.task_list.append(task3)
     
     # Run the memory garbage collector to ensure memory is as defragmented as
