@@ -19,10 +19,10 @@ class Controller:
         current_time = utime.ticks_ms()
          #if not self.time_value.full():
         self.time_passed = utime.ticks_diff(current_time, self.start)
-        self.time_value.put(self.time_passed)
-        self.position.put(measured_output)
+        #self.time_value.put(self.time_passed)
+        #self.position.put(measured_output)
          #utime.sleep_ms(10) # does this go in main or control?
-        return actuation
+        return actuation, self.time_passed, measured_output
         
     def set_setpoint(self, desired_set_point):
         self.set_point = desired_set_point
@@ -30,10 +30,10 @@ class Controller:
     def set_Kp(self, desired_Kp):
         self.kp = desired_Kp
         
-    def data(self):
-        x = self.time_value
-        y = self.position
-        return (x, y)
-        
+#     def data(self):
+#         x = self.time_value
+#         y = self.position
+#         return (x, y)
+#         
     
   # call .get on each one of the queues  

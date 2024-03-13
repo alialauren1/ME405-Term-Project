@@ -47,11 +47,15 @@ def task2_fun(shares):
     @param shares A tuple of a share and queue from which this task gets data
     """
     # Get references to the share and queue which have been passed to this task
-    the_share, sharep, the_queue = shares
+    the_share, shareTime, sharePos, the_queue = shares
     
-    reader_p_value = sharep.get()
-    PWM = sharePWM.get()
-    controller_obj2 = shareContObj.get()
+    #reader_p_value = sharep.get()
+    #PWM = sharePWM.get()
+    #controller_obj2 = shareContObj.get()
+    time = qTime.get()
+    pos = qPos.get()
+    
+    sensor_obj = PressureSensor(0,0,0)
     
     state = 1
     S1_print = 1
@@ -65,21 +69,15 @@ def task2_fun(shares):
 
         
         if (state == S1_print): # Done with Controller, Print Vals
-            print('Motor 2, Pin A1 & A0')
-            print(f"{reader_p_value} {PWM}")
-            tup = controller_obj2.data()
-            time = tup[0]
-            print(time)
-            pos = tup[1]
-            
+             
             print('TIME')
-            while time.any():
-                print(time.get())
+            #while time.any():
+            print(time)
             print('RAW P')
-            while pos.any():
-                pos_raw = (pos.get())
-                pressure, pressure_diff, depth, init_p  = sensor_obj.RawtoData_P(pos_raw)
-                print(pressure)
+            #while pos.any():
+            pos_raw = (pos)
+            pressure, pressure_diff, depth, init_p  = sensor_obj.RawtoData_P(pos_raw)
+            print(pressure)
             #state = 2
         else:
             pass
@@ -88,7 +86,7 @@ def task2_fun(shares):
             
         
 def task3_fun(shares):
-    sharep=shares[1]
+    qTime, qPos = shares[1], shares[2]
     
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
@@ -102,7 +100,7 @@ def task3_fun(shares):
     # Paramters for the contoller
     Kp = 100 #float(input("Enter the proportional gain (Kp) =  "))
     controller_obj2 = Controller(Kp, setpoint_raw, queue_size)
-    shareContObj.put(controller_obj2)
+    #shareContObj.put(controller_obj2)
      
     state = 1
     S1_data = 1
@@ -119,35 +117,43 @@ def task3_fun(shares):
         if (state == S1_data): # Closed Loop Controller   
 
             reader_p_value, temp_val = sensor_obj.readP_Raw() #Reads Raw P value
-            sharep.put(reader_p_value)
+            # sharep.put(reader_p_value)
             
-            PWM = controller_obj2.run(reader_p_value)
-            sharePWM.put(int(PWM))
+            PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
+            # sharePWM.put(int(PWM))
             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
             # + makes vacuum, - makes ^ pressure
             counter += 1
             
+            #print('Motor 2, Pin A1 & A0')
+            print(f"{reader_p_value} {PWM}")
+            #tup = controller_obj2.data()
+            #time = tup[0] # THIS IS A QUEUE
+            qTime.put(time_passed)
+            #print(time)
+            #pos = tup[1] # THIS IS A QUEUE
+            qPos.put(measured_output)
+            
             if counter == queue_size:
-                state = 2    
-            
-            
+                state = 2        
+#             
         elif (state == S2_done): # Turn Off Motor Once Printed Data
             moe2.set_duty_cycle(0)
-            utime.sleep(5) # [5 seconds]
-            state = 3
-        
-        if (state == S3_goback): # Closed Loop Controller   
-            controller_obj2.set_setpoint(init_p)
-            reader_p_value_back, temp_val_back = sensor_obj.readP_Raw() #Reads Raw P value
-            PWM = controller_obj2.run(reader_p_value_back) 
-            moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
-            # + makes vacuum, - makes ^ pressure
-            counter += 1
-            
-            if counter == queue_size:
-                #state = 3
-                pass
-                
+#             utime.sleep(5) # [5 seconds]
+#             state = 3
+#         
+#         if (state == S3_goback): # Closed Loop Controller   
+#             controller_obj2.set_setpoint(init_p)
+#             reader_p_value_back, temp_val_back = sensor_obj.readP_Raw() #Reads Raw P value
+#             PWM = controller_obj2.run(reader_p_value_back) 
+#             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
+#             # + makes vacuum, - makes ^ pressure
+#             counter += 1
+#             
+#             if counter == queue_size:
+#                 #state = 3
+#                 pass
+#                 
        # if (state == S4_print):
           #  moe2.set_duty_cycle(0)
         else:
@@ -162,9 +168,16 @@ if __name__ == "__main__":
     print("Testing ME405 stuff in cotask.py and task_share.py\r\n"
           "Press Ctrl-C to stop and show diagnostics.")
     
-    sharep = task_share.Share('h', thread_protect=False, name="Share p")
-    sharePWM = task_share.Share('h', thread_protect=False, name="Share PWM")
-    shareContObj = task_share.Share('h', thread_protect=False, name="Controller Object")
+    #sharep = task_share.Share('h', thread_protect=False, name="Share p")
+    #sharePWM = task_share.Share('h', thread_protect=False, name="Share PWM")
+    #shareContObj = task_share.Share('h', thread_protect=False, name="Controller Object")
+    #shareTime = task_share.Share('h', thread_protect=False, name="Time")
+    #sharePos = task_share.Share('h', thread_protect=False, name="Pos")
+    
+    qTime = task_share.Queue('L', 16, thread_protect=False, overwrite=False,
+                          name="Queue Time")
+    qPos = task_share.Queue('L', 16, thread_protect=False, overwrite=False,
+                          name="Queue Pos")
     
     # Create a share and a queue to test function and diagnostic printouts
     share0 = task_share.Share('h', thread_protect=False, name="Share 0")
@@ -178,9 +191,9 @@ if __name__ == "__main__":
 #    task1 = cotask.Task(task1_fun, name="Task_1", priority=1, period=400,
 #                        profile=True, trace=False, shares=(share0, q0))
     task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=1500,
-                        profile=True, trace=False, shares=(share0, sharep, q0))
+                        profile=True, trace=False, shares=(share0, qTime, qPos, q0))
     task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=60,
-                        profile=True, trace=False, shares=(share0, sharep, q0))
+                        profile=True, trace=False, shares=(share0, qTime, qPos, q0))
     
     #cotask.task_list.append(task1)
     cotask.task_list.append(task2)
@@ -200,5 +213,5 @@ if __name__ == "__main__":
     # Print a table of task data and a table of shared information data
     print('\n' + str (cotask.task_list))
     print(task_share.show_all())
-    print(task1.get_trace())
+    #print(task1.get_trace())
     print('')
