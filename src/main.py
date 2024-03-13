@@ -47,8 +47,13 @@ def task2_fun(shares):
     @param shares A tuple of a share and queue from which this task gets data
     """
     # Get references to the share and queue which have been passed to this task
-    the_share, the_queue = shares
+    the_share, sharep, the_queue = shares
     
+    reader_p_value = sharep.get()
+    PWM = sharePWM.get()
+    controller_obj2 = shareContObj.get()
+    
+    state = 1
     S1_print = 1
 
     while True:
@@ -83,6 +88,8 @@ def task2_fun(shares):
             
         
 def task3_fun(shares):
+    sharep=shares[1]
+    
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
@@ -95,6 +102,7 @@ def task3_fun(shares):
     # Paramters for the contoller
     Kp = 100 #float(input("Enter the proportional gain (Kp) =  "))
     controller_obj2 = Controller(Kp, setpoint_raw, queue_size)
+    shareContObj.put(controller_obj2)
      
     state = 1
     S1_data = 1
@@ -111,13 +119,17 @@ def task3_fun(shares):
         if (state == S1_data): # Closed Loop Controller   
 
             reader_p_value, temp_val = sensor_obj.readP_Raw() #Reads Raw P value
-            PWM = controller_obj2.run(reader_p_value) 
+            sharep.put(reader_p_value)
+            
+            PWM = controller_obj2.run(reader_p_value)
+            sharePWM.put(int(PWM))
             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
             # + makes vacuum, - makes ^ pressure
             counter += 1
             
             if counter == queue_size:
                 state = 2    
+            
             
         elif (state == S2_done): # Turn Off Motor Once Printed Data
             moe2.set_duty_cycle(0)
@@ -149,7 +161,11 @@ def task3_fun(shares):
 if __name__ == "__main__":
     print("Testing ME405 stuff in cotask.py and task_share.py\r\n"
           "Press Ctrl-C to stop and show diagnostics.")
-
+    
+    sharep = task_share.Share('h', thread_protect=False, name="Share p")
+    sharePWM = task_share.Share('h', thread_protect=False, name="Share PWM")
+    shareContObj = task_share.Share('h', thread_protect=False, name="Controller Object")
+    
     # Create a share and a queue to test function and diagnostic printouts
     share0 = task_share.Share('h', thread_protect=False, name="Share 0")
     q0 = task_share.Queue('L', 16, thread_protect=False, overwrite=False,
@@ -162,9 +178,9 @@ if __name__ == "__main__":
 #    task1 = cotask.Task(task1_fun, name="Task_1", priority=1, period=400,
 #                        profile=True, trace=False, shares=(share0, q0))
     task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=1500,
-                        profile=True, trace=False, shares=(share0, q0))
+                        profile=True, trace=False, shares=(share0, sharep, q0))
     task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=60,
-                        profile=True, trace=False, shares=(share0, q0))
+                        profile=True, trace=False, shares=(share0, sharep, q0))
     
     #cotask.task_list.append(task1)
     cotask.task_list.append(task2)
