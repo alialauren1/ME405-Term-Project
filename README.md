@@ -25,12 +25,12 @@ $T_B = T_A$
 
 $T_C = (N_C / N_B ) * T_B$
 
-$    = $(N_C / N_B ) * (F_R * R_A)$
+$    = (N_C / N_B ) * (F_R * R_A)$
 
-$    = (1/30) * (18) * (5x10^-3)$
+   = (1/30) * (18) * (5x10^-3)
 
-$    = 0.003 N*m
-     = 3 N*m$
+   = 0.003 N*m
+   = 3 N*m$
 
 
 ![pic 3](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/dabea663-33ab-48a3-91b7-2d57c6a7cb01)
@@ -48,6 +48,29 @@ To measure pressed we have used a Leadless SMT AN from Honeywell, which can outp
 I^2C. Attaching this sensor and the Ametck motor to our Nucleo, we were able to program both components to get a functioning product. You can read more about our software design by clicking the link down below:
 
 ## Test and Results
+In order to test our project sensors and motor control. We ran multiple test in order to find our optimal Kp value. The results are presented in the plot down below.
+
+![pic1_405](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/a46d59bb-a24d-4553-81b0-75914381d4f0)
+
+Figure 3. Is a funtion of atmosphefic pressure vs the duration of time. Each line represents data collected while altering the Kp value.
+
+During our testing, we initially set Kp to 5 (shown in blue) and then increased it to 10 (shown in orange). Observing the graph, it's evident that increasing the Kp value led to faster attainment of the target atmospheric pressure of 16.5 atm.
+
+While testing to achieve for efficiency in reaching the desired pressure. It's essential to consider what our system will be attached to. Which includes our sensor project drone. Where rapid pressure changes might introduce a moment within the drone body causing the drone to be uncontrollable. Therefore, we must weigh the trade-offs between achieving rapid pressure targets and maintaining system stability.
+
+As we continue to test our project, further tests will be necessary to determine the optimal balance between speed, the system stability and accuracy. This process may involve fine-tuning parameters beyond just changing the Kp. This may incude making the chamber of the system bigger and other factors.
+
+## What we have learned
+While 3D printing gears and housing system for our project we learned that tolerances while creating parts is harder to achieve. When 3D printing the gears it was harder to align the gears causing the small gears to slip and not allowing for our system to be as efficient as it can be.
+
+When reading the values off of our pressure sensor, we never knew that the data given to us wouldn't be read in atmospheric pressure and instead had its own reading. We then had to incorporate this into our code. So that when the user sends a depth that they would like the system to achieve it will then convert that input (in atm) and then convert it to a value that can be read off of the pressure sensor.
+
+While designing this system we learned how important it is to design and test early. Although most of the system was done with a reasonable amount of time. We keep running into issues causing the system to take longer to complete.
+
+## Additional files
+
+Pressure sensor datasheet:
+https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/basic-abp2-series/documents/sps-siot-abp2-series-datasheet-32350268-en.pdf?download=false
 
 
 Below shows a table of the parameters. These are mostly approximations and will be adjusted accordingly as more accurate values are determined. 
@@ -65,17 +88,4 @@ Below shows a table of the parameters. These are mostly approximations and will 
 |        Terminal Resistance       |       R      |     4.3    |    ohm    |
 | Terminal Inductance              | L            | 4.72e-3    | H         |
 | Motor Nominal Voltage            | V_DC         | 12         | V         |
-
-## What we have learned
-While 3D printing gears and housing system for our project we learned that tolerances while creating parts is harder to achieve. When 3D printing the gears it was harder to align the gears causing the small gears to slip and not allowing for our system to be as efficient as it can be.
-
-When reading the values off of our pressure sensor, we never knew that the data given to us wouldn't be read in atmospheric pressure and instead had its own reading. We then had to incorporate this into our code. So that when the user sends a depth that they would like the system to achieve it will then convert that input (in atm) and then convert it to a value that can be read off of the pressure sensor.
-
-While designing this system we learned how important it is to design and test early. Although most of the system was done with a reasonable amount of time. We keep running into issues causing the system to take longer to complete.
-
-## Additional files
-
-Pressure sensor datasheet:
-https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/basic-abp2-series/documents/sps-siot-abp2-series-datasheet-32350268-en.pdf?download=false
-
 
