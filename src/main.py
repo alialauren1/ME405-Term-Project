@@ -54,11 +54,11 @@ def task1_print(shares):
             share_init_p.put(init_p)
             #print(f'{time=},{pressure=}{init_p=}')
             print(time,pressure)
+            state = 2
+        elif (state == 2):
+            print('hint')
             
-        else:
-            pass
-            
-        yield 0
+        yield state
             
         
 def task2_get(shares):
@@ -68,7 +68,7 @@ def task2_get(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 13
+    setpoint_p = 14.53537
     
     sensor_obj = PressureSensor(setpoint_p,0,0)
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
@@ -112,8 +112,15 @@ def task2_get(shares):
             counter += 1
             if counter == 20:
                 state = 3
+                
         elif (state == 3):
-            moe2.set_duty_cycle(0)
+            print('1')
+            state = 4
+        elif (state == 4):
+            print('2')
+            state = 3
+        yield state
+#             moe2.set_duty_cycle(0)
             
             #controller_obj2.set_setpoint(initialP)
 #             controller_obj2 = Controller(Kp, initialP)
@@ -131,12 +138,7 @@ def task2_get(shares):
 #             if (initialP-10 <= reader_p_value <= initialP+10):
 #                 print('ORIGINAL PRESSURE REACHED !!')
 #                 moe2.set_duty_cycle(0)
-
-                
-      
-        else:
-            pass  
-        yield 0
+         
 
 # This code creates a share, a queue, and two tasks, then starts the tasks. The
 # tasks run until somebody presses ENTER, at which time the scheduler stops and
@@ -160,9 +162,9 @@ if __name__ == "__main__":
     # allocated for state transition tracing, and the application will run out
     # of memory after a while and quit. Therefore, use tracing only for 
     # debugging and set trace to False when it's not needed
-    task1 = cotask.Task(task1_print, name="Task_1", priority=1, period=90,
+    task1 = cotask.Task(task1_print, name="Task_1", priority=1, period=60,
                         profile=True, trace=False, shares=(qTime, qPos, init_p))
-    task2 = cotask.Task(task2_get, name="Task_2", priority=2, period=89,
+    task2 = cotask.Task(task2_get, name="Task_2", priority=2, period=50,
                         profile=True, trace=False, shares=(qTime, qPos, init_p))
     
     # bug report in readme, only works when data task is running faster than printing task
