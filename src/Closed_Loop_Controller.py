@@ -2,12 +2,10 @@ import utime
 import cqueue
 
 class Controller:
-    def __init__(self, kp, set_point, queue_size):
+    def __init__(self, kp, set_point):
          self.kp = float(kp)
          self.set_point = float(set_point)
          #self.measured_output = 0
-         self.time_value = cqueue.IntQueue(queue_size)
-         self.position = cqueue.IntQueue(queue_size)
          self.start = utime.ticks_ms()
          
 
@@ -30,10 +28,3 @@ class Controller:
     def set_Kp(self, desired_Kp):
         self.kp = desired_Kp
         
-#     def data(self):
-#         x = self.time_value
-#         y = self.position
-#         return (x, y)
-#         
-    
-  # call .get on each one of the queues  

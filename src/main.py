@@ -24,7 +24,7 @@ from encoder_reader import Encoder
 from Closed_Loop_Controller import Controller
 from pressure_sensor import PressureSensor
 
-def task2_fun(shares):
+def task1_fun(shares):
     """!
     Task which takes things out of a queue and share and displays them.
     @param shares A tuple of a share and queue from which this task gets data
@@ -44,23 +44,20 @@ def task2_fun(shares):
             time = qTime.get()
             pos = qPos.get()
  
-            print('TIME')
-            #while time.any():
-            print(f'{time=}')
-            print('RAW P')
-            #while pos.any():
+            #print('TIME')
+            #print('RAW P')
             pos_raw = (pos)
-            print(f'{pos_raw=}')
-            #pressure, pressure_diff, depth, init_p  = sensor_obj.RawtoData_P(pos_raw)
-            #print(f'{pressure=}')
-            #state = 2
+            #print(f'{pos_raw=}')
+            pressure, pressure_diff, depth, init_p  = sensor_obj.RawtoData_P(pos_raw)
+            print(f'{time=},{pressure=}')
+            
         else:
             pass
             
         yield 0
             
         
-def task3_fun(shares):
+def task2_fun(shares):
     qTime, qPos = shares[1], shares[2]
     
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
@@ -71,22 +68,21 @@ def task3_fun(shares):
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
 
     enc2.zero()
-    queue_size = 100
+    
     # Paramters for the contoller
     Kp = 100 
-    controller_obj2 = Controller(Kp, setpoint_raw, queue_size)
+    controller_obj2 = Controller(Kp, setpoint_raw)
     
     state = 1
     S1_data = 1
+    S2_off = 2
     counter = 0
     
-    # Loop over a set number of iterations
-    #for i in range(queue_size):
     while True:
         
         if (state == S1_data): # Closed Loop Controller   
 
-            reader_p_value, temp_val = sensor_obj.readP_Raw() #Reads Raw P value
+            reader_p_value, temp_val = sensor_obj.readP_Raw() #Reads Raw P & T values
             PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
             # + makes vacuum, - makes ^ pressure
@@ -98,6 +94,11 @@ def task3_fun(shares):
             #print(time)
             qPos.put(measured_output)
             
+            if counter == 100:
+                state = 2
+            
+        elif (state == S1_data):
+            moe2.set_duty_cycle(0)
         else:
             pass  
         
@@ -132,14 +133,14 @@ if __name__ == "__main__":
     # debugging and set trace to False when it's not needed
 #    task1 = cotask.Task(task1_fun, name="Task_1", priority=1, period=400,
 #                        profile=True, trace=False, shares=(share0, q0))
-    task2 = cotask.Task(task2_fun, name="Task_2", priority=2, period=500,
+    task1 = cotask.Task(task1_fun, name="Task_2", priority=2, period=50,
                         profile=True, trace=False, shares=(share0, qTime, qPos, q0))
-    task3 = cotask.Task(task3_fun, name="Task_3", priority=3, period=499,
+    task2 = cotask.Task(task2_fun, name="Task_3", priority=3, period=49,
                         profile=True, trace=False, shares=(share0, qTime, qPos, q0))
     
     #cotask.task_list.append(task1)
+    cotask.task_list.append(task1)
     cotask.task_list.append(task2)
-    cotask.task_list.append(task3)
     
     # Run the memory garbage collector to ensure memory is as defragmented as
     # possible before the real-time scheduler is started
