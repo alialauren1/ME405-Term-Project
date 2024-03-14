@@ -74,7 +74,7 @@ def task2_get(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 14.53537
+    setpoint_p = 18
     
     sensor_obj = PressureSensor(setpoint_p,0,0)
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
@@ -91,12 +91,14 @@ def task2_get(shares):
     S3_goback = 3
     counter = 0
     counter_s3 = 0
-
+    final_counter = 0
+    key = 0
     
     while True:
         
         if (T2_state == S1_data): # Closed Loop Controller
             initialP = share_init_p.get()
+            
             reader_p_value, temp_val = sensor_obj.readP_Raw() # Reads Raw P & T values
             PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
@@ -108,9 +110,20 @@ def task2_get(shares):
             qPos.put(measured_output)
             
             if setpoint_raw-6 <= reader_p_value <= setpoint_raw+6:
-               # print('REACHED SETPOINTT!!')
+                print('REACHED SETPOINTT!!')
                 T2_state = 2
-            print('T2_s1')
+                key = 1
+            #print('T2_s1')
+            
+            if (initialP-6 <= reader_p_value <= initialP+6) & key == 1:
+                moe2.set_duty_cycle(0)
+                PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
+                qTime.put(time_passed)
+                qPos.put(measured_output)
+                final_counter += 1
+                if final_counter == 20:
+                    #print("done")
+                    T2_state = 4
                 
         elif (T2_state == S2_off): # time with motor off, collecting data
             moe2.set_duty_cycle(0)
@@ -123,7 +136,7 @@ def task2_get(shares):
                 T2_state = 3
                 share_off.put(T2_state)
                 counter = 0
-            print('T2_S2')
+            #print('T2_S2')
                 
         elif (T2_state == 3): # time with motor off, not collecting data
             counter_s3 += 1
@@ -132,9 +145,11 @@ def task2_get(shares):
                 T2_state =1
                 share_off.put(T2_state)
                 counter_s3 = 0
+            
             #moe2.set_duty_cycle(0)
-            print('T3_s3')
-           
+            #print('T3_s3')
+        elif (T2_state == 4):
+            pass
 #         elif (T2_state == 4):
 #             print('s4')
 #             T2_state = 3
