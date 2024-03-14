@@ -68,7 +68,7 @@ def task2_get(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 15.5
+    setpoint_p = 13
     
     sensor_obj = PressureSensor(setpoint_p,0,0)
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
@@ -76,7 +76,7 @@ def task2_get(shares):
     enc2.zero()
     
     # Paramters for the contoller
-    Kp = 100 
+    Kp = 5
     controller_obj2 = Controller(Kp, setpoint_raw)
     
     state = 1
@@ -84,7 +84,6 @@ def task2_get(shares):
     S2_off = 2
     S3_goback = 3
     counter = 0
-    key = 0
 
     
     while True:
@@ -95,7 +94,7 @@ def task2_get(shares):
             PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
             # + makes vacuum, - makes ^ pressure
-            counter += 1
+            #counter += 1
 
             #print(f"{reader_p_value=} {PWM=} {time_passed=} {measured_output=}")
             qTime.put(time_passed)
@@ -107,6 +106,15 @@ def task2_get(shares):
                 
         elif (state == S2_off):
             moe2.set_duty_cycle(0)
+            PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
+            qTime.put(time_passed)
+            qPos.put(measured_output)
+            counter += 1
+            if counter == 20:
+                state = 3
+        elif (state == 3):
+            moe2.set_duty_cycle(0)
+            
             #controller_obj2.set_setpoint(initialP)
 #             controller_obj2 = Controller(Kp, initialP)
 #             utime.sleep(5)
@@ -152,9 +160,9 @@ if __name__ == "__main__":
     # allocated for state transition tracing, and the application will run out
     # of memory after a while and quit. Therefore, use tracing only for 
     # debugging and set trace to False when it's not needed
-    task1 = cotask.Task(task1_print, name="Task_1", priority=1, period=50,
+    task1 = cotask.Task(task1_print, name="Task_1", priority=1, period=90,
                         profile=True, trace=False, shares=(qTime, qPos, init_p))
-    task2 = cotask.Task(task2_get, name="Task_2", priority=2, period=49,
+    task2 = cotask.Task(task2_get, name="Task_2", priority=2, period=89,
                         profile=True, trace=False, shares=(qTime, qPos, init_p))
     
     # bug report in readme, only works when data task is running faster than printing task
