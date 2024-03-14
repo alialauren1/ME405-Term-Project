@@ -52,7 +52,8 @@ def task1_print(shares):
             #print(f'{pos_raw=}')
             pressure, pressure_diff, depth, init_p  = sensor_obj.RawtoData_P(pos_raw)
             share_init_p.put(init_p)
-            print(f'{time=},{pressure=}{init_p=}')
+            #print(f'{time=},{pressure=}{init_p=}')
+            print(time,pressure)
             
         else:
             pass
@@ -67,7 +68,8 @@ def task2_get(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 15
+    setpoint_p = 15.5
+    
     sensor_obj = PressureSensor(setpoint_p,0,0)
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
 
@@ -95,13 +97,12 @@ def task2_get(shares):
             # + makes vacuum, - makes ^ pressure
             counter += 1
 
-            print(f"{reader_p_value=} {PWM=} {time_passed=} {measured_output=}")
+            #print(f"{reader_p_value=} {PWM=} {time_passed=} {measured_output=}")
             qTime.put(time_passed)
             qPos.put(measured_output)
             
             if setpoint_raw-6 <= reader_p_value <= setpoint_raw+6:
-                print('REACHED SETPOINTT!!')
-    
+               # print('REACHED SETPOINTT!!')
                 state = 2
                 
         elif (state == S2_off):
