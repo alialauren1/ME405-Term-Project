@@ -32,7 +32,7 @@ def task1_print(shares):
     @param shares A tuple of a share and queue from which this task gets data
     """
     # Get references to the share and queue which have been passed to this task
-    qTime, qPos, share_init_p, share_off = shares
+    qTime, qPos, share_init_p, share_off, share_setpoint = shares
         
     sensor_obj = PressureSensor(0,0,0)
     
@@ -69,7 +69,7 @@ def task1_print(shares):
         
 def task2_get(shares):
     # get data
-    qTime, qPos, share_init_p, share_off = shares[0], shares[1], shares[2], shares[3]
+    qTime, qPos, share_init_p, share_off, share_setpoint = shares[0], shares[1], shares[2], shares[3], shares[4]
     
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
@@ -83,7 +83,7 @@ def task2_get(shares):
     
     # Paramters for the contoller
     Kp = 5
-    controller_obj2 = Controller(Kp, setpoint_raw)
+    controller_obj2 = Controller(Kp, share_setpoint)
     
     T2_state = 1
     S1_data = 1
@@ -109,44 +109,45 @@ def task2_get(shares):
             qTime.put(time_passed)
             qPos.put(measured_output)
             
-            if setpoint_raw-6 <= reader_p_value <= setpoint_raw+6:
-                #print('REACHED SETPOINTT!!')
-                T2_state = 2
-                key = 1
+            if share_setpoint-6 <= reader_p_value <= share_setpoint_raw+6:
+                print('REACHED SETPOINTT!!')
+                moe2.set_duty_cycle(0)
+#                T2_state = 2
+#                key = 1
             #print('T2_s1')
             
-            if (initialP-6 <= reader_p_value <= initialP+6) & key == 1:
-                moe2.set_duty_cycle(0)
-                PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
-                qTime.put(time_passed)
-                qPos.put(measured_output)
-                final_counter += 1
-                if final_counter == 20:
-                    #print("done")
-                    T2_state = 4
+#             if (initialP-6 <= reader_p_value <= initialP+6) & key == 1:
+#                 moe2.set_duty_cycle(0)
+#                 PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
+#                 qTime.put(time_passed)
+#                 qPos.put(measured_output)
+#               final_counter += 1
+#                 if final_counter == 20:
+#                     #print("done")
+#                     T2_state = 4
                 
-        elif (T2_state == S2_off): # time with motor off, collecting data
-            moe2.set_duty_cycle(0)
-            PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
-            qTime.put(time_passed)
-            qPos.put(measured_output)
-    
-            counter += 1 
-            if counter == 20:
-                T2_state = 3
-                share_off.put(T2_state)
-                counter = 0
-                
-        elif (T2_state == 3): # time with motor off, not collecting data
-            counter_s3 += 1
-            if counter_s3 == 20:
-                controller_obj2.set_setpoint(initialP)
-                T2_state =1
-                share_off.put(T2_state)
-                counter_s3 = 0
-
-        elif (T2_state == 4):
-            pass
+#         elif (T2_state == S2_off): # time with motor off, collecting data
+#             moe2.set_duty_cycle(0)
+#             PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
+#             qTime.put(time_passed)
+#             qPos.put(measured_output)
+#     
+#             counter += 1 
+#             if counter == 20:
+#                 T2_state = 3
+#                 share_off.put(T2_state)
+#                 counter = 0
+#                 
+#         elif (T2_state == 3): # time with motor off, not collecting data
+#             counter_s3 += 1
+#             if counter_s3 == 20:
+#                 controller_obj2.set_setpoint(initialP)
+#                 T2_state =1
+#                 share_off.put(T2_state)
+#                 counter_s3 = 0
+# 
+#         elif (T2_state == 4):
+#             pass
 
         yield T2_state
 
@@ -158,43 +159,41 @@ def task3_setpoint(shares):
     @param shares A tuple of a share and queue from which this task gets data
     """
     # Get references to the share and queue which have been passed to this task
-    qTime, qPos, share_init_p, share_off = shares
+    qTime, qPos, share_init_p, share_off, share_setpoint = shares
     
 # Initialize the USB VCP
-usb_vcp = pyb.USB_VCP()
-
+    usb_vcp = pyb.USB_VCP()
 
     while True:
-        # words
-        if pyb.USB_VCP.any():
-
-
-
-while True:
-    # Read data from the USB VCP
-    data = usb_vcp.readline()  # Read a line of input and remove leading/trailing whitespace
-    setpoint_p = 18
-    
-    sensor_obj = PressureSensor(setpoint_p,0,0)
-    setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
-    if data:  # Check if data is not empty
-        try:
-            number = int(data)
-            if 1 <= number <= 5:
-                print("Number {} pressed.".format(number))
-                if number == 1:
-                    
-                if number == 2:
-                if number == 3:
-                if number == 4:
-                if number == 5:
-                
-                # Do something based on the pressed number
-            else:
-                print("Invalid number. Please enter a number between 1 and 5.")
-        except ValueError:
-            print("Invalid input. Please enter a valid number.")
+        # Read data from the USB VCP
         
+        data = usb_vcp.readline()  # Read a line of input and remove leading/trailing whitespace
+        setpoint_p = 0
+        sensor_obj = PressureSensor(setpoint_p,0,0)
+        setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
+        if data:  # Check if data is not empty
+            try:
+                number = int(data)
+                if 1 <= number <= 5:
+                    print("Number {} pressed.".format(number))
+                    if number == 1:
+                        setpoint_p = 14.7
+                        setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
+                        share_setpoint.put(setpoint_raw)
+                    if number == 2:
+                        setpoint_p = 18
+                        setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
+                        share_setpoint.put(setpoint_raw)
+                    if number == 3:
+                        setpoint_p = 13
+                        setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
+                        share_setpoint.put(setpoint_raw)
+                    # Do something based on the pressed number
+                else:
+                    print("Invalid number. Please enter a number between 1 and 5.")
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
+            
 
 # This code creates a share, a queue, and two tasks, then starts the tasks. The
 # tasks run until somebody presses ENTER, at which time the scheduler stops and
@@ -208,7 +207,10 @@ if __name__ == "__main__":
     qPos = task_share.Queue('L', 100, thread_protect=False, overwrite=False,
                           name="Queue Pos")
     init_p = task_share.Share('h', thread_protect=False, name="initial pressure")
+    
     share_off = task_share.Share('h', thread_protect=False, name="Share Off")
+    
+    share_setpoint = task_share.Share('h', thread_protect=False, name="setpoint")
     
     # Create a share and a queue to test function and diagnostic printouts
     #share0 = task_share.Share('h', thread_protect=False, name="Share 0")
@@ -220,15 +222,18 @@ if __name__ == "__main__":
     # of memory after a while and quit. Therefore, use tracing only for 
     # debugging and set trace to False when it's not needed
     task1 = cotask.Task(task1_print, name="Task_1", priority=1, period=60,
-                        profile=True, trace=False, shares=(qTime, qPos, init_p, share_off))
+                        profile=True, trace=False, shares=(qTime, qPos, init_p, share_off, share_setpoint))
     task2 = cotask.Task(task2_get, name="Task_2", priority=2, period=50,
-                        profile=True, trace=False, shares=(qTime, qPos, init_p, share_off))
+                        profile=True, trace=False, shares=(qTime, qPos, init_p, share_off, share_setpoint))
+    task3 = cotask.Task(task1_print, name="Task_3", priority=3, period=60,
+                        profile=True, trace=False, shares=(qTime, qPos, init_p, share_off, share_setpoint))
     
     # bug report in readme, only works when data task is running faster than printing task
     
     # Ex: motor controller, time constant half second => run 10 times faster
     
     cotask.task_list.append(task1)
+    cotask.task_list.append(task2)
     cotask.task_list.append(task2)
     
     # Run the memory garbage collector to ensure memory is as defragmented as
