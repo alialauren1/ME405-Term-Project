@@ -23,7 +23,7 @@ class Controller:
         return actuation, self.time_passed, measured_output
         
     def set_setpoint(self, desired_set_point):
-        self.set_point = desired_set_point
+        self.set_point = float(desired_set_point)
         
     def set_Kp(self, desired_Kp):
         self.kp = desired_Kp
