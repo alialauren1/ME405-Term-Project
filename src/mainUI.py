@@ -74,12 +74,12 @@ def task2_get(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 18
-    
-    sensor_obj = PressureSensor(setpoint_p,0,0)
-    setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
+#     setpoint_p = 18
+#     
+#     sensor_obj = PressureSensor(setpoint_p,0,0)
+#     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
 
-    enc2.zero()
+    #enc2.zero()
     
     # Paramters for the contoller
     Kp = 5
@@ -151,17 +151,50 @@ def task2_get(shares):
         yield T2_state
 
          
-# def task3_setpoint(shares):
-# # convert, and print data
-#     """!
-#     Task which takes things out of a queue and share and displays them.
-#     @param shares A tuple of a share and queue from which this task gets data
-#     """
-#     # Get references to the share and queue which have been passed to this task
-#     qTime, qPos, share_init_p, share_off = shares
-# 
-#     while True:
+def task3_setpoint(shares):
+# convert, and print data
+    """!
+    Task which takes things out of a queue and share and displays them.
+    @param shares A tuple of a share and queue from which this task gets data
+    """
+    # Get references to the share and queue which have been passed to this task
+    qTime, qPos, share_init_p, share_off = shares
+    
+# Initialize the USB VCP
+usb_vcp = pyb.USB_VCP()
+
+
+    while True:
         # words
+        if pyb.USB_VCP.any():
+
+
+
+while True:
+    # Read data from the USB VCP
+    data = usb_vcp.readline()  # Read a line of input and remove leading/trailing whitespace
+    setpoint_p = 18
+    
+    sensor_obj = PressureSensor(setpoint_p,0,0)
+    setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
+    if data:  # Check if data is not empty
+        try:
+            number = int(data)
+            if 1 <= number <= 5:
+                print("Number {} pressed.".format(number))
+                if number == 1:
+                    
+                if number == 2:
+                if number == 3:
+                if number == 4:
+                if number == 5:
+                
+                # Do something based on the pressed number
+            else:
+                print("Invalid number. Please enter a number between 1 and 5.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+        
 
 # This code creates a share, a queue, and two tasks, then starts the tasks. The
 # tasks run until somebody presses ENTER, at which time the scheduler stops and
