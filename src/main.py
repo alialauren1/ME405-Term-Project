@@ -53,7 +53,7 @@ def task1_print(shares):
             pressure, pressure_diff, depth, init_p  = sensor_obj.RawtoData_P(pos_raw)
             share_init_p.put(init_p)
             #print(f'{time=},{pressure=}{init_p=}')
-            print(time,pressure)
+            print(time,pressure,depth)
             
             T2_state = share_off.get()
             if T2_state == 3:
@@ -74,7 +74,7 @@ def task2_get(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 17.5
+    setpoint_p = 10
     
     sensor_obj = PressureSensor(setpoint_p,0,0)
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
@@ -82,7 +82,7 @@ def task2_get(shares):
     enc2.zero()
     
     # Paramters for the contoller
-    Kp = 1
+    Kp = 2
     controller_obj2 = Controller(Kp, setpoint_raw)
     
     T2_state = 1

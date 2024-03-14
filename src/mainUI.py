@@ -17,12 +17,12 @@ import utime
 import pyb
 import cotask
 import task_share
-import Closed_Loop_Controller
+import ControllerUI
 
 
 from motor_driver import motordriver
 from encoder_reader import Encoder
-from Closed_Loop_Controller import Controller
+from ControllerUI import Controller
 from pressure_sensor import PressureSensor
 
 def task1_print(shares):
@@ -81,11 +81,15 @@ def task2_get(shares):
 
     #enc2.zero()
     
+    setpoint = share_setpoint.get()
+    print("SET POINT")
+    print(setpoint)
+    sensor_obj = PressureSensor(setpoint,0,0)
     # Paramters for the contoller
     Kp = 5
-    controller_obj2 = Controller(Kp, share_setpoint)
+    controller_obj2 = Controller(Kp, setpoint)
     
-    T2_state = 1
+    T2_state = 0
     S1_data = 1
     S2_off = 2
     S3_goback = 3
@@ -95,6 +99,9 @@ def task2_get(shares):
     key = 0
     
     while True:
+        if (T2_state == 0):
+            if setpoint != 0:
+                T2_state = 1
         
         if (T2_state == S1_data): # Closed Loop Controller
             initialP = share_init_p.get()
@@ -109,7 +116,7 @@ def task2_get(shares):
             qTime.put(time_passed)
             qPos.put(measured_output)
             
-            if share_setpoint-6 <= reader_p_value <= share_setpoint_raw+6:
+            if setpoint-6 <= reader_p_value <= setpoint+6:
                 print('REACHED SETPOINTT!!')
                 moe2.set_duty_cycle(0)
 #                T2_state = 2
@@ -160,17 +167,18 @@ def task3_setpoint(shares):
     """
     # Get references to the share and queue which have been passed to this task
     qTime, qPos, share_init_p, share_off, share_setpoint = shares
-    
+
+    setpoint_p = NaN
+    sensor_obj = PressureSensor(setpoint_p,0,0)
+    setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
+    moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
 # Initialize the USB VCP
     usb_vcp = pyb.USB_VCP()
-
+    #ord(input number) o
     while True:
         # Read data from the USB VCP
-        
-        data = usb_vcp.readline()  # Read a line of input and remove leading/trailing whitespace
-        setpoint_p = 0
-        sensor_obj = PressureSensor(setpoint_p,0,0)
-        setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
+        #data = usb_vcp.any
+        data = usb_vcp.readline()
         if data:  # Check if data is not empty
             try:
                 number = int(data)
@@ -193,8 +201,8 @@ def task3_setpoint(shares):
                     print("Invalid number. Please enter a number between 1 and 5.")
             except ValueError:
                 print("Invalid input. Please enter a valid number.")
-            
-
+        else:
+            moe2.set_duty_cycle(0)
 # This code creates a share, a queue, and two tasks, then starts the tasks. The
 # tasks run until somebody presses ENTER, at which time the scheduler stops and
 # printouts show diagnostic information about the tasks, share, and queue.
@@ -225,7 +233,7 @@ if __name__ == "__main__":
                         profile=True, trace=False, shares=(qTime, qPos, init_p, share_off, share_setpoint))
     task2 = cotask.Task(task2_get, name="Task_2", priority=2, period=50,
                         profile=True, trace=False, shares=(qTime, qPos, init_p, share_off, share_setpoint))
-    task3 = cotask.Task(task1_print, name="Task_3", priority=3, period=60,
+    task3 = cotask.Task(task1_print, name="Task_3", priority=3, period=10,
                         profile=True, trace=False, shares=(qTime, qPos, init_p, share_off, share_setpoint))
     
     # bug report in readme, only works when data task is running faster than printing task
