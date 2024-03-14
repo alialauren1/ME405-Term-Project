@@ -19,6 +19,7 @@ import cotask
 import task_share
 import Closed_Loop_Controller
 
+
 from motor_driver import motordriver
 from encoder_reader import Encoder
 from Closed_Loop_Controller import Controller
@@ -51,7 +52,7 @@ def task1_print(shares):
             #print(f'{pos_raw=}')
             pressure, pressure_diff, depth, init_p  = sensor_obj.RawtoData_P(pos_raw)
             share_init_p.put(init_p)
-            print(f'{time=},{pressure=}')
+            print(f'{time=},{pressure=}{init_p=}')
             
         else:
             pass
@@ -66,7 +67,7 @@ def task2_get(shares):
     enc2 = Encoder("enc2", pyb.Pin.board.PB6, pyb.Pin.board.PB7, 4)
     moe2 = motordriver (pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, 3)
     
-    setpoint_p = 17
+    setpoint_p = 15
     sensor_obj = PressureSensor(setpoint_p,0,0)
     setpoint_raw = sensor_obj.PtoRawP(setpoint_p)
 
@@ -82,12 +83,13 @@ def task2_get(shares):
     S3_goback = 3
     counter = 0
     key = 0
+
     
     while True:
         
-        if (state == S1_data): # Closed Loop Controller   
+        if (state == S1_data): # Closed Loop Controller
             initialP = share_init_p.get()
-            reader_p_value, temp_val = sensor_obj.readP_Raw() #Reads Raw P & T values
+            reader_p_value, temp_val = sensor_obj.readP_Raw() # Reads Raw P & T values
             PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
             # + makes vacuum, - makes ^ pressure
@@ -99,28 +101,32 @@ def task2_get(shares):
             
             if setpoint_raw-6 <= reader_p_value <= setpoint_raw+6:
                 print('REACHED SETPOINTT!!')
-                key = 1
-                state = 2
-            if (initialP-6 <= reader_p_value <= initialP+6) & key == 1:
-                print('ORIGINAL PRESSURE REACHED !!')
-                key = 0
+    
                 state = 2
                 
         elif (state == S2_off):
             moe2.set_duty_cycle(0)
-            print("state two reached")
-            #utime.sleep(5)
-            state = 3
-            print(state)
-            
-        elif (state == S3_goback):
-            print(" iam here yall!!!!!!")
-            controller_obj2.set_setpoint(initialP)
-            state =  1
+            #controller_obj2.set_setpoint(initialP)
+#             controller_obj2 = Controller(Kp, initialP)
+#             utime.sleep(5)
+#             reader_p_value, temp_val = sensor_obj.readP_Raw() # Reads Raw P & T values
+#             PWM, time_passed, measured_output = controller_obj2.run(reader_p_value)
+#             moe2.set_duty_cycle(-PWM) #Ajust motor 2 postion
+#             # + makes vacuum, - makes ^ pressure
+#             counter += 1
+# 
+#             #print(f"{reader_p_value=} {PWM=} {time_passed=} {measured_output=}")
+#             qTime.put(time_passed)
+#             qPos.put(measured_output)
+#             
+#             if (initialP-10 <= reader_p_value <= initialP+10):
+#                 print('ORIGINAL PRESSURE REACHED !!')
+#                 moe2.set_duty_cycle(0)
+
+                
+      
         else:
-            print("passing")
             pass  
-        
         yield 0
 
 # This code creates a share, a queue, and two tasks, then starts the tasks. The
@@ -145,9 +151,9 @@ if __name__ == "__main__":
     # allocated for state transition tracing, and the application will run out
     # of memory after a while and quit. Therefore, use tracing only for 
     # debugging and set trace to False when it's not needed
-    task1 = cotask.Task(task1_print, name="Task_1", priority=2, period=50,
+    task1 = cotask.Task(task1_print, name="Task_1", priority=1, period=50,
                         profile=True, trace=False, shares=(qTime, qPos, init_p))
-    task2 = cotask.Task(task2_get, name="Task_2", priority=3, period=49,
+    task2 = cotask.Task(task2_get, name="Task_2", priority=2, period=49,
                         profile=True, trace=False, shares=(qTime, qPos, init_p))
     
     # bug report in readme, only works when data task is running faster than printing task
