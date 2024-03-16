@@ -32,6 +32,7 @@ $    = (N_C / N_B ) * (F_R * R_A)$
    = 0.003 N*m
    = 3 N*m$
 
+Doing these calculations led us to select appropriate gears for our system, ensuring that they can withstand the pressure encountered during operation while maintaining an ideal speed.
 
 ![pic 3](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/dabea663-33ab-48a3-91b7-2d57c6a7cb01)
 Figure 1. Internal system of our terms project with labels indicating parts of the system.
@@ -66,6 +67,9 @@ While 3D printing gears and housing system for our project we learned that toler
 When reading the values off of our pressure sensor, we never knew that the data given to us wouldn't be read in atmospheric pressure and instead had its own reading. We then had to incorporate this into our code. So that when the user sends a depth that they would like the system to achieve it will then convert that input (in atm) and then convert it to a value that can be read off of the pressure sensor.
 
 While designing this system we learned how important it is to design and test early. Although most of the system was done with a reasonable amount of time. We keep running into issues causing the system to take longer to complete.
+
+## Safety
+Our project prioritizes user safety through thoughtful design considerations. By utilizing small gears, we have effectively reduced the risk of injuries to the user. Once the system has been fully assembled, all moving components and electrical elements will be enclosed and inaccessible to the user. This design ensures that users are protected from potential hazards during the system's operation.
 
 ## Additional files
 
