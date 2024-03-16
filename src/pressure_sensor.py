@@ -29,6 +29,11 @@ class PressureSensor:
         print(f'{status=}') 
         
     def readP_Raw(self):
+        """
+        Reads raw pressure data from the sensor.
+        
+        returns: A tuple containing raw pressure and temperature data.
+        """
         
         # need to keep pressure values in raw counts to have max precision
         
@@ -46,7 +51,12 @@ class PressureSensor:
         return pressCounts, tempCounts
     
     def PtoRawP(self,Setpoint): #pressure conversion from pressure [psi] to raw counts
+        """
+        Converts pressure from psi to raw counts coming for sensor.
         
+        @param Setpoint: The desired pressure setpoint in psi.
+        @param return: The pressure setpoint in raw counts.
+        """
         P_MAX = 30 #[psi]
         P_MIN = 0  #[psi]
         O_MAX = 0.9 * pow(2,14) # Max output val from sensor
@@ -55,6 +65,12 @@ class PressureSensor:
         return setpoint_raw
     
     def RawtoData_P(self,P_Counts): #pressure conversion from raw counts to pressure [psi]
+        """
+        Converts raw pressure data to pressure. Then pressure differance and depth.
+        
+        @param P_counts: Raw pressure data in counts.
+        @param return: A tuple containing pressure, pressure diffrence, and initial pressure.
+        """
         
         P_MAX = 30 #[psi]
         P_MIN = 0  #[psi]
@@ -76,7 +92,13 @@ class PressureSensor:
         return pressure, self.p_diff, depth, self.init_p
     
     def RawtoData_T(self,T_Counts): #pressure conversion from raw counts to pressure [psi]
-               
+        """
+        Converts raw temperature data to Fahrenheit.
+        
+        @param T_Counts: Raw temperature data in counts.
+        @param return: Temperature in Fahrenheit.
+        """
+        
         # CURRENT TEMP [COUNTS -> FARENHEIGHT]
         T_COUNTS = pow(2,11) - 1
         # EQUATION 3 FROM DATASHEET

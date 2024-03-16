@@ -68,6 +68,11 @@ def task1_print(shares):
             
         
 def task2_get(shares):
+    """
+    Task that recives data.
+    
+    @param shares: A tuples of a share and queue from which gets data.
+    """
     # get data
     qTime, qPos, share_init_p, share_off, share_setpoint = shares[0], shares[1], shares[2], shares[3], shares[4]
     
