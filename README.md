@@ -51,6 +51,8 @@ To calculate the pressure from the digital output, the pressure sensor transfer 
 
 <img width="326" alt="Screenshot 2024-03-17 at 9 38 54 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/e8322335-e550-4d0f-b144-daa90d571818">
 
+Where,
+
 <img width="349" alt="Screenshot 2024-03-17 at 9 40 21 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/437d8267-a8c5-4346-8fe1-e501ef4dec2b">
 
 
