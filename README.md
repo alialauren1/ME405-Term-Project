@@ -35,9 +35,11 @@ $    = (N_C / N_B ) * (F_R * R_A)$
 Doing these calculations led us to select appropriate gears for our system, ensuring that they can withstand the pressure encountered during operation while maintaining an ideal speed.
 
 ![pic 3](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/dabea663-33ab-48a3-91b7-2d57c6a7cb01)
+
 Figure 1. Internal system of our terms project with labels indicating parts of the system.
 
 ![PIC 4](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/eb48edbe-51e1-428f-be92-7078a6765a94)
+
 Figure 2. Secondary view of the internal system of our terms project with labels indicating parts of the system.
 
 ## Software design
@@ -79,6 +81,7 @@ Our senior project requires our chamber to be able to acheive at minimum, 5 ft d
 In order to test our project sensors and motor control, we ran multiple tests in order to find our optimal Kp value. The results are presented in the plot down below. This was preliminary testing. 
 
 <img width="605" alt="Screenshot 2024-03-17 at 10 32 32 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/ac451cf5-9cc9-4dc5-884a-5c23263242ac">
+
 Figure 3. Plot of Pressure vs Time inside the syringe. Each line represents a different run of data collected while altering the Kp value.
 
 During our testing, we initially set Kp to 5 (shown in blue) and then increased it to 10 (shown in orange). Observing the graph, it's evident that increasing the Kp value led to faster attainment of the target pressure of 16.5 [psi].
@@ -91,6 +94,7 @@ As we continue to test our project, further tests will be necessary to determine
 The below plot shows the pressure inside the syringe. The autonomous journey is one in which the system reaches the desired setpoint, waits for a duration, and then returns to the initial pressure. This journey mimics future developement of our larger senior project in which this pressure chamber will be attached to a drone. We anticipate it will be beneficial for some remote or signal to send a desired depth as the setpoint to the system, in which the chamber will submerge with the drone, going to that depth. It will remain there, possible to collect data, and then autonomously return to the surface. 
 
 <img width="360" alt="image" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/75d0b395-c743-4855-a188-f06f3c17799e">
+
 Figure 4. Plot of Pressure vs Time inside the syringe with a setpoint of 17 [psi]. 
 
 ## What we have learned
