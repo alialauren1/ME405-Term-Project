@@ -113,7 +113,7 @@ Below shows a table of parameters.
 |          **Parameters**          |   Variable   |    Value   |   Units   |
 |:--------------------------------:|:------------:|:----------:|:---------:|
 | **----Rack+Piston Parameters--** |  **-------** |  **----**  |  **----** |
-|Force to overcome friction in tube|      bl      |     10     |     N     |
+|Force to overcome friction in tube|      F       |     4      |     N     |
 |  **-----Motor Parameters------** | **--------** |  **-----** |  **----** |
 |       Radius of Motor Gear       |      rm      |   0.00662  |     m     |
 | Motor Nominal Voltage            |     V_DC     | 12         |     V     |
