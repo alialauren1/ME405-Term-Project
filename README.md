@@ -45,7 +45,18 @@ Figure 2. Secondary view of the internal system of our terms project with labels
 
 
 ## Software design
-To measure pressed we have used a Leadless SMT AN from Honeywell, which uses I^2C communicated. Attaching this sensor and the Ametck motor to our Nucleo, we were able to program both components to get a functioning product. You can read more about our software design by clicking the link down below:
+To measure pressure, we used a Honeywell Board Mount Pressure Sensor, which uses I^2C communication. The sensor transmits data in byte arrays. The first byte being status, next two being pressure, and following two being temperature. 
+
+To calculate the pressure from the digital output, the pressure sensor transfer function shown below was used, provided from the manual, "I^2C Communications with Honeywell Digital Output Pressure". The equation was rearranged to solve for Pressure. 
+
+<img width="326" alt="Screenshot 2024-03-17 at 9 38 54 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/e8322335-e550-4d0f-b144-daa90d571818">
+
+<img width="349" alt="Screenshot 2024-03-17 at 9 40 21 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/437d8267-a8c5-4346-8fe1-e501ef4dec2b">
+
+
+You can read more about our pressure sensor and its I^2C communication using the links included at the bottom of the readme. 
+
+Attaching the sensor and the Ametck motor to our Nucleo, we were able to program both components to get a functioning product. 
 
 ## Test and Results
 In order to test our project sensors and motor control. We ran multiple test in order to find our optimal Kp value. The results are presented in the plot down below.
@@ -73,22 +84,18 @@ Our project prioritizes user safety through thoughtful design considerations. By
 ## Additional files
 
 Pressure sensor datasheet:
-https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/basic-abp2-series/documents/sps-siot-abp2-series-datasheet-32350268-en.pdf?download=false
+[SSCMANV030PA2A3 Honeywell.pdf](https://github.com/alialauren1/ME405-Term-Project/files/14630972/SSCMANV030PA2A3.Honeywell.pdf)
 
+I2C Communications with Honeywell Pressure Sensors:
+[sps-siot-i2c-comms-digital-output-pressure-sensors-tn-008201-3-en-ciid-45841.pdf](https://github.com/alialauren1/ME405-Term-Project/files/14630975/sps-siot-i2c-comms-digital-output-pressure-sensors-tn-008201-3-en-ciid-45841.pdf)
 
-Below shows a table of the parameters. These are mostly approximations and will be adjusted accordingly as more accurate values are determined. 
+Below shows a table of parameters.  
 
 |          **Parameters**          |   Variable   |    Value   |   Units   |
 |:--------------------------------:|:------------:|:----------:|:---------:|
 | **----Rack+Piston Parameters--** |  **-------** |  **----**  |  **----** |
-|        Mass of Rack+Piston       |      mr      |     0.1    |     kg    |
-|   Damping between Piston & Tube  |      bl      |     10     |   N-s/m   |
+|Force to overcome friction in tube|      bl      |     10     |     N     |
 |  **-----Motor Parameters------** | **--------** |  **-----** |  **----** |
 |       Radius of Motor Gear       |      rm      |   0.00662  |     m     |
-|     Viscous Damping of Motor     |      bm      | 0.00000134 | N-m-s/rad |
-|          Torque Constant         |      Kt      |    0.022   |   N-m/A   |
-|         Back-emf Constant        |    Kv = Kt   |    0.022   |  V-s/rad  |
-|        Terminal Resistance       |       R      |     4.3    |    ohm    |
-| Terminal Inductance              | L            | 4.72e-3    | H         |
-| Motor Nominal Voltage            | V_DC         | 12         | V         |
+| Motor Nominal Voltage            |     V_DC     | 12         |     V     |
 
