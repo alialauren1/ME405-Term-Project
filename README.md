@@ -47,7 +47,7 @@ Figure 2. Secondary view of the internal system of our terms project with labels
 ## Software design
 To measure pressure, we used a Honeywell Board Mount Pressure Sensor, which uses I^2C communication. The sensor transmits data in byte arrays. The first byte being status, next two being pressure, and following two being temperature. A PressureSensor class was created to process the data from bytes into counts and then interpretable values of pressure in [psi] and temperature in [Farenheight]. 
 
-Attaching the sensor and the Ametck motor to our Nucleo, we were able to program both components to get a functioning product.
+Attaching the sensor and the Ametek motor to our Nucleo, we were able to program both components to get a functioning product.
 
 ### Pressure Sensor Class
 
@@ -70,11 +70,12 @@ Where,
 <img width="347" alt="Screenshot 2024-03-17 at 9 41 27 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/81dee95d-3d2a-44a9-8cc6-a6c065db89b8">
 
 #### Temperature
-
 The temperature conversion function shown below was also provided in the Honeywell I^2C manual. Although, it was modified to convert the temperature into Fareneheight. 
 
 <img width="249" alt="Screenshot 2024-03-17 at 9 46 18 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/79dcab9f-85fb-4055-beed-cf1e42050b7f">
 
+#### Setpoint Conversion
+A definition in the pressure sensor class was made to convert pressure values in [psi] to counts. This was to aid user input of a setpoint. They may now type a setpoint in [psi] and it gets converted to interpretable data, that being counts, for use in our Closed-Loop Controller Class. 
 
 ## Test and Results
 In order to test our project sensors and motor control. We ran multiple test in order to find our optimal Kp value. The results are presented in the plot down below.
@@ -92,7 +93,7 @@ As we continue to test our project, further tests will be necessary to determine
 ## What we have learned
 While 3D printing gears and housing system for our project we learned that tolerances while creating parts is harder to achieve. When 3D printing the gears it was harder to align the gears causing the small gears to slip and not allowing for our system to be as efficient as it can be.
 
-When reading the values off of our pressure sensor, we never knew that the data given to us wouldn't be read in atmospheric pressure and instead had its own reading. We then had to incorporate this into our code. So that when the user sends a depth that they would like the system to achieve it will then convert that input (in atm) and then convert it to a value that can be read off of the pressure sensor.
+We learned that the data being output from our pressure sensor was in counts. This led to the creation of a definition in our PressureSensor class to interpret the counts into a unit of measurement that could be easily interpretted, that being [psi]. Since our Closed-Loop Controller class uses the pressure sensor output in counts to correct for a desired pressure, an additional definition was made to interpret user desired setpoint input from [psi] to counts. 
 
 While designing this system we learned how important it is to design and test early. Although most of the system was done with a reasonable amount of time. We keep running into issues causing the system to take longer to complete.
 
