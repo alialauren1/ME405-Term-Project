@@ -1,8 +1,8 @@
 # ME405-Term-Project
 
-Our term project this quarter entails constructing a submersible tank capable of reaching
+Our term project this quarter entails constructing a submersible chamber capable of reaching
 specified depths. The system will operate in a closed loop, maintaining control until it 
-reaches the desired pressure depth.
+reaches a desired pressure depth.
 
 This project was intended for our senior project where. Dr. Ghalamchi wants to improve previous tests on waterproof drones that can take off from underwater to allow for a drone that can float on top of the water surface as well as have added support to be pushed up from underwater. The new design needs to be detachable from the built waterproof drone to compare its new features in tests. The propellers must also be above the water surface when the drone is idling on the water so that the efficiency of takeoff can be compared to the drone without the chamber in which the whole drone is submerged underwater upon takeoff.
 
@@ -37,12 +37,8 @@ Doing these calculations led us to select appropriate gears for our system, ensu
 ![pic 3](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/dabea663-33ab-48a3-91b7-2d57c6a7cb01)
 Figure 1. Internal system of our terms project with labels indicating parts of the system.
 
-
-
 ![PIC 4](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/eb48edbe-51e1-428f-be92-7078a6765a94)
-
 Figure 2. Secondary view of the internal system of our terms project with labels indicating parts of the system.
-
 
 ## Software design
 To measure pressure, we used a Honeywell Board Mount Pressure Sensor, which uses I^2C communication. The sensor transmits data in byte arrays. The first byte being status, next two being pressure, and following two being temperature. A PressureSensor class was created to process the data from bytes into counts and then interpretable values of pressure in [psi] and temperature in [Farenheight]. 
@@ -77,18 +73,25 @@ The temperature conversion function shown below was also provided in the Honeywe
 #### Setpoint Conversion
 A definition in the pressure sensor class was made to convert pressure values in [psi] to counts. This was to aid user input of a setpoint. They may now type a setpoint in [psi] and it gets converted to interpretable data, that being counts, for use in our Closed-Loop Controller Class. 
 
-## Test and Results
-In order to test our project sensors and motor control. We ran multiple test in order to find our optimal Kp value. The results are presented in the plot down below.
+## Testing and Results
+Our senior project requires our chamber to be able to acheive at minimum, 5 ft depth. Calculations were run to determine the pressure that coincides with a depth of 5 ft in water. Being a little under 16.5 psi, we decided to run initial tests at 16.5 psi. 
 
-![pic1_405](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/a46d59bb-a24d-4553-81b0-75914381d4f0)
+In order to test our project sensors and motor control, we ran multiple tests in order to find our optimal Kp value. The results are presented in the plot down below. This was preliminary testing. 
 
-Figure 3. Is a funtion of atmosphefic pressure vs the duration of time. Each line represents data collected while altering the Kp value.
+<img width="605" alt="Screenshot 2024-03-17 at 10 32 32 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/ac451cf5-9cc9-4dc5-884a-5c23263242ac">
+Figure 3. Plot of Pressure vs Time inside the syringe. Each line represents a different run of data collected while altering the Kp value.
 
-During our testing, we initially set Kp to 5 (shown in blue) and then increased it to 10 (shown in orange). Observing the graph, it's evident that increasing the Kp value led to faster attainment of the target atmospheric pressure of 16.5 atm.
+During our testing, we initially set Kp to 5 (shown in blue) and then increased it to 10 (shown in orange). Observing the graph, it's evident that increasing the Kp value led to faster attainment of the target pressure of 16.5 [psi].
 
-While testing to achieve for efficiency in reaching the desired pressure. It's essential to consider what our system will be attached to. Which includes our sensor project drone. Where rapid pressure changes might introduce a moment within the drone body causing the drone to be uncontrollable. Therefore, we must weigh the trade-offs between achieving rapid pressure targets and maintaining system stability.
+While testing to achieve for efficiency in reaching the desired pressure, it's essential to consider what our system will be attached to. Our system with the syringe and pressure sensor will be attached to a drone. Rapid pressure and volume changes may introduce a moment within the drone body, causing the drone to loose control. Therefore, we must weigh the trade-offs between achieving rapid pressure targets and maintaining system stability.
 
 As we continue to test our project, further tests will be necessary to determine the optimal balance between speed, the system stability and accuracy. This process may involve fine-tuning parameters beyond just changing the Kp. This may incude making the chamber of the system bigger and other factors.
+
+## Lab Demo
+The below plot shows the pressure inside the syringe. The autonomous journey is one in which the system reaches the desired setpoint, waits for a duration, and then returns to the initial pressure. This journey mimics future developement of our larger senior project in which this pressure chamber will be attached to a drone. We anticipate it will be beneficial for some remote or signal to send a desired depth as the setpoint to the system, in which the chamber will submerge with the drone, going to that depth. It will remain there, possible to collect data, and then autonomously return to the surface. 
+
+<img width="360" alt="image" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/75d0b395-c743-4855-a188-f06f3c17799e">
+Figure 4. Plot of Pressure vs Time inside the syringe with a setpoint of 17 [psi]. 
 
 ## What we have learned
 While 3D printing gears and housing system for our project we learned that tolerances while creating parts is harder to achieve. When 3D printing the gears it was harder to align the gears causing the small gears to slip and not allowing for our system to be as efficient as it can be.
