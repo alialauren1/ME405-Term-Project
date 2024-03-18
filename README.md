@@ -45,8 +45,7 @@ Figure 2. Secondary view of the internal system of our terms project with labels
 
 
 ## Software design
-To measure pressed we have used a Leadless SMT AN from Honeywell, which can output
-I^2C. Attaching this sensor and the Ametck motor to our Nucleo, we were able to program both components to get a functioning product. You can read more about our software design by clicking the link down below:
+To measure pressed we have used a Leadless SMT AN from Honeywell, which uses I^2C communicated. Attaching this sensor and the Ametck motor to our Nucleo, we were able to program both components to get a functioning product. You can read more about our software design by clicking the link down below:
 
 ## Test and Results
 In order to test our project sensors and motor control. We ran multiple test in order to find our optimal Kp value. The results are presented in the plot down below.
