@@ -69,7 +69,7 @@ class PressureSensor:
         Converts raw pressure data to pressure. Then pressure differance and depth.
         
         @param P_counts: Raw pressure data in counts.
-        @param return: A tuple containing pressure, pressure diffrence, and initial pressure.
+        @param return: A tuple containing pressure, pressure difference, depth, and initial pressure.
         """
         
         P_MAX = 30 #[psi]
