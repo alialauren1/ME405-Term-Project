@@ -6,9 +6,14 @@ reaches a desired pressure depth.
 
 This project was intended for our senior project where. Dr. Ghalamchi wants to improve previous tests on waterproof drones that can take off from underwater to allow for a drone that can float on top of the water surface as well as have added support to be pushed up from underwater. The new design needs to be detachable from the built waterproof drone to compare its new features in tests. The propellers must also be above the water surface when the drone is idling on the water so that the efficiency of takeoff can be compared to the drone without the chamber in which the whole drone is submerged underwater upon takeoff.
 
-Our project for ME 405 will be the system attached to this drone, enabling the drone to submerge underwater with a maximum depth of 5ft. While allowing for the system to resurface and position the propellers above the water's surface. 
+Our project for ME 405 will be the system attached to this drone, enabling the drone to submerge underwater with a minimum depth of 5ft. While allowing for the system to resurface and position the propellers above the water's surface. 
 
-In order to simulate this system for our ME 405 Term Project. The system will allow the user to input a desired "depth". The system will run to achieve this setpoint and stay at this position for 5 seconds. Then the system will reset to its original position. The system will also have a maximum depth of 5ft. 
+Pressure can be directly correlated to depth, given a liquid's density.
+   This project takes a desired pressure setpoint and controls a motor-driven syringe system to
+   pressurize a chamber to the setpoint. It waits a period of time, as if it were underwater collecting data,
+   and then returns to the initial pressure, as if it were returning to the water surface. 
+
+In order to simulate this system for our ME 405 Term Project, the system will allow the user to input a desired pressure. The system will run to achieve this setpoint and stay at this position for a period of time. Then the system will reset to its original position. 
 
 ## Hardware design
 In Figure 1, we can see the internal system of the system. We have integrated Ametck Pittman's PG6712A077-R3 motor to a 50 CC syringe. Utilizing this motor, we've have attached a worm gear and gears to ensure sufficient torque to be generated. These gears are attached to a pinion
@@ -30,7 +35,7 @@ $T_C = (N_C / N_B ) * (F_R * R_A)$
    = (1/30) * (18) * (5x10^-3)
 
    = 0.003 N*m
-   = 3 N*m
+   = 3 mN*m
 
 Doing these calculations led us to select appropriate gears for our system, ensuring that they can withstand the pressure encountered during operation while maintaining an ideal speed.
 
