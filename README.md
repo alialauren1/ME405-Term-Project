@@ -9,11 +9,9 @@ This project was intended for our senior project where. Dr. Ghalamchi wants to i
 Our project for ME 405 will be the system attached to this drone, enabling the drone to submerge underwater with a minimum depth of 5ft. While allowing for the system to resurface and position the propellers above the water's surface. 
 
 Pressure can be directly correlated to depth, given a liquid's density.
-   This project takes a desired pressure setpoint and controls a motor-driven syringe system to
+   In order to simulate this system for our ME 405 Term Project, this system takes a desired pressure setpoint and controls a motor-driven syringe system to
    pressurize a chamber to the setpoint. It waits a period of time, as if it were underwater collecting data,
    and then returns to the initial pressure, as if it were returning to the water surface. 
-
-In order to simulate this system for our ME 405 Term Project, the system will allow the user to input a desired pressure. The system will run to achieve this setpoint and stay at this position for a period of time. Then the system will reset to its original position. 
 
 ## Hardware design
 In Figure 1, we can see the internal system of the system. We have integrated Ametck Pittman's PG6712A077-R3 motor to a 50 CC syringe. Utilizing this motor, we've have attached a worm gear and gears to ensure sufficient torque to be generated. These gears are attached to a pinion
