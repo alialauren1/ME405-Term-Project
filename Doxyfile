@@ -1105,8 +1105,9 @@ EXAMPLE_RECURSIVE      = NO
 # \image command).
 
 IMAGE_PATH             = "src/Main Page.py" \
-                         "src/Main Page.py" \
-                         src/ME405_Main_Task_Diagram.png
+                         src/ME405_Main_Task_Diagram.png \
+                         src/ME405_FSM_Task_2.png \
+                         src/ME405_FSM_Task_1.png
 
 # The INPUT_FILTER tag can be used to specify a program that doxygen should
 # invoke to filter for each input file. Doxygen will invoke the filter program

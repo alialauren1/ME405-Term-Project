@@ -26,15 +26,17 @@ var NAVTREE =
 [
   [ "ME 405 Term Project", "index.html", [
     [ "Introduction", "index.html#intro_sec", null ],
-    [ "Pressure Sensor Class", "index.html#p_sensor_sec", null ],
-    [ "Motor Driver Class", "index.html#motor_driv_sec", null ],
-    [ "Closed-Loop Controller Class", "index.html#CL_controller_sec", null ],
-    [ "Main Program", "index.html#main_sec", [
-      [ "Task Diagram", "index.html#autotoc_md0", [
-        [ "Task 1:", "index.html#autotoc_md1", null ],
-        [ "Task 2:", "index.html#autotoc_md2", null ]
+    [ "Classes", "index.html#classes_sec", [
+      [ "Pressure Sensor Class", "index.html#autotoc_md0", null ],
+      [ "Motor Driver Class", "index.html#autotoc_md1", null ],
+      [ "Closed-Loop Controller Class", "index.html#autotoc_md2", null ]
+    ] ],
+    [ "Main Program", "index.html#main_prog_sec", [
+      [ "Task Diagram", "index.html#autotoc_md3", [
+        [ "Task 1:", "index.html#autotoc_md4", null ],
+        [ "Task 2:", "index.html#autotoc_md5", null ]
       ] ],
-      [ "Finite State Machines", "index.html#autotoc_md3", null ]
+      [ "Finite State Machines", "index.html#autotoc_md6", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],

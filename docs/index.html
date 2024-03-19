@@ -67,12 +67,11 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="intro_sec"></a>
 Introduction</h1>
-<ul>
-<li>Below are the following three classes used to implement our main program.</li>
-<li>Following, are the Tasks and Finite State Machines to describe our main program.</li>
-</ul>
-<h1><a class="anchor" id="p_sensor_sec"></a>
-Pressure Sensor Class</h1>
+<p>Below are the following three classes used to implement our main program. Following, are the Tasks and Finite State Machines to describe our main program.</p>
+<h1><a class="anchor" id="classes_sec"></a>
+Classes</h1>
+<h2><a class="anchor" id="autotoc_md0"></a>
+Pressure Sensor Class</h2>
 <ul>
 <li>def <b>init</b>: Initialize the PressureSensor Object. Collect initial data values for status and initial pressure.</li>
 <li>def readP_Raw: Reads Raw Status, Pressure, and Temperature Data from Sensor</li>
@@ -80,36 +79,36 @@ Pressure Sensor Class</h1>
 <li>def RawtoData_P: Converts raw pressure data in units of counts to [psi]. Then pressure difference from initial pressure and thus displacement depth</li>
 <li>def RawtoData_T: Converts raw pressure data in units of counts to [Fahrenheit].</li>
 </ul>
-<h1><a class="anchor" id="motor_driv_sec"></a>
-Motor Driver Class</h1>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Motor Driver Class</h2>
 <ul>
 <li>def <b>init</b>: Creates a motor driver by initializing GPIO pins and turning off the motor for safety.</li>
 <li>def set_duty_cycle: This method sets the duty cycle to be sent to the motor to the given level. Positive values cause torque in one direction, negative values in the opposite direction.</li>
 </ul>
-<h1><a class="anchor" id="CL_controller_sec"></a>
-Closed-Loop Controller Class</h1>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Closed-Loop Controller Class</h2>
 <ul>
 <li>def <b>init</b>: Inits the Controller object with the provided proportional gain and set points.</li>
 <li>def run: Runs the controller and calculation for the actual values based by the measured output.</li>
 <li>def set_setpoint: Takes in a desired set point. Sets new setpoint for class</li>
-<li>def set_Kp: Takes in a desired Kp value. Sets new Kp for class <br  />
- </li>
+<li>def set_Kp: Takes in a desired Kp value. Sets new Kp for class</li>
 </ul>
-<h1><a class="anchor" id="main_sec"></a>
+<h1><a class="anchor" id="main_prog_sec"></a>
 Main Program</h1>
-<h2><a class="anchor" id="autotoc_md0"></a>
+<p>Our main program handles multitasking between different tasks using cotask. </p>
+<h2><a class="anchor" id="autotoc_md3"></a>
 Task Diagram</h2>
 <p>Below is the task diagram for our main program. There are two tasks. </p><div class="image">
 <img src="ME405_Main_Task_Diagram.png" alt="" width="500px" height="240px"/>
 <div class="caption">
 ME405 Main Program Task Diagram</div></div>
- <h3><a class="anchor" id="autotoc_md1"></a>
+ <h3><a class="anchor" id="autotoc_md4"></a>
 Task 1:</h3>
 <ul>
 <li>Gets time and pressure out of a queue and the current Task 2 value out of a share.</li>
 <li>Converts pressure from units of counts to [psi] and displays value along with corresponding depth underwater in [ft] and time duration. </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md2"></a>
+<h3><a class="anchor" id="autotoc_md5"></a>
 Task 2:</h3>
 <ul>
 <li>Converts desired setpoint from units of [psi] to counts using Pressure Sensor Class</li>
@@ -117,9 +116,17 @@ Task 2:</h3>
 <li>Runs closed-loop controller with pressure counts comparing against setpoint to send motor PWM commands.</li>
 <li>Puts time duration and pressure into queue</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Finite State Machines</h2>
-</div></div><!-- PageDoc -->
+<p>Below are the Finite State Machines (FSM) corresponding to the two tasks in our main program. </p><div class="image">
+<img src="ME405_FSM_Task_1.png" alt="" width="580px" height="290px"/>
+<div class="caption">
+ME405 FSM Task 1</div></div>
+ <div class="image">
+<img src="ME405_FSM_Task_2.png" alt="" width="620px" height="400px"/>
+<div class="caption">
+ME405 FSM Task 2</div></div>
+ </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -99,7 +99,7 @@ def task2_get(shares):
     
     while True:
         
-        if (T2_state == S1_data): # Closed Loop Controller
+        if (T2_state == S1_data): # Collect Data & Run Closed Loop Controller
             initialP = share_init_p.get() # Initial Pressure taken during initialization of PressureSensor Class
             
             reader_p_value, temp_val = sensor_obj.readP_Raw() # Reads Raw P & T values

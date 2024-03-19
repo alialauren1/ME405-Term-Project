@@ -72,57 +72,63 @@ $(function(){initNavTree('_main_01_page_8py_source.html',''); initResizable(); }
 <div class="contents">
 <a href="_main_01_page_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespace_main.html">    1</a></span><span class="stringliteral">&quot;&quot;&quot;! \mainpage </span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="stringliteral">   \section intro_sec Introduction</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="stringliteral"> * Below are the following three classes used to implement our main program.</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="stringliteral"> * Following, are the Tasks and Finite State Machines to describe our main program. </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="stringliteral">   Below are the following three classes used to implement our main program.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="stringliteral">   Following, are the Tasks and Finite State Machines to describe our main program. </span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="stringliteral"> </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="stringliteral">   \section p_sensor_sec Pressure Sensor Class</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="stringliteral"> * def __init__:</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="stringliteral">         Initialize the PressureSensor Object.</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="stringliteral">         Collect initial data values for status and initial pressure. </span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="stringliteral"> * def readP_Raw:</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="stringliteral">         Reads Raw Status, Pressure, and Temperature Data from Sensor</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="stringliteral"> * def PtoRawP:</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="stringliteral">         Converts setpoint pressure from units of psi to counts.</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="stringliteral"> * def RawtoData_P:</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="stringliteral">         Converts raw pressure data in units of counts to [psi].</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="stringliteral">         Then pressure difference from initial pressure and thus displacement depth</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="stringliteral"> * def RawtoData_T:</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="stringliteral">         Converts raw pressure data in units of counts to [Fahrenheit].</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="stringliteral">         </span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="stringliteral">   \section motor_driv_sec Motor Driver Class</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="stringliteral"> * def __init__:</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="stringliteral">         Creates a motor driver by initializing GPIO pins and turning off the motor for safety. </span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="stringliteral"> * def set_duty_cycle:</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="stringliteral">         This method sets the duty cycle to be sent to the motor to the given level.</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="stringliteral">         Positive values cause torque in one direction, negative values</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="stringliteral">         in the opposite direction.</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="stringliteral">         </span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="stringliteral">   \section CL_controller_sec Closed-Loop Controller Class</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="stringliteral"> * def __init__: Inits the Controller object with the provided proportional gain and set points.</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="stringliteral"> * def run: Runs the controller and calculation for the actual values based by the measured output.</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="stringliteral"> * def set_setpoint:</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="stringliteral">        Takes in a desired set point. </span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="stringliteral">        Sets new setpoint for class</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="stringliteral"> * def set_Kp:</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="stringliteral">        Takes in a desired Kp value.</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="stringliteral">        Sets new Kp for class        </span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="stringliteral">  \section main_sec Main Program</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="stringliteral">   ## Task Diagram</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="stringliteral">   Below is the task diagram for our main program. There are two tasks.</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="stringliteral">   \image html ME405_Main_Task_Diagram.png &quot;ME405 Main Program Task Diagram&quot; width=500px height=240px</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="stringliteral">   ### Task 1:</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="stringliteral">   * Gets time and pressure out of a queue and the current Task 2 value out of a share.</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="stringliteral">   * Converts pressure from units of counts to [psi] and displays value along with corresponding depth underwater in [ft] and time duration.</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="stringliteral">   ### Task 2:</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="stringliteral">   * Converts desired setpoint from units of [psi] to counts using Pressure Sensor Class</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="stringliteral">   * Reads pressure sensor data in units of counts from Pressure Sensor Class.</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="stringliteral">   * Runs closed-loop controller with pressure counts comparing against setpoint to send motor PWM commands.</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="stringliteral">   * Puts time duration and pressure into queue</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="stringliteral">   </span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="stringliteral"> ## Finite State Machines</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="stringliteral"> </span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="stringliteral">   \section classes_sec Classes</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="stringliteral">   ##Pressure Sensor Class</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="stringliteral"> * def __init__:</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="stringliteral">         Initialize the PressureSensor Object.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="stringliteral">         Collect initial data values for status and initial pressure. </span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="stringliteral"> * def readP_Raw:</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="stringliteral">         Reads Raw Status, Pressure, and Temperature Data from Sensor</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="stringliteral"> * def PtoRawP:</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="stringliteral">         Converts setpoint pressure from units of psi to counts.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="stringliteral"> * def RawtoData_P:</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="stringliteral">         Converts raw pressure data in units of counts to [psi].</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="stringliteral">         Then pressure difference from initial pressure and thus displacement depth</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="stringliteral"> * def RawtoData_T:</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="stringliteral">         Converts raw pressure data in units of counts to [Fahrenheit].</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="stringliteral">         </span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="stringliteral">   ##Motor Driver Class</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="stringliteral"> * def __init__:</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="stringliteral">         Creates a motor driver by initializing GPIO pins and turning off the motor for safety. </span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="stringliteral"> * def set_duty_cycle:</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="stringliteral">         This method sets the duty cycle to be sent to the motor to the given level.</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="stringliteral">         Positive values cause torque in one direction, negative values</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="stringliteral">         in the opposite direction.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="stringliteral">         </span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="stringliteral">   ##Closed-Loop Controller Class</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="stringliteral"> * def __init__: Inits the Controller object with the provided proportional gain and set points.</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="stringliteral"> * def run: Runs the controller and calculation for the actual values based by the measured output.</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="stringliteral"> * def set_setpoint:</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="stringliteral">        Takes in a desired set point. </span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="stringliteral">        Sets new setpoint for class</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="stringliteral"> * def set_Kp:</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="stringliteral">        Takes in a desired Kp value.</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="stringliteral">        Sets new Kp for class</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="stringliteral">        </span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="stringliteral">   \section main_prog_sec Main Program</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="stringliteral">  Our main program handles multitasking between different tasks using cotask. </span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="stringliteral">   ## Task Diagram</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="stringliteral">   Below is the task diagram for our main program. There are two tasks.</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="stringliteral">   \image html ME405_Main_Task_Diagram.png &quot;ME405 Main Program Task Diagram&quot; width=500px height=240px</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="stringliteral">   ### Task 1:</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="stringliteral">   * Gets time and pressure out of a queue and the current Task 2 value out of a share.</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="stringliteral">   * Converts pressure from units of counts to [psi] and displays value along with corresponding depth underwater in [ft] and time duration.</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="stringliteral">   ### Task 2:</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="stringliteral">   * Converts desired setpoint from units of [psi] to counts using Pressure Sensor Class</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="stringliteral">   * Reads pressure sensor data in units of counts from Pressure Sensor Class.</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="stringliteral">   * Runs closed-loop controller with pressure counts comparing against setpoint to send motor PWM commands.</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="stringliteral">   * Puts time duration and pressure into queue</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="stringliteral">   </span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="stringliteral">   ## Finite State Machines</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="stringliteral">   Below are the Finite State Machines (FSM) corresponding to the two tasks in our main program.</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="stringliteral">   \image html ME405_FSM_Task_1.png &quot;ME405 FSM Task 1&quot; width=580px height=290px</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="stringliteral">   \image html ME405_FSM_Task_2.png &quot;ME405 FSM Task 2&quot; width=620px height=400px</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="stringliteral"> </span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

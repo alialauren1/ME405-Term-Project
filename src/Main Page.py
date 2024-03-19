@@ -1,9 +1,10 @@
 """! \mainpage 
    \section intro_sec Introduction
- * Below are the following three classes used to implement our main program.
- * Following, are the Tasks and Finite State Machines to describe our main program. 
+   Below are the following three classes used to implement our main program.
+   Following, are the Tasks and Finite State Machines to describe our main program. 
  
-   \section p_sensor_sec Pressure Sensor Class
+   \section classes_sec Classes
+   ##Pressure Sensor Class
  * def __init__:
          Initialize the PressureSensor Object.
          Collect initial data values for status and initial pressure. 
@@ -17,7 +18,7 @@
  * def RawtoData_T:
          Converts raw pressure data in units of counts to [Fahrenheit].
          
-   \section motor_driv_sec Motor Driver Class
+   ##Motor Driver Class
  * def __init__:
          Creates a motor driver by initializing GPIO pins and turning off the motor for safety. 
  * def set_duty_cycle:
@@ -25,7 +26,7 @@
          Positive values cause torque in one direction, negative values
          in the opposite direction.
          
-   \section CL_controller_sec Closed-Loop Controller Class
+   ##Closed-Loop Controller Class
  * def __init__: Inits the Controller object with the provided proportional gain and set points.
  * def run: Runs the controller and calculation for the actual values based by the measured output.
  * def set_setpoint:
@@ -35,7 +36,8 @@
         Takes in a desired Kp value.
         Sets new Kp for class
         
-  \section main_sec Main Program
+   \section main_prog_sec Main Program
+  Our main program handles multitasking between different tasks using cotask. 
    ## Task Diagram
    Below is the task diagram for our main program. There are two tasks.
    \image html ME405_Main_Task_Diagram.png "ME405 Main Program Task Diagram" width=500px height=240px
@@ -48,7 +50,10 @@
    * Runs closed-loop controller with pressure counts comparing against setpoint to send motor PWM commands.
    * Puts time duration and pressure into queue
    
- # ## Finite State Machines
+   ## Finite State Machines
+   Below are the Finite State Machines (FSM) corresponding to the two tasks in our main program.
+   \image html ME405_FSM_Task_1.png "ME405 FSM Task 1" width=580px height=290px
+   \image html ME405_FSM_Task_2.png "ME405 FSM Task 2" width=620px height=400px
  
 """
  
