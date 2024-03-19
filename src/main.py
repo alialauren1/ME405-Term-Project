@@ -1,4 +1,6 @@
 """!
+The following code was modified from the file basic_tasks.py
+
 @file basic_tasks.py
     This file contains a demonstration program that runs some tasks, an
     inter-task shared variable, and a queue. The tasks don't really @b do
@@ -26,8 +28,10 @@ from pressure_sensor import PressureSensor
 def task1_print(shares):
 # convert, and print data
     """!
-    Task which takes things out of a queue and share and displays them.
-    @param shares A tuple of a share and queue from which this task gets data
+    Task which:
+    - Gets time and pressure out of a queue and the current Task 2 value out of a share.
+    - Converts pressure from units of counts to [psi] and displays value along with corresponding depth underwater in [ft] and time duration.
+    @param shares: A tuple of a share and queue from which this task gets data
     """
     # Get references to the share and queue which have been passed to this task
     qTime, qPos, share_init_p, share_off = shares
@@ -62,9 +66,12 @@ def task1_print(shares):
             
         
 def task2_get(shares):
-    """
-    Task that recives data.
-    
+    """!
+    Task that:
+    - Converts desired setpoint from units of [psi] to counts using Pressure Sensor Class
+    - Reads pressure sensor data in units of counts from Pressure Sensor Class.
+    - Runs closed-loop controller with pressure counts comparing against setpoint to send motor PWM commands.
+    - Puts time duration and pressure into queue 
     @param shares: A tuples of a share and queue from which gets data.
     """
     

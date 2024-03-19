@@ -3,9 +3,13 @@ import utime
 import struct
 
 class PressureSensor:
+    """!
+    This class represents pressure sensor data collection and processing. 
+    @author Alia Wolken, Eduardo Santos, Andrew Jwaideh
+    """
     
     def __init__(self,Setpoint,P_Counts,T_Counts):
-        """
+        """!
         Here we initialize the PressureSensor Object. Where we have the
         following:
         
@@ -29,7 +33,7 @@ class PressureSensor:
         print(f'{status=}') 
         
     def readP_Raw(self):
-        """
+        """!
         Reads raw pressure data from the sensor.
         
         returns: A tuple containing raw pressure and temperature data.
@@ -51,7 +55,7 @@ class PressureSensor:
         return pressCounts, tempCounts
     
     def PtoRawP(self,Setpoint): #pressure conversion from pressure [psi] to raw counts
-        """
+        """!
         Converts pressure from psi to raw counts coming for sensor.
         
         @param Setpoint: The desired pressure setpoint in psi.
@@ -65,7 +69,7 @@ class PressureSensor:
         return setpoint_raw
     
     def RawtoData_P(self,P_Counts): #pressure conversion from raw counts to pressure [psi]
-        """
+        """!
         Converts raw pressure data to pressure. Then pressure differance and depth.
         
         @param P_counts: Raw pressure data in counts.
@@ -92,7 +96,7 @@ class PressureSensor:
         return pressure, self.p_diff, depth, self.init_p
     
     def RawtoData_T(self,T_Counts): #pressure conversion from raw counts to pressure [psi]
-        """
+        """!
         Converts raw temperature data to Fahrenheit.
         
         @param T_Counts: Raw temperature data in counts.
