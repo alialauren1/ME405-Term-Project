@@ -10,7 +10,7 @@ Our project for ME 405 will be the system attached to this drone, enabling the d
 
 In order to simulate this system for our ME 405 Term Project. The system will allow the user to input a desired "depth". The system will run to achieve this setpoint and stay at this position for 5 seconds. Then the system will reset to its original position. The system will also have a maximum depth of 5ft. 
 
-## Hardwear design
+## Hardware design
 In Figure 1, we can see the internal system of the system. We have integrated Ametck Pittman's PG6712A077-R3 motor to a 50 CC syringe. Utilizing this motor, we've have attached a worm gear and gears to ensure sufficient torque to be generated. These gears are attached to a pinion
 and aligned with a rack that allows for the syringe to be moved back and forth. This allows
 for the system to achieve the desired weight to submerge the whole system.
