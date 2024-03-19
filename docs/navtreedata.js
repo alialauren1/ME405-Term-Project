@@ -29,12 +29,19 @@ var NAVTREE =
     [ "Pressure Sensor Class", "index.html#p_sensor_sec", null ],
     [ "Motor Driver Class", "index.html#motor_driv_sec", null ],
     [ "Closed-Loop Controller Class", "index.html#CL_controller_sec", null ],
-    [ "Main Program", "index.html#main_sec", null ],
+    [ "Main Program", "index.html#main_sec", [
+      [ "Task Diagram", "index.html#autotoc_md0", [
+        [ "Task 1:", "index.html#autotoc_md1", null ],
+        [ "Task 2:", "index.html#autotoc_md2", null ]
+      ] ],
+      [ "Finite State Machines", "index.html#autotoc_md3", null ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ]
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -54,7 +61,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"_closed___loop___controller_8py.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
