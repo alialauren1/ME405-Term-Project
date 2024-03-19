@@ -27,23 +27,28 @@ var NAVTREE =
   [ "ME 405 Term Project", "index.html", [
     [ "Introduction", "index.html#intro_sec", null ],
     [ "Software Description and Organization", "index.html#soft_org_sec", [
-      [ "Pressure Sensor Class", "index.html#autotoc_md0", null ],
-      [ "Motor Driver Class", "index.html#autotoc_md1", null ],
-      [ "Closed-Loop Controller Class", "index.html#autotoc_md2", null ]
-    ] ],
-    [ "Main Program", "index.html#main_prog_sec", [
-      [ "Task Diagram", "index.html#autotoc_md3", [
-        [ "Task 1:", "index.html#autotoc_md4", null ],
-        [ "Task 2:", "index.html#autotoc_md5", null ]
+      [ "Main Program", "index.html#autotoc_md0", null ],
+      [ "Pressure Sensor Class", "index.html#autotoc_md1", [
+        [ "Status", "index.html#autotoc_md2", null ],
+        [ "Pressure", "index.html#autotoc_md3", null ],
+        [ "Temperature", "index.html#autotoc_md4", null ],
+        [ "Setpoint Conversion", "index.html#autotoc_md5", null ]
       ] ],
-      [ "Finite State Machines", "index.html#autotoc_md6", null ]
+      [ "Motor Driver Class", "index.html#autotoc_md6", null ],
+      [ "Closed-Loop Controller Class", "index.html#autotoc_md7", null ]
+    ] ],
+    [ "Tasks and States for Main Program", "index.html#T_S_sec", [
+      [ "Task Diagram", "index.html#autotoc_md8", [
+        [ "Task 1:", "index.html#autotoc_md9", null ],
+        [ "Task 2:", "index.html#autotoc_md10", null ]
+      ] ],
+      [ "Finite State Machines", "index.html#autotoc_md11", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ]
+        [ "Functions", "namespacemembers_func.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -63,7 +68,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_closed___loop___controller_8py.html"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

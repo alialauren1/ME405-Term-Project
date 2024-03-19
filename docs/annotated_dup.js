@@ -1,12 +1,12 @@
 var annotated_dup =
 [
-    [ "Closed_Loop_Controller", "namespace_closed___loop___controller.html", [
-      [ "Controller", "class_closed___loop___controller_1_1_controller.html", "class_closed___loop___controller_1_1_controller" ]
+    [ "Closed_Loop_Controller", null, [
+      [ "Controller", "class_closed___loop___controller_1_1_controller.html", null ]
     ] ],
-    [ "motor_driver", "namespacemotor__driver.html", [
+    [ "motor_driver", null, [
       [ "motordriver", "classmotor__driver_1_1motordriver.html", "classmotor__driver_1_1motordriver" ]
     ] ],
-    [ "pressure_sensor", "namespacepressure__sensor.html", [
+    [ "pressure_sensor", null, [
       [ "PressureSensor", "classpressure__sensor_1_1_pressure_sensor.html", "classpressure__sensor_1_1_pressure_sensor" ]
     ] ]
 ];
