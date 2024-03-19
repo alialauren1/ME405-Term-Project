@@ -68,7 +68,7 @@ Where,
 <img width="347" alt="Screenshot 2024-03-17 at 9 41 27 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/81dee95d-3d2a-44a9-8cc6-a6c065db89b8">
 
 #### Temperature
-The temperature conversion function shown below was also provided in the Honeywell I^2C manual. Although, it was modified to convert the temperature into Fareneheight. 
+The temperature conversion function shown below was also provided in the Honeywell I^2C manual. Although, it was modified to convert the temperature into Fahrenheit. 
 
 <img width="249" alt="Screenshot 2024-03-17 at 9 46 18 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/79dcab9f-85fb-4055-beed-cf1e42050b7f">
 
