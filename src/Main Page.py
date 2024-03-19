@@ -1,7 +1,8 @@
-"""! \mainpage Software
+"""! \mainpage 
 
  * \section intro_sec Introduction
  * Below are the following three classes used to implement our main program.
+ * Following, are the Tasks and Finite State Machines to describe our main program. 
  
  * \section p_sensor_sec Pressure Sensor Class
  * def __init__:
@@ -34,6 +35,31 @@
  * def set_Kp:
         Takes in a desired Kp value.
         Sets new Kp for class
+        
+ * \section main_sec Main Program
+ * words
+ 
+ * Here is a snapshot of my new application:
+ *  \image html ME405_Main_Task_Diagram.png "Caption" width=300px height=300px
+ 
 """
+#\image html ME405_Main_Task_Diagram.png "Caption" width=100px
 
+
+# !["caption"](ME405_Main_Task_Diagram.png)
+# \image html ME405_Main_Task_Diagram.png "caption"
+# \image{inline} html image.png "caption"
+#  \image html name.png width=800cm height=600cm
+#  
+# \image['{'option[,option]'}'] <html> <ME405_Main_Task_Diagram.jpg> ["caption"] [<sizeindication>=<size>]
+#  IMAGE_PATH     = src
+#
+
+#\htmlonly <style>div.image img[src="ME405_Main_Task_Diagram.png"]{width:100px;}</style> \endhtmlonly 
+#@image html test.png "Caption"
+
+#   /*! Here is a snapshot of my new application:
+#    *  \image html ME405_Main_Task_Diagram.jpg
+#    *  \image latex application.eps "My application" width=10cm
+#    */
  
