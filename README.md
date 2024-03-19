@@ -25,12 +25,12 @@ $T_B = T_A$
 
 $T_C = (N_C / N_B ) * T_B$
 
-$    = (N_C / N_B ) * (F_R * R_A)$
+$T_C = (N_C / N_B ) * (F_R * R_A)$
 
    = (1/30) * (18) * (5x10^-3)
 
    = 0.003 N*m
-   = 3 N*m$
+   = 3 N*m
 
 Doing these calculations led us to select appropriate gears for our system, ensuring that they can withstand the pressure encountered during operation while maintaining an ideal speed.
 
