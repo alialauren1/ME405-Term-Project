@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "ME 405 Term Project", "index.html", [
     [ "Introduction", "index.html#intro_sec", null ],
-    [ "Classes", "index.html#classes_sec", [
+    [ "Software Description and Organization", "index.html#soft_org_sec", [
       [ "Pressure Sensor Class", "index.html#autotoc_md0", null ],
       [ "Motor Driver Class", "index.html#autotoc_md1", null ],
       [ "Closed-Loop Controller Class", "index.html#autotoc_md2", null ]

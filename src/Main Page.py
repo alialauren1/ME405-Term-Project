@@ -3,7 +3,8 @@
    Below are the following three classes used to implement our main program.
    Following, are the Tasks and Finite State Machines to describe our main program. 
  
-   \section classes_sec Classes
+   \section soft_org_sec Software Description and Organization
+   
    ##Pressure Sensor Class
  * def __init__:
          Initialize the PressureSensor Object.
