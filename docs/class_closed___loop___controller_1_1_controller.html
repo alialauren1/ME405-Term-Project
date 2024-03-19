@@ -69,6 +69,9 @@ $(function(){initNavTree('class_closed___loop___controller_1_1_controller.html',
   <div class="headertitle"><div class="title">Closed_Loop_Controller.Controller Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class represents a closed-loop contoller for the system.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -88,6 +91,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:ad88e6a17eed95808db9b3b9fcd8932f0" id="r_ad88e6a17eed95808db9b3b9fcd8932f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad88e6a17eed95808db9b3b9fcd8932f0">kp</a></td></tr>
+<tr class="memdesc:ad88e6a17eed95808db9b3b9fcd8932f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inits the Controller object with the provided proportional gain and set points.  <br /></td></tr>
 <tr class="separator:ad88e6a17eed95808db9b3b9fcd8932f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b3d13a697d723769de4fa55a4c019b9" id="r_a1b3d13a697d723769de4fa55a4c019b9"><td class="memItemLeft" align="right" valign="top"><a id="a1b3d13a697d723769de4fa55a4c019b9" name="a1b3d13a697d723769de4fa55a4c019b9"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>set_point</b></td></tr>
@@ -96,6 +100,7 @@ Static Public Attributes</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>start</b></td></tr>
 <tr class="separator:a46a9289af963b2a12b39596209bf2ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ee4cf2c7743713d932f647151b62fee" id="r_a3ee4cf2c7743713d932f647151b62fee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ee4cf2c7743713d932f647151b62fee">err</a> = self.set_point - measured_output</td></tr>
+<tr class="memdesc:a3ee4cf2c7743713d932f647151b62fee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the controller and calculation for the actual values based by the measured output.  <br /></td></tr>
 <tr class="separator:a3ee4cf2c7743713d932f647151b62fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15150c867f2914e41c09e120f4a8681e" id="r_a15150c867f2914e41c09e120f4a8681e"><td class="memItemLeft" align="right" valign="top"><a id="a15150c867f2914e41c09e120f4a8681e" name="a15150c867f2914e41c09e120f4a8681e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>actuation</b> = self.kp*<a class="el" href="#a3ee4cf2c7743713d932f647151b62fee">err</a></td></tr>
@@ -108,12 +113,9 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:ac731cdca61ee565cfa761473c86a1f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre class="fragment">This class represents a contoller for the system.
-
-Kp (float): The proportinal gain of the controller.
-set_point (float): Is the desired setpoint of the system.
-start (int): The initial time of when the controller starts.
-</pre> </div><h2 class="groupheader">Member Data Documentation</h2>
+<div class="textblock"><p>This class represents a closed-loop contoller for the system. </p>
+<dl class="section author"><dt>Author</dt><dd>Alia Wolken, Eduardo Santos, Andrew Jwaideh </dd></dl>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a3ee4cf2c7743713d932f647151b62fee" name="a3ee4cf2c7743713d932f647151b62fee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3ee4cf2c7743713d932f647151b62fee">&#9670;&#160;</a></span>err</h2>
 
@@ -133,13 +135,11 @@ start (int): The initial time of when the controller starts.
   </tr>
 </table>
 </div><div class="memdoc">
-<pre class="fragment">Runs the controller and calculation for the actual values based by the measured output.
 
-measure_poutput (float): The measured output of the system.
+<p>Runs the controller and calculation for the actual values based by the measured output. </p>
+<p>measure_poutput (float): The measured output of the system.</p>
+<p>Returns: tuple: A tuple containing the actual value and time that has passed. </p>
 
-Returns:
-    tuple: A tuple containing the actual value and time that has passed.
-</pre> 
 </div>
 </div>
 <a id="ad88e6a17eed95808db9b3b9fcd8932f0" name="ad88e6a17eed95808db9b3b9fcd8932f0"></a>
@@ -161,11 +161,10 @@ Returns:
   </tr>
 </table>
 </div><div class="memdoc">
-<pre class="fragment">Inits the Controller object with the provided proportional gain and set points.
 
-Kp (float): The proportinal gain of the controller.
-set_point (float): Is the desired setpoint of the system.    
-</pre> 
+<p>Inits the Controller object with the provided proportional gain and set points. </p>
+<p>Kp (float): The proportinal gain of the controller. set_point (float): Is the desired setpoint of the system. start (int): The initial time of when the controller starts. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

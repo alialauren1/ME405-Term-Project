@@ -69,18 +69,26 @@ $(function(){initNavTree('classpressure__sensor_1_1_pressure_sensor.html',''); i
   <div class="headertitle"><div class="title">pressure_sensor.PressureSensor Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class represents pressure sensor data collection and processing.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2ec4bcaba4f4c562681a955039f5bfc2" id="r_a2ec4bcaba4f4c562681a955039f5bfc2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ec4bcaba4f4c562681a955039f5bfc2">__init__</a> (self, Setpoint, P_Counts, T_Counts)</td></tr>
+<tr class="memdesc:a2ec4bcaba4f4c562681a955039f5bfc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Here we initialize the PressureSensor Object.  <br /></td></tr>
 <tr class="separator:a2ec4bcaba4f4c562681a955039f5bfc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba8e94d9aa2dcefa61bddb8ff665ecfa" id="r_aba8e94d9aa2dcefa61bddb8ff665ecfa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba8e94d9aa2dcefa61bddb8ff665ecfa">readP_Raw</a> (self)</td></tr>
+<tr class="memdesc:aba8e94d9aa2dcefa61bddb8ff665ecfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads raw pressure data from the sensor.  <br /></td></tr>
 <tr class="separator:aba8e94d9aa2dcefa61bddb8ff665ecfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a523b1e8abf3f049c4f9401fecec8b48c" id="r_a523b1e8abf3f049c4f9401fecec8b48c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a523b1e8abf3f049c4f9401fecec8b48c">PtoRawP</a> (self, Setpoint)</td></tr>
+<tr class="memdesc:a523b1e8abf3f049c4f9401fecec8b48c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts pressure from psi to raw counts coming for sensor.  <br /></td></tr>
 <tr class="separator:a523b1e8abf3f049c4f9401fecec8b48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac39f24bdd72a18015268f22ab4134606" id="r_ac39f24bdd72a18015268f22ab4134606"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac39f24bdd72a18015268f22ab4134606">RawtoData_P</a> (self, P_Counts)</td></tr>
+<tr class="memdesc:ac39f24bdd72a18015268f22ab4134606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts raw pressure data to pressure.  <br /></td></tr>
 <tr class="separator:ac39f24bdd72a18015268f22ab4134606"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae978997933de37ccc7223f34e2326582" id="r_ae978997933de37ccc7223f34e2326582"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae978997933de37ccc7223f34e2326582">RawtoData_T</a> (self, T_Counts)</td></tr>
+<tr class="memdesc:ae978997933de37ccc7223f34e2326582"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts raw temperature data to Fahrenheit.  <br /></td></tr>
 <tr class="separator:ae978997933de37ccc7223f34e2326582"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -101,7 +109,10 @@ Public Attributes</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>p_diff</b></td></tr>
 <tr class="separator:a42eb138a0b4c9c4157ac6f3e0a179983"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class represents pressure sensor data collection and processing. </p>
+<dl class="section author"><dt>Author</dt><dd>Alia Wolken, Eduardo Santos, Andrew Jwaideh </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2ec4bcaba4f4c562681a955039f5bfc2" name="a2ec4bcaba4f4c562681a955039f5bfc2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ec4bcaba4f4c562681a955039f5bfc2">&#9670;&#160;</a></span>__init__()</h2>
 
@@ -130,11 +141,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Here we initialize the PressureSensor Object. Where we have the
-following:
 
-Setpoint: The desired pressure setpoint, in [psi]
-P_Counts: The raw pressure data in counts</pre> 
+<p>Here we initialize the PressureSensor Object. </p>
+<p>Where we have the following:</p>
+<p>Setpoint: The desired pressure setpoint, in [psi] P_Counts: The raw pressure data in counts </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -156,11 +167,16 @@ P_Counts: The raw pressure data in counts</pre>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Converts pressure from psi to raw counts coming for sensor.
 
-@param Setpoint: The desired pressure setpoint in psi.
-@param return: The pressure setpoint in raw counts.
-</pre> 
+<p>Converts pressure from psi to raw counts coming for sensor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Setpoint</td><td>The desired pressure setpoint in psi. </td></tr>
+    <tr><td class="paramname">return</td><td>The pressure setpoint in raw counts. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ac39f24bdd72a18015268f22ab4134606" name="ac39f24bdd72a18015268f22ab4134606"></a>
@@ -181,11 +197,17 @@ P_Counts: The raw pressure data in counts</pre>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Converts raw pressure data to pressure. Then pressure differance and depth.
 
-@param P_counts: Raw pressure data in counts.
-@param return: A tuple containing pressure, pressure difference, depth, and initial pressure.
-</pre> 
+<p>Converts raw pressure data to pressure. </p>
+<p>Then pressure differance and depth.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">P_counts</td><td>Raw pressure data in counts. </td></tr>
+    <tr><td class="paramname">return</td><td>A tuple containing pressure, pressure difference, depth, and initial pressure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ae978997933de37ccc7223f34e2326582" name="ae978997933de37ccc7223f34e2326582"></a>
@@ -206,11 +228,16 @@ P_Counts: The raw pressure data in counts</pre>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Converts raw temperature data to Fahrenheit.
 
-@param T_Counts: Raw temperature data in counts.
-@param return: Temperature in Fahrenheit.
-</pre> 
+<p>Converts raw temperature data to Fahrenheit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">T_Counts</td><td>Raw temperature data in counts. </td></tr>
+    <tr><td class="paramname">return</td><td>Temperature in Fahrenheit. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aba8e94d9aa2dcefa61bddb8ff665ecfa" name="aba8e94d9aa2dcefa61bddb8ff665ecfa"></a>
@@ -227,10 +254,10 @@ P_Counts: The raw pressure data in counts</pre>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Reads raw pressure data from the sensor.
 
-returns: A tuple containing raw pressure and temperature data.
-</pre> 
+<p>Reads raw pressure data from the sensor. </p>
+<p>returns: A tuple containing raw pressure and temperature data. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
