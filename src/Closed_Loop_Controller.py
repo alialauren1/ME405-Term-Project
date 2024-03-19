@@ -23,7 +23,7 @@ class Controller:
     """!
     Runs the controller and calculation for the actual values based by the measured output.
     
-    measure_poutput (float): The measured output of the system.
+    measured_output (float): The measured output of the system.
     
     Returns:
         tuple: A tuple containing the actual value and time that has passed.
@@ -35,8 +35,20 @@ class Controller:
         return actuation, self.time_passed, measured_output
         
     def set_setpoint(self, desired_set_point):
+    """!
+    Takes in a desired set point. 
+    Sets new setpoint for class
+    
+    self.setpoint (float): The new setpoint
+    """
         self.set_point = float(desired_set_point) # To set a new setpoint for class
         
     def set_Kp(self, desired_Kp):
+    """!
+    Takes in a desired Kp value. 
+    Sets new Kp for class
+    
+    self.kp: The new kp value
+    """
         self.kp = desired_Kp # To set a new kp for class
         

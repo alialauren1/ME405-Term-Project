@@ -76,7 +76,7 @@ $(function(){initNavTree('class_closed___loop___controller_1_1_controller.html',
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae78768cdfd0322382b99e397dd4df900" id="r_ae78768cdfd0322382b99e397dd4df900"><td class="memItemLeft" align="right" valign="top"><a id="ae78768cdfd0322382b99e397dd4df900" name="ae78768cdfd0322382b99e397dd4df900"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b> (self, <a class="el" href="#ad88e6a17eed95808db9b3b9fcd8932f0">kp</a>, set_point)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b> (self, <a class="el" href="#ad88e6a17eed95808db9b3b9fcd8932f0">kp</a>, <a class="el" href="#a1b3d13a697d723769de4fa55a4c019b9">set_point</a>)</td></tr>
 <tr class="separator:ae78768cdfd0322382b99e397dd4df900"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3929c4fe4e3984fe594366fcae3b1ef4" id="r_a3929c4fe4e3984fe594366fcae3b1ef4"><td class="memItemLeft" align="right" valign="top"><a id="a3929c4fe4e3984fe594366fcae3b1ef4" name="a3929c4fe4e3984fe594366fcae3b1ef4"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (self, measured_output)</td></tr>
@@ -93,8 +93,8 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:ad88e6a17eed95808db9b3b9fcd8932f0" id="r_ad88e6a17eed95808db9b3b9fcd8932f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad88e6a17eed95808db9b3b9fcd8932f0">kp</a></td></tr>
 <tr class="memdesc:ad88e6a17eed95808db9b3b9fcd8932f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inits the Controller object with the provided proportional gain and set points.  <br /></td></tr>
 <tr class="separator:ad88e6a17eed95808db9b3b9fcd8932f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b3d13a697d723769de4fa55a4c019b9" id="r_a1b3d13a697d723769de4fa55a4c019b9"><td class="memItemLeft" align="right" valign="top"><a id="a1b3d13a697d723769de4fa55a4c019b9" name="a1b3d13a697d723769de4fa55a4c019b9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>set_point</b></td></tr>
+<tr class="memitem:a1b3d13a697d723769de4fa55a4c019b9" id="r_a1b3d13a697d723769de4fa55a4c019b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b3d13a697d723769de4fa55a4c019b9">set_point</a></td></tr>
+<tr class="memdesc:a1b3d13a697d723769de4fa55a4c019b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes in a desired set point.  <br /></td></tr>
 <tr class="separator:a1b3d13a697d723769de4fa55a4c019b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46a9289af963b2a12b39596209bf2ba6" id="r_a46a9289af963b2a12b39596209bf2ba6"><td class="memItemLeft" align="right" valign="top"><a id="a46a9289af963b2a12b39596209bf2ba6" name="a46a9289af963b2a12b39596209bf2ba6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>start</b></td></tr>
@@ -137,7 +137,7 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Runs the controller and calculation for the actual values based by the measured output. </p>
-<p>measure_poutput (float): The measured output of the system.</p>
+<p>measured_output (float): The measured output of the system.</p>
 <p>Returns: tuple: A tuple containing the actual value and time that has passed. </p>
 
 </div>
@@ -163,7 +163,36 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inits the Controller object with the provided proportional gain and set points. </p>
-<p>Kp (float): The proportinal gain of the controller. set_point (float): Is the desired setpoint of the system. start (int): The initial time of when the controller starts. </p>
+<p>Takes in a desired Kp value.</p>
+<p>Kp (float): The proportinal gain of the controller. set_point (float): Is the desired setpoint of the system. start (int): The initial time of when the controller starts.</p>
+<p>Sets new Kp for class</p>
+<p>self.kp: The new kp value </p>
+
+</div>
+</div>
+<a id="a1b3d13a697d723769de4fa55a4c019b9" name="a1b3d13a697d723769de4fa55a4c019b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b3d13a697d723769de4fa55a4c019b9">&#9670;&#160;</a></span>set_point</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Closed_Loop_Controller.Controller.set_point</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Takes in a desired set point. </p>
+<p>Sets new setpoint for class</p>
+<p>self.setpoint (float): The new setpoint </p>
 
 </div>
 </div>

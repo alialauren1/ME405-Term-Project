@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ME 405 Term Project: Main Page</title>
+<title>ME 405 Term Project: Software</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,10 +61,45 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
-<div class="header">
-  <div class="headertitle"><div class="title">ME 405 Term Project Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Software </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><ul>
+<li></li>
+</ul>
+<h1><a class="anchor" id="intro_sec"></a>
+Introduction</h1>
+<ul>
+<li>Below are the following three classes used to implement our main program.</li>
+<li></li>
+</ul>
+<h1><a class="anchor" id="p_sensor_sec"></a>
+Pressure Sensor Class</h1>
+<ul>
+<li>def <b>init</b>: Initialize the PressureSensor Object. Collect initial data values for status and initial pressure.</li>
+<li>def readP_Raw: Reads Raw Status, Pressure, and Temperature Data from Sensor</li>
+<li>def PtoRawP: Converts setpoint pressure from units of psi to counts.</li>
+<li>def RawtoData_P: Converts raw pressure data in units of counts to [psi]. Then pressure difference from initial pressure and thus displacement depth</li>
+<li>def RawtoData_T: Converts raw pressure data in units of counts to [Fahrenheit].</li>
+<li></li>
+</ul>
+<h1><a class="anchor" id="motor_driv_sec"></a>
+Motor Driver Class</h1>
+<ul>
+<li>def <b>init</b>: Creates a motor driver by initializing GPIO pins and turning off the motor for safety.</li>
+<li>def set_duty_cycle: This method sets the duty cycle to be sent to the motor to the given level. Positive values cause torque in one direction, negative values in the opposite direction.</li>
+<li></li>
+</ul>
+<h1><a class="anchor" id="CL_controller_sec"></a>
+Closed-Loop Controller Class</h1>
+<ul>
+<li>def <b>init</b>: Inits the Controller object with the provided proportional gain and set points.</li>
+<li>def run: Runs the controller and calculation for the actual values based by the measured output.</li>
+<li>def set_setpoint: Takes in a desired set point. Sets new setpoint for class</li>
+<li>def set_Kp: Takes in a desired Kp value. Sets new Kp for class </li>
+</ul>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->
 </div><!-- doc-content -->

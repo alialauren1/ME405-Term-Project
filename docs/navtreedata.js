@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "ME 405 Term Project", "index.html", [
+    [ "Software", "index.html", "index" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [

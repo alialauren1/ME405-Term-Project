@@ -79,13 +79,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2ec4bcaba4f4c562681a955039f5bfc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Here we initialize the PressureSensor Object.  <br /></td></tr>
 <tr class="separator:a2ec4bcaba4f4c562681a955039f5bfc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba8e94d9aa2dcefa61bddb8ff665ecfa" id="r_aba8e94d9aa2dcefa61bddb8ff665ecfa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba8e94d9aa2dcefa61bddb8ff665ecfa">readP_Raw</a> (self)</td></tr>
-<tr class="memdesc:aba8e94d9aa2dcefa61bddb8ff665ecfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads raw pressure data from the sensor.  <br /></td></tr>
+<tr class="memdesc:aba8e94d9aa2dcefa61bddb8ff665ecfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads Raw Status, Pressure, and Temperature Data from the sensor.  <br /></td></tr>
 <tr class="separator:aba8e94d9aa2dcefa61bddb8ff665ecfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a523b1e8abf3f049c4f9401fecec8b48c" id="r_a523b1e8abf3f049c4f9401fecec8b48c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a523b1e8abf3f049c4f9401fecec8b48c">PtoRawP</a> (self, Setpoint)</td></tr>
-<tr class="memdesc:a523b1e8abf3f049c4f9401fecec8b48c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts pressure from psi to raw counts coming for sensor.  <br /></td></tr>
+<tr class="memdesc:a523b1e8abf3f049c4f9401fecec8b48c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts setpoint pressure from units of psi to counts.  <br /></td></tr>
 <tr class="separator:a523b1e8abf3f049c4f9401fecec8b48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac39f24bdd72a18015268f22ab4134606" id="r_ac39f24bdd72a18015268f22ab4134606"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac39f24bdd72a18015268f22ab4134606">RawtoData_P</a> (self, P_Counts)</td></tr>
-<tr class="memdesc:ac39f24bdd72a18015268f22ab4134606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts raw pressure data to pressure.  <br /></td></tr>
+<tr class="memdesc:ac39f24bdd72a18015268f22ab4134606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts raw pressure data in units of counts to [psi].  <br /></td></tr>
 <tr class="separator:ac39f24bdd72a18015268f22ab4134606"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae978997933de37ccc7223f34e2326582" id="r_ae978997933de37ccc7223f34e2326582"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae978997933de37ccc7223f34e2326582">RawtoData_T</a> (self, T_Counts)</td></tr>
 <tr class="memdesc:ae978997933de37ccc7223f34e2326582"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts raw temperature data to Fahrenheit.  <br /></td></tr>
@@ -168,7 +168,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Converts pressure from psi to raw counts coming for sensor. </p>
+<p>Converts setpoint pressure from units of psi to counts. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Setpoint</td><td>The desired pressure setpoint in psi. </td></tr>
@@ -198,8 +198,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Converts raw pressure data to pressure. </p>
-<p>Then pressure differance and depth.</p>
+<p>Converts raw pressure data in units of counts to [psi]. </p>
+<p>Then pressure difference from initial pressure and thus displacement depth.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">P_counts</td><td>Raw pressure data in counts. </td></tr>
@@ -255,7 +255,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reads raw pressure data from the sensor. </p>
+<p>Reads Raw Status, Pressure, and Temperature Data from the sensor. </p>
 <p>returns: A tuple containing raw pressure and temperature data. </p>
 
 </div>
