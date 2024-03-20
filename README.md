@@ -34,7 +34,25 @@ $T_C = (1/15) * (6 N) * (.0152 m)$
 
 $T_C = (0.006 Nm) = (6 mNm)$ 
 
-Doing these calculations led us to select appropriate gears for our system, ensuring that they can withstand the pressure encountered during operation while maintaining an ideal speed.
+Doing these calculations led us to select appropriate gears for our system, ensuring that they can withstand the pressure encountered during operation while maintaining an ideal speed. Below shows a table of the parameters.  
+
+|           **Parameters**           |   Variable   |   Value   |   Units   |
+|:----------------------------------:|:------------:|:---------:|:---------:|
+|    **----Rack+Piston+Syringe--**   |  **-------** |  **----** |  **----** |
+| Force to overcome friction in tube |      F_R     |     6     |     N     |
+|           **----Gears--**          |  **-------** | **-----** | **-----** |
+|            Radius Gear A           |      R_A     |   0.0152  |     m     |
+|            Teeth Gear A            |      N_A     |     17    |           |
+|     Outer Diameter Worm Gear B     |     OD_B     |     16    |     mm    |
+|          Teeth Worm Gear B         |      N_B     |     15    |           |
+|     Pressure Angle Worm Gear B     |     Phi_C    |     20    |  degrees  |
+|        Outer Diameter Worm C       |     OD_C     |     12    |     mm    |
+|        Pressure Angle Worm C       |     Phi_C    |     20    |  degrees  |
+|            Teeth Worm C            |      N_C     |     1     |           |
+|   **-----Motor Parameters------**  | **--------** | **-----** |  **----** |
+|        Radius of Motor Gear        |      rm      |  0.00662  |     m     |
+|        Motor Nominal Voltage       |     V_DC     |     12    |     V     |
+
 
 ![pic 3](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/dabea663-33ab-48a3-91b7-2d57c6a7cb01)
 
@@ -111,21 +129,3 @@ Pressure sensor datasheet:
 I2C Communications with Honeywell Pressure Sensors:
 [sps-siot-i2c-comms-digital-output-pressure-sensors-tn-008201-3-en-ciid-45841.pdf](https://github.com/alialauren1/ME405-Term-Project/files/14630975/sps-siot-i2c-comms-digital-output-pressure-sensors-tn-008201-3-en-ciid-45841.pdf)
  
-Below shows a table of parameters.  
-
-|           **Parameters**           |   Variable   |   Value   |   Units   |
-|:----------------------------------:|:------------:|:---------:|:---------:|
-|    **----Rack+Piston+Syringe--**   |  **-------** |  **----** |  **----** |
-| Force to overcome friction in tube |      F_R     |     6     |     N     |
-|           **----Gears--**          |  **-------** | **-----** | **-----** |
-|            Radius Gear A           |      R_A     |   0.0152  |     m     |
-|            Teeth Gear A            |      N_A     |     17    |           |
-|     Outer Diameter Worm Gear B     |     OD_B     |     16    |     mm    |
-|          Teeth Worm Gear B         |      N_B     |     15    |           |
-|     Pressure Angle Worm Gear B     |     Phi_C    |     20    |  degrees  |
-|        Outer Diameter Worm C       |     OD_C     |     12    |     mm    |
-|        Pressure Angle Worm C       |     Phi_C    |     20    |  degrees  |
-|            Teeth Worm C            |      N_C     |     1     |           |
-|   **-----Motor Parameters------**  | **--------** | **-----** |  **----** |
-|        Radius of Motor Gear        |      rm      |  0.00662  |     m     |
-|        Motor Nominal Voltage       |     V_DC     |     12    |     V     |
