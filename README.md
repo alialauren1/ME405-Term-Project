@@ -66,7 +66,7 @@ Figure 2. CAD: Secondary view of the internal system of our terms project with l
 
 Figure 3. Gears, motor, and frame for the internal system.
 
-The pressure sensor we selected is the SSCMANV030PA2A3 Honeywell Pressure Sensor. It is measures absolute pressure, with a range from 0-30 psi. Is allows liquid media on the port, which will come of use in future quarters when we test our system underwater. 
+The pressure sensor we selected is the SSCMANV030PA2A3 Honeywell Pressure Sensor. It measures absolute pressure, with a range from 0-30 psi. Is allows liquid media on the port, which will come of use in future quarters when we test our system underwater. 
 
 <img width="182" alt="Screenshot 2024-03-19 at 8 53 00 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/83f965b6-e449-474c-9980-f4381207573f">
 
