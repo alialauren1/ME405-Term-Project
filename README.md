@@ -105,14 +105,21 @@ While testing to achieve for efficiency in reaching the desired pressure, it's e
 
 As we continue to test our project, further tests will be necessary to determine the optimal balance between speed, the system stability and accuracy. This process may involve fine-tuning parameters beyond just changing the Kp. This may incude making the chamber of the system bigger and other factors.
 
-### Lab Demo
-The below plot shows the pressure inside the syringe. The autonomous journey is one in which the system reaches the desired setpoint, waits for a duration, and then returns to the initial pressure. This journey mimics future developement of our larger senior project in which this pressure chamber will be attached to a drone. We anticipate it will be beneficial for some remote or signal to send a desired depth as the setpoint to the system, in which the chamber will submerge with the drone, going to that depth. It will remain there, possible to collect data, and then autonomously return to the surface. 
+### Lab Demo Results
+The below plot shows the pressure inside the syringe. The autonomous journey is one in which the system reaches the desired setpoint, waits for a duration, and then returns to the initial pressure. 
 
 <img width="360" alt="image" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/75d0b395-c743-4855-a188-f06f3c17799e">
 
 Figure 7. Plot of Pressure vs Time inside the syringe with a setpoint of 17 [psi]. 
 
+This journey mimics future developement of our larger senior project in which this pressure chamber will be attached to a drone. We anticipate it will be beneficial for some remote or signal to send a desired depth as the setpoint to the system, in which the chamber will submerge with the drone, going to that depth. It will remain there, possible to collect data, and then autonomously return to the surface. 
+We are satisfied with the final results. The chamber is able to reach pressures higher than a pressure corresponding to 5ft, which was what we wanted to achieve.
+It is also able to maintain the increase in pressure while the motor is turned off, which is a satisfying result. 
+
 ## What we have learned
+Designing this system taught us how important it is to design and test early. 
+Although most of the system was done with a reasonable amount of time, we were faced with issues causing the system to take longer to complete than anticipated.
+
 ### 3D Printing
 While 3D printing gears and housing system for our project we learned that tolerances while creating parts is harder to achieve. When 3D printing the gears it was harder to align the gears causing the small gears to slip and not allowing for our system to be as efficient as it can be.
 
@@ -125,10 +132,15 @@ Figure 8. Collection of gears tested
 ### Software and Sensors
 We learned that the data being output from our pressure sensor was in counts. This led to the creation of a definition in our PressureSensor class to interpret the counts into a unit of measurement that could be easily interpretted, that being [psi]. Since our Closed-Loop Controller class uses the pressure sensor output in counts to correct for a desired pressure, an additional definition was made to interpret user desired setpoint input from [psi] to counts. 
 
-While designing this system we learned how important it is to design and test early. Although most of the system was done with a reasonable amount of time. We keep running into issues causing the system to take longer to complete.
-
 ## Safety
 Our project prioritizes user safety through thoughtful design considerations. By utilizing small gears, we have effectively reduced the risk of injuries to the user. Once the system has been fully assembled, all moving components and electrical elements will be enclosed and inaccessible to the user. This design ensures that users are protected from potential hazards during the system's operation.
+
+## Future Work
+In the future we would like to implement a third task into our main program that is a user interface for the pressure setpoint. 
+The user could select from a range of setpoint options and the system would adjust the pressure in the chamber accordingly. 
+This task would multitask with the other two tasks and allow for the user to input a setpoint whenever they want whilst the program runs. 
+
+We plan to build a larger waterproof chamber to encompass components similar to those used in project. This will allows us to test the systems depth control abilities in actual water. We look forward to the continuation of this project and appreciate all that it has taught us so far. 
 
 ## Additional files
 
