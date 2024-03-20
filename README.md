@@ -32,8 +32,8 @@ $T_C = (N_C / N_B ) * (F_R * R_A)$
 
 $T_C = (1/15) * (6 N) * (.0152 m)$
 
-$T_C = 0.006 N*m$
-$T_C = 6 mN*m$ 
+$T_C = (0.006 Nm)$
+$T_C = (6 mNm)$ 
 
 Doing these calculations led us to select appropriate gears for our system, ensuring that they can withstand the pressure encountered during operation while maintaining an ideal speed.
 
