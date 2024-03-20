@@ -53,7 +53,11 @@ Figure 3. Gears, motor, and frame for the internal system.
 Figure 4. Hardware all connected
 
 ## Software design
-To measure pressure, we used a Honeywell Board Mount Pressure Sensor, which uses I^2C communication. 
+The main program uses three classes inside two tasks that multitask with one another. A detailed description of the software design can be found on our doxygen main page linked here: 
+https://alialauren1.github.io/ME405-Term-Project/index.html#soft_org_sec
+
+To measure pressure, we used a Honeywell Board Mount Pressure Sensor, which uses I^2C communication. A class was made to use this sensor. Details on how the data was collected and process is linked below. 
+https://alialauren1.github.io/ME405-Term-Project/index.html#autotoc_md1
 
 Attaching the sensor and the Ametek motor to our Nucleo, we were able to program both components to get a functioning product.
 
