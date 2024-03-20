@@ -38,11 +38,19 @@ Doing these calculations led us to select appropriate gears for our system, ensu
 
 ![pic 3](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/dabea663-33ab-48a3-91b7-2d57c6a7cb01)
 
-Figure 1. Internal system of our terms project with labels indicating parts of the system.
+Figure 1. CAD: Internal system of our terms project with labels indicating parts of the system.
 
 ![PIC 4](https://github.com/alialauren1/ME405-Term-Project/assets/157066050/eb48edbe-51e1-428f-be92-7078a6765a94)
 
-Figure 2. Secondary view of the internal system of our terms project with labels indicating parts of the system.
+Figure 2. CAD: Secondary view of the internal system of our terms project with labels indicating parts of the system.
+
+![IMG_6039](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/fc4674fa-24fd-468d-8175-b390c374cd86)
+
+Figure 3. Gears, motor, and frame for the internal system.
+
+![IMG_6037](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/d11b0a8d-c261-4473-9286-de9a2c53cbf4)
+
+Figure 4. Hardware all connected
 
 ## Software design
 To measure pressure, we used a Honeywell Board Mount Pressure Sensor, which uses I^2C communication. 
@@ -58,7 +66,7 @@ In order to test our project sensors and motor control, we ran multiple tests in
 
 <img width="605" alt="Screenshot 2024-03-17 at 10 32 32 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/ac451cf5-9cc9-4dc5-884a-5c23263242ac">
 
-Figure 3. Plot of Pressure vs Time inside the syringe. Each line represents a different run of data collected while altering the Kp value.
+Figure 5. Plot of Pressure vs Time inside the syringe. Each line represents a different run of data collected while altering the Kp value.
 
 During our testing, we initially set Kp to 5 (shown in blue) and then increased it to 10 (shown in orange). Observing the graph, it's evident that increasing the Kp value led to faster attainment of the target pressure of 16.5 [psi].
 
@@ -71,11 +79,18 @@ The below plot shows the pressure inside the syringe. The autonomous journey is 
 
 <img width="360" alt="image" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/75d0b395-c743-4855-a188-f06f3c17799e">
 
-Figure 4. Plot of Pressure vs Time inside the syringe with a setpoint of 17 [psi]. 
+Figure 6. Plot of Pressure vs Time inside the syringe with a setpoint of 17 [psi]. 
 
 ## What we have learned
+### 3D Printing
 While 3D printing gears and housing system for our project we learned that tolerances while creating parts is harder to achieve. When 3D printing the gears it was harder to align the gears causing the small gears to slip and not allowing for our system to be as efficient as it can be.
+Note: We are saving our used PLA parts to find a place to recycle them. 
 
+![IMG_6034](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/5b03ef0f-60c7-414f-b9d5-46a70c6df5b4)
+
+Figure 7. Collection of gears tested
+
+### Software and Sensors
 We learned that the data being output from our pressure sensor was in counts. This led to the creation of a definition in our PressureSensor class to interpret the counts into a unit of measurement that could be easily interpretted, that being [psi]. Since our Closed-Loop Controller class uses the pressure sensor output in counts to correct for a desired pressure, an additional definition was made to interpret user desired setpoint input from [psi] to counts. 
 
 While designing this system we learned how important it is to design and test early. Although most of the system was done with a reasonable amount of time. We keep running into issues causing the system to take longer to complete.
