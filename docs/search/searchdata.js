@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "124_abcdefiklmoprst",
   1: "cmp",
   2: "m",
-  3: "b",
+  3: "bcmp",
   4: "_prst",
   5: "eks",
   6: "4mpt"

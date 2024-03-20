@@ -1,3 +1,18 @@
+"""!
+@file pressure_sensor.py
+    This file is a class that implements pressure sensor.
+    It allows for initialization of setpoint (in [psi]), and Pressure and Temperature in units of counts.
+    
+    This class can:
+    - Convert setpoint in [psi] to units of counts.
+    - Read the pressure and temperature in [counts]
+    - Convert pressure in [psi] and temperature in [F]
+    - Convert the pressure to corresponding depth under water [ft]
+  
+@author Alia Wolken, Eduardo Santos, Andrew Jwaideh
+@date   2024-March-15 
+"""
+
 import pyb
 import utime
 import struct
@@ -13,8 +28,9 @@ class PressureSensor:
         Here we initialize the PressureSensor Object. Where we have the
         following:
         
-        Setpoint: The desired pressure setpoint, in [psi]
-        P_Counts: The raw pressure data in counts
+        @param Setpoint: The desired pressure setpoint, in [psi]
+        @param P_Counts: The raw pressure data in counts
+        @param T_Counts: The raw temperature data in counts
         
         """           
         self.I2C_obj = pyb.I2C(1,pyb.I2C.CONTROLLER,baudrate=100000)
@@ -36,7 +52,7 @@ class PressureSensor:
         """!
         Reads Raw Status, Pressure, and Temperature Data from the sensor.
         
-        returns: A tuple containing raw pressure and temperature data.
+        @param returns: A tuple containing raw pressure and temperature data.
         """
         
         # need to keep pressure values in raw counts to have max precision

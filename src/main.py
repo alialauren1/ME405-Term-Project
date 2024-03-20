@@ -1,17 +1,17 @@
 """!
-The following code was modified from the file basic_tasks.py
-
-@file basic_tasks.py
-    This file contains a demonstration program that runs some tasks, an
-    inter-task shared variable, and a queue. The tasks don't really @b do
-    anything; the example just shows how these elements are created and run.
-
-@author JR Ridgely
-@date   2021-Dec-15 JRR Created from the remains of previous example
-@copyright (c) 2015-2021 by JR Ridgely and released under the GNU
-    Public License, Version 2.
+@file main.py
+    This file runs two tasks, using two intershared variables and two queues.
+    Task 1 processes and prints the data from the queues.
+    Task 2 stores the data from the sensor into the queues.
     
-@Modifications Made By: Alia Wolken, Eduardo Santos, Andrew Jwaideh
+    This file was modified from basic_tasks.py, author: JR Ridgely.
+    The copyright from the basic_tasks file is included below. 
+    
+@author Alia Wolken, Eduardo Santos, Andrew Jwaideh
+@date   2024-March-19
+
+@copyright (c) 2015-2021 by JR Ridgely and released under the GNU
+    Public License, Version 2. 
 """
 
 import gc

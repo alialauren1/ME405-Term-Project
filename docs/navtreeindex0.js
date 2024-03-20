@@ -1,5 +1,6 @@
 var NAVTREEINDEX0 =
 {
+"_closed___loop___controller_8py.html":[5,0,0,1],
 "annotated.html":[4,0],
 "basic__tasks_8py.html":[5,0,0,0],
 "basic__tasks_8py.html#a2cfa0375797ee6e18e6d847b021d49e9":[5,0,0,0,0],
@@ -36,12 +37,12 @@ var NAVTREEINDEX0 =
 "index.html#autotoc_md9":[2,0,0],
 "index.html#intro_sec":[0],
 "index.html#soft_org_sec":[1],
+"main_8py.html":[5,0,0,2],
+"main_8py.html#aa16ee341ad196260470dcc8c937de51b":[5,0,0,2,0],
+"main_8py.html#add66dc5c755f3deb42b295c09f24be3b":[5,0,0,2,1],
+"motor__driver_8py.html":[5,0,0,3],
 "namespace_main.html":[3,0,0],
-"namespacemain.html":[3,0,1],
-"namespacemain.html#aa16ee341ad196260470dcc8c937de51b":[3,0,1,0],
-"namespacemain.html#add66dc5c755f3deb42b295c09f24be3b":[3,0,1,1],
-"namespacemembers.html":[3,1,0],
-"namespacemembers_func.html":[3,1,1],
 "namespaces.html":[3,0],
-"pages.html":[]
+"pages.html":[],
+"pressure__sensor_8py.html":[5,0,0,4]
 };

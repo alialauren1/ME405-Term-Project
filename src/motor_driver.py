@@ -1,9 +1,19 @@
+"""!
+@file motor_driver.py
+    This file is a class that implements a motor driver,
+    setting the duty cycle for the motor.
+    It allows for initialization of the chosen motor pins and timer.
+  
+@author Alia Wolken, Eduardo Santos, Andrew Jwaideh
+@date   2024-March-15 
+"""
+
 import pyb
 import utime
 
 class motordriver:
-    """! 
-    This class implements a motor driver for an ME405 kit. 
+    """!
+    This class implements a motor driver from our 405 kit. 
     @author Alia Wolken, Eduardo Santos, Andrew Jwaideh
     """
 
@@ -11,7 +21,10 @@ class motordriver:
         """! 
         Creates a motor driver by initializing GPIO
         pins and turning off the motor for safety. 
-        @param en_pin (There will be several parameters)
+        @param en_pin: enable pin
+        @param in1pin: motor connected to this pin
+        @param in2pin: motor connected to this pin
+        @para timer: timer being used
         """
         # print ("Creating a motor driver")
         en_pin = pyb.Pin(en_pin, pyb.Pin.OUT_PP)

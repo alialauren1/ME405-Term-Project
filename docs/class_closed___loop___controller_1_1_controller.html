@@ -167,8 +167,13 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Runs the controller and calculation for the actual values based by the measured output. </p>
-<p>measured_output (float): The measured output of the system.</p>
-<p>Returns: tuple: A tuple containing the actual value and time that has passed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">measured_output</td><td>(float): The measured output of the system. </td></tr>
+    <tr><td class="paramname">return</td><td>A tuple containing the actual value and time that has passed. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -194,9 +199,21 @@ Static Public Attributes</h2></td></tr>
 
 <p>Inits the Controller object with the provided proportional gain and set points. </p>
 <p>Takes in a desired Kp value.</p>
-<p>Kp (float): The proportinal gain of the controller. set_point (float): Is the desired setpoint of the system. start (int): The initial time of when the controller starts.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Kp</td><td>(float): The proportinal gain of the controller. </td></tr>
+    <tr><td class="paramname">set_point</td><td>(float): Is the desired setpoint of the system. </td></tr>
+    <tr><td class="paramname">start</td><td>(int): The initial time of when the controller starts.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Sets new Kp for class</p>
-<p>self.kp: The new kp value </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">desired_Kp</td><td>The new kp value </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -222,12 +239,17 @@ Static Public Attributes</h2></td></tr>
 
 <p>Takes in a desired set point. </p>
 <p>Sets new setpoint for class</p>
-<p>self.setpoint (float): The new setpoint </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">desired_set_point</td><td>The new setpoint </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<b>Closed_Loop_Controller.py</b></li>
+<li>src/<a class="el" href="_closed___loop___controller_8py.html">Closed_Loop_Controller.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

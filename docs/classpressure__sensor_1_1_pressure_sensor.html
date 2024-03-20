@@ -174,7 +174,14 @@ Public Attributes</h2></td></tr>
 
 <p>Here we initialize the PressureSensor Object. </p>
 <p>Where we have the following:</p>
-<p>Setpoint: The desired pressure setpoint, in [psi] P_Counts: The raw pressure data in counts </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Setpoint</td><td>The desired pressure setpoint, in [psi] </td></tr>
+    <tr><td class="paramname">P_Counts</td><td>The raw pressure data in counts </td></tr>
+    <tr><td class="paramname">T_Counts</td><td>The raw temperature data in counts </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -286,12 +293,17 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reads Raw Status, Pressure, and Temperature Data from the sensor. </p>
-<p>returns: A tuple containing raw pressure and temperature data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">returns</td><td>A tuple containing raw pressure and temperature data. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<b>pressure_sensor.py</b></li>
+<li>src/<a class="el" href="pressure__sensor_8py.html">pressure_sensor.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
