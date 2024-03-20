@@ -50,6 +50,8 @@ To measure pressure, we used a Honeywell Board Mount Pressure Sensor, which uses
 Attaching the sensor and the Ametek motor to our Nucleo, we were able to program both components to get a functioning product.
 
 ## Testing and Results
+
+### Preliminary
 Our senior project requires our chamber to be able to acheive at minimum, 5 ft depth. Calculations were run to determine the pressure that coincides with a depth of 5 ft in water. Being a little under 16.5 psi, we decided to run initial tests at 16.5 psi. 
 
 In order to test our project sensors and motor control, we ran multiple tests in order to find our optimal Kp value. The results are presented in the plot down below. This was preliminary testing. 
@@ -64,7 +66,7 @@ While testing to achieve for efficiency in reaching the desired pressure, it's e
 
 As we continue to test our project, further tests will be necessary to determine the optimal balance between speed, the system stability and accuracy. This process may involve fine-tuning parameters beyond just changing the Kp. This may incude making the chamber of the system bigger and other factors.
 
-## Lab Demo
+### Lab Demo
 The below plot shows the pressure inside the syringe. The autonomous journey is one in which the system reaches the desired setpoint, waits for a duration, and then returns to the initial pressure. This journey mimics future developement of our larger senior project in which this pressure chamber will be attached to a drone. We anticipate it will be beneficial for some remote or signal to send a desired depth as the setpoint to the system, in which the chamber will submerge with the drone, going to that depth. It will remain there, possible to collect data, and then autonomously return to the surface. 
 
 <img width="360" alt="image" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/75d0b395-c743-4855-a188-f06f3c17799e">
