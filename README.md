@@ -110,11 +110,13 @@ The below plot shows the pressure inside the syringe. The autonomous journey is 
 
 <img width="360" alt="image" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/75d0b395-c743-4855-a188-f06f3c17799e">
 
-Figure 7. Plot of Pressure vs Time inside the syringe with a setpoint of 17 [psi]. 
+Figure 7. Plot of Pressure vs Time inside the syringe with a setpoint of 17 [psi].  
 
 This journey mimics future developement of our larger senior project in which this pressure chamber will be attached to a drone. We anticipate it will be beneficial for some remote or signal to send a desired depth as the setpoint to the system, in which the chamber will submerge with the drone, going to that depth. It will remain there, possible to collect data, and then autonomously return to the surface. 
 We are satisfied with the final results. The chamber is able to reach pressures higher than a pressure corresponding to 5ft, which was what we wanted to achieve.
 It is also able to maintain the increase in pressure while the motor is turned off, which is a satisfying result. 
+
+The system also works at lower than atmosphere pressures. Although this is less necessary to have, it is satisfying to see that ability. 
 
 ## What we have learned
 Designing this system taught us how important it is to design and test early. 
