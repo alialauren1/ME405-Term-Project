@@ -18,7 +18,7 @@ In Figure 1, we can see the internal system of the system. We have integrated Am
 and aligned with a rack that allows for the syringe to be moved back and forth. This allows
 for the system to achieve the desired weight to submerge the whole system.
 
-The gears were selected from McMaster. This is so in the future, they can be ordered parts. For now, we used the CAD files to 3D print them for budget reasons. While sizing and choosing the number of teeth we would need for our system, we calculated to torque that the motor needed to have to overcome the friction force between the piston and syringe. This calculation is shown below. 
+The gears were selected from McMaster. This is so in the future, they can be ordered parts. For now, we used the CAD files to 3D print them for budget reasons. While sizing and choosing the number of teeth we would need for our system, we calculated to torque that the motor needed to have to overcome the friction force between the piston and syringe. This calculation is shown below. In the future, we can order a motor that is more selectively chosen using this information. However for now, we used the motor provided to us in lab. 
 
 $F_r = T_A / R_A$
 
