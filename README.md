@@ -135,7 +135,10 @@ We learned that the data being output from our pressure sensor was in counts. Th
 ## Safety
 Our project prioritizes user safety through thoughtful design considerations. By utilizing small gears, we have effectively reduced the risk of injuries to the user. Once the system has been fully assembled, all moving components and electrical elements will be enclosed and inaccessible to the user. This design ensures that users are protected from potential hazards during the system's operation.
 
-## Future Work
+## Bugs and Future Work
+
+We would also like to fix our code in Task2 State 3 where there is a break in data collection between the chamber resting at a higher pressure and then returning to its original pressure. As shown on the plot in the "Lab Demo Results" section, there is a small duration of time in which no data is collected. That is state 3, whilst counter_s3 is between 1 and 3. We tried removing this portion and only having state 3 reset the setpoint to initial pressure in one count but it did not initially work and we have run out of time to work on the code. So, for now, there is that small time duration blip in the data.  
+
 In the future we would like to implement a third task into our main program that is a user interface for the pressure setpoint. 
 The user could select from a range of setpoint options and the system would adjust the pressure in the chamber accordingly. 
 This task would multitask with the other two tasks and allow for the user to input a setpoint whenever they want whilst the program runs. 
