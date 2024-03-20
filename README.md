@@ -46,6 +46,9 @@ Figure 2. CAD: Secondary view of the internal system of our terms project with l
 
 ![IMG_6039](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/fc4674fa-24fd-468d-8175-b390c374cd86)
 
+![Screenshot 2024-03-19 at 6 15 07 PM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/7a1a9980-e30d-4ffa-95b8-1a75b6fceadd)
+
+
 Figure 3. Gears, motor, and frame for the internal system.
 
 ![IMG_6037](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/d11b0a8d-c261-4473-9286-de9a2c53cbf4)
@@ -87,6 +90,8 @@ While 3D printing gears and housing system for our project we learned that toler
 Note: We are saving our used PLA parts to find a place to recycle them. 
 
 ![IMG_6034](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/5b03ef0f-60c7-414f-b9d5-46a70c6df5b4)
+
+![Screenshot 2024-03-19 at 6 14 47 PM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/54fc154a-4143-4713-95bc-231fa4f20410)
 
 Figure 7. Collection of gears tested
 
