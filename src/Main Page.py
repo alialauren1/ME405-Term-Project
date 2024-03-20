@@ -16,7 +16,14 @@
    Following a brief description of the main program, the classes used are mentioned. 
    
    ## Main Program
- * words
+   The main program initially collects a setpoint pressure, which is the desired pressure the user wants to go to.
+   Then, as the program multitasks, is uses the Pressure Sensor class to essentially interpret and collect pressure values.
+   It works with the Closed-Loop Controller class to run the motor driver based on calculated error between setpoint and current pressure.
+   The program with run the controller until reaching the setpoint, in which it turns the motor off for a time duration.
+   Then, the program will use both the Pressure Sensor and Closed-Loop Controller classes again to return the chamber to the initial pressure from start up.
+   
+   Throughout the duration of the program, if there are pressure values being collected, there will be values printed.
+   This occurs by the program multitasking between data collection and printing. 
    
    ##Pressure Sensor Class
    To measure pressure, we used a Honeywell Board Mount Pressure Sensor, which uses I^2C communication. The sensor transmits data in byte arrays. The first byte being status, next two being pressure, and following two being temperature. A PressureSensor class was created to process the data from bytes into counts and then interpretable values of pressure in [psi] and temperature in [Farenheight].
