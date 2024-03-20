@@ -100,6 +100,7 @@ https://alialauren1.github.io/ME405-Term-Project/index.html#autotoc_md1
 
 Attaching the sensor and the Ametek motor to our Nucleo, we were able to program both components to get a functioning product.
 
+### Tasks and States
 The Tasks and States used in the main program are shown in diagrams linked on the page below.
 https://alialauren1.github.io/ME405-Term-Project/index.html#T_S_sec
 
