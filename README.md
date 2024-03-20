@@ -66,21 +66,28 @@ Figure 2. CAD: Secondary view of the internal system of our terms project with l
 
 Figure 3. Gears, motor, and frame for the internal system.
 
+The pressure sensor we selected is the SSCMANV030PA2A3 Honeywell Pressure Sensor. It is measures absolute pressure, with a range from 0-30 psi. Is allows liquid media on the port, which will come of use in future quarters when we test our system underwater. 
+
+<img width="182" alt="Screenshot 2024-03-19 at 8 53 00 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/83f965b6-e449-474c-9980-f4381207573f">
+
+
+Figure 4. SSCMANV030PA2A3 Honeywell Pressure Sensor
+
 ![IMG_6037](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/d11b0a8d-c261-4473-9286-de9a2c53cbf4)
 
-Figure 4. Hardware all connected
+Figure 5. Hardware all connected
 
 ![IMG_5986](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/2dcb67c6-f8fc-4aed-8ba3-724c25d5ca32)
 
-Figure 5A. System Connected to Bottom of Drone Body - View 1
+Figure 6A. System Connected to Bottom of Drone Body - View 1
 
 ![IMG_5952](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/372ee37b-0d7c-4a9a-8496-3acea0664945)
 
-Figure 5B. System Connected to Bottom of Drone Body - View 2
+Figure 6B. System Connected to Bottom of Drone Body - View 2
 
 <img width="561" alt="Screenshot 2024-03-19 at 8 43 37 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/63960632-6290-4ac7-8c0b-4ce70331d5dc">
 
-Figure 6. Overall View of Drone Body with Chamber 
+Figure 7. Overall View of Drone Body with Chamber 
 
 ### Schematic
 
@@ -89,7 +96,7 @@ The power supply provides power to the motor. The power supply was set to 12V wi
 
 <img width="355" alt="Schematic" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/69f9537e-9c2f-4ec5-904a-f615c2763568">
 
-Figure 7. Schematic of components
+Figure 8. Schematic of components
 
 ## Software design
 The main program uses three classes inside two tasks that multitask with one another. A detailed description of the software design can be found on our doxygen main page linked here: 
@@ -113,7 +120,7 @@ In order to test our project sensors and motor control, we ran multiple tests in
 
 <img width="605" alt="Screenshot 2024-03-17 at 10 32 32 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/ac451cf5-9cc9-4dc5-884a-5c23263242ac">
 
-Figure 8. Plot of Pressure vs Time inside the syringe. Each line represents a different run of data collected while altering the Kp value.
+Figure 9. Plot of Pressure vs Time inside the syringe. Each line represents a different run of data collected while altering the Kp value.
 
 During our testing, we initially set Kp to 5 (shown in blue) and then increased it to 10 (shown in orange). Observing the graph, it's evident that increasing the Kp value led to faster attainment of the target pressure of 16.5 [psi].
 
@@ -126,7 +133,7 @@ The below plot shows the pressure inside the syringe. The autonomous journey is 
 
 <img width="360" alt="image" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/75d0b395-c743-4855-a188-f06f3c17799e">
 
-Figure 9. Plot of Pressure vs Time inside the syringe with a setpoint of 17 [psi].  
+Figure 10. Plot of Pressure vs Time inside the syringe with a setpoint of 17 [psi].  
 
 This journey mimics future developement of our larger senior project in which this pressure chamber will be attached to a drone. We anticipate it will be beneficial for some remote or signal to send a desired depth as the setpoint to the system, in which the chamber will submerge with the drone, going to that depth. It will remain there, possible to collect data, and then autonomously return to the surface. 
 We are satisfied with the final results. The chamber is able to reach pressures higher than a pressure corresponding to 5ft, which was what we wanted to achieve.
@@ -136,7 +143,7 @@ The system also works at lower than atmosphere pressures. In the plot below, the
 
 <img width="349" alt="Screenshot 2024-03-19 at 8 38 33 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/a8d9b7e9-7423-4f52-975f-87fc786d1f34">
 
-Figure 10. Plot of Pressure vs Time inside the syringe with a setpoint of 13 [psi].  
+Figure 11. Plot of Pressure vs Time inside the syringe with a setpoint of 13 [psi].  
 
 ## What we have learned
 Designing this system taught us how important it is to design and test early. 
@@ -149,7 +156,7 @@ Note: We are saving our used PLA parts to find a place to recycle them.
 
 ![Screenshot 2024-03-19 at 6 14 47 PM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/54fc154a-4143-4713-95bc-231fa4f20410)
 
-Figure 11. Collection of gears tested
+Figure 12. Collection of gears tested
 
 ### Software and Sensors
 We learned that the data being output from our pressure sensor was in counts. This led to the creation of a definition in our PressureSensor class to interpret the counts into a unit of measurement that could be easily interpretted, that being [psi]. Since our Closed-Loop Controller class uses the pressure sensor output in counts to correct for a desired pressure, an additional definition was made to interpret user desired setpoint input from [psi] to counts. 
