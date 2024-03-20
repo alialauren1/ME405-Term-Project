@@ -1,12 +1,11 @@
 var indexSectionsWithContent =
 {
-  0: "124_abcdefiklmoprst",
+  0: "124_abcdfilmoprst",
   1: "cmp",
   2: "m",
   3: "bcmp",
   4: "_prst",
-  5: "eks",
-  6: "4mpt"
+  5: "4mpt"
 };
 
 var indexSectionNames =
@@ -16,8 +15,7 @@ var indexSectionNames =
   2: "namespaces",
   3: "files",
   4: "functions",
-  5: "variables",
-  6: "pages"
+  5: "pages"
 };
 
 var indexSectionLabels =
@@ -27,7 +25,6 @@ var indexSectionLabels =
   2: "Namespaces",
   3: "Files",
   4: "Functions",
-  5: "Variables",
-  6: "Pages"
+  5: "Pages"
 };
 

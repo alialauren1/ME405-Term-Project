@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loop_20controller_20class_0',['Closed-Loop Controller Class',['../index.html#autotoc_md7',1,'']]]
+  ['organization_0',['Software Description and Organization',['../index.html#soft_org_sec',1,'']]]
 ];

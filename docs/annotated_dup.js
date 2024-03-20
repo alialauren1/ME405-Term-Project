@@ -1,7 +1,7 @@
 var annotated_dup =
 [
     [ "Closed_Loop_Controller", null, [
-      [ "Controller", "class_closed___loop___controller_1_1_controller.html", null ]
+      [ "Controller", "class_closed___loop___controller_1_1_controller.html", "class_closed___loop___controller_1_1_controller" ]
     ] ],
     [ "motor_driver", null, [
       [ "motordriver", "classmotor__driver_1_1motordriver.html", "classmotor__driver_1_1motordriver" ]
