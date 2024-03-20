@@ -116,7 +116,10 @@ This journey mimics future developement of our larger senior project in which th
 We are satisfied with the final results. The chamber is able to reach pressures higher than a pressure corresponding to 5ft, which was what we wanted to achieve.
 It is also able to maintain the increase in pressure while the motor is turned off, which is a satisfying result. 
 
-The system also works at lower than atmosphere pressures. Although this is less necessary to have, it is satisfying to see that ability. 
+The system also works at lower than atmosphere pressures. In the plot below, the setpoint was chosen as 13 psi. However, in another test, we were able run the system with an even lower setpoint of 10 psi. Although this is less necessary to have, it is satisfying to see that ability. 
+
+<img width="349" alt="Screenshot 2024-03-19 at 8 38 33 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/a8d9b7e9-7423-4f52-975f-87fc786d1f34">
+Figure 8. Plot of Pressure vs Time inside the syringe with a setpoint of 13 [psi].  
 
 ## What we have learned
 Designing this system taught us how important it is to design and test early. 
@@ -129,7 +132,7 @@ Note: We are saving our used PLA parts to find a place to recycle them.
 
 ![Screenshot 2024-03-19 at 6 14 47 PM](https://github.com/alialauren1/ME405-Term-Project/assets/157066441/54fc154a-4143-4713-95bc-231fa4f20410)
 
-Figure 8. Collection of gears tested
+Figure 9. Collection of gears tested
 
 ### Software and Sensors
 We learned that the data being output from our pressure sensor was in counts. This led to the creation of a definition in our PressureSensor class to interpret the counts into a unit of measurement that could be easily interpretted, that being [psi]. Since our Closed-Loop Controller class uses the pressure sensor output in counts to correct for a desired pressure, an additional definition was made to interpret user desired setpoint input from [psi] to counts. 
