@@ -72,6 +72,8 @@ Figure 4. Hardware all connected
 
 ### Schematic
 
+The schematic below shows a very general diagram of how components are being powered and communicating with one another. 
+The power supply provides power to the motor. The power supply was set to 12V with a 0.5 A current limit. 
 
 <img width="355" alt="Schematic" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/69f9537e-9c2f-4ec5-904a-f615c2763568">
 
