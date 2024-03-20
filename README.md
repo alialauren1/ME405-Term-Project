@@ -116,7 +116,7 @@ https://alialauren1.github.io/ME405-Term-Project/index.html#T_S_sec
 ### Preliminary
 Our senior project requires our chamber to be able to acheive at minimum, 5 ft depth. Calculations were run, shown below, to determine the pressure that coincides with a depth of 5 ft in water. Being a little under 16.5 psi, we decided to run initial tests at 16.5 psi.
 
-<img width="950" alt="Screenshot 2024-03-19 at 9 04 20 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/2dfeeb39-b6c0-42f9-9e4f-94a12df7282b">
+<img width="558" alt="Screenshot 2024-03-19 at 9 05 30 PM" src="https://github.com/alialauren1/ME405-Term-Project/assets/157066441/ff3288be-28b8-42c2-b472-b3d4093e939d">
 
 In order to test our project sensors and motor control, we ran multiple tests in order to find our optimal Kp value. The results are presented in the plot down below. This was preliminary testing. 
 
